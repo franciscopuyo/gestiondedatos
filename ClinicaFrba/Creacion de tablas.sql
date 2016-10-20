@@ -8,8 +8,8 @@ CREATE TABLE Usuarios (
   usuario VARCHAR(255) NOT NULL UNIQUE,
   activo BIT NOT NULL,
   cantidad_intentos_login INT NOT NULL,
-  dni NUMERIC(18) NOT NULL,
-  PRIMARY KEY (dni)
+  usuario_dni NUMERIC(18) NOT NULL,
+  PRIMARY KEY (usuario_dni)
 )
 
 -- -----------------------------------------------------
@@ -77,7 +77,7 @@ CREATE TABLE Personas_Detalle (
 -- Creacion tabla Afiliados
 -- -----------------------------------------------------
 CREATE TABLE Afiliados (
-  usuario_dni NUMERIC(18) NULL UNIQUE,
+  afiliado_dni NUMERIC(18) NULL UNIQUE,
   nro_afiliado INT NOT NULL,
   afiliado_responsable NUMERIC(18) NULL,
   afiliado_conyugue NUMERIC(18) NULL,
@@ -86,20 +86,20 @@ CREATE TABLE Afiliados (
   PRIMARY KEY (nro_afiliado),
  
   CONSTRAINT fk_Personas_Detalles
-    FOREIGN KEY (usuario_dni)
+    FOREIGN KEY (afiliado_dni)
     REFERENCES Personas_Detalle (dni),
 
   CONSTRAINT fk_Usuarios_Afiliados
-    FOREIGN KEY (usuario_dni)
-    REFERENCES Usuarios (dni),
+    FOREIGN KEY (afiliado_dni)
+    REFERENCES Usuarios (usuario_dni),
 
   CONSTRAINT fk_Afiliados_Afiliados_Responsable
     FOREIGN KEY (afiliado_responsable)
-    REFERENCES Afiliados (usuario_dni),
+    REFERENCES Afiliados (afiliado_dni),
 
   CONSTRAINT fk_Afiliados_Afiliados_Conyugue
     FOREIGN KEY (afiliado_conyugue)
-    REFERENCES Afiliados (usuario_dni),
+    REFERENCES Afiliados (afiliado_dni),
 
   CONSTRAINT fk_Afiliados_Planes_Medicos
     FOREIGN KEY (plan_medico_codigo)
@@ -119,7 +119,7 @@ CREATE TABLE Compras (
  
   CONSTRAINT fk_Compras_Afiliados1
     FOREIGN KEY (afiliado_usuario_dni)
-    REFERENCES Afiliados (usuario_dni)
+    REFERENCES Afiliados (afiliado_dni)
 )
 
 -- -----------------------------------------------------
@@ -129,7 +129,7 @@ CREATE TABLE Bonos (
   compra_id NUMERIC(18) NOT NULL,
   plan_codigo NUMERIC(18) NOT NULL,
   nro_bono NUMERIC(18) NOT NULL,
-  afiliado NUMERIC(18) NOT NULL,
+  afiliado_dni NUMERIC(18) NOT NULL,
 
   PRIMARY KEY (nro_bono),
 
@@ -140,6 +140,10 @@ CREATE TABLE Bonos (
   CONSTRAINT fk_Bonos_Planes_Medicos
     FOREIGN KEY (plan_codigo)
     REFERENCES Planes_Medicos (codigo),
+
+  CONSTRAINT fk_Bonos_Afiliados
+    FOREIGN KEY (afiliado_dni)
+    REFERENCES Afiliados (afiliado_dni)
 
 )
 
@@ -181,15 +185,15 @@ CREATE TABLE Agendas (
 -- -----------------------------------------------------
 CREATE TABLE Profesionales (
   matricula VARCHAR(45) NULL,
-  usuario_dni NUMERIC(18) NOT NULL,
-  PRIMARY KEY (usuario_dni),
+  profesional_dni NUMERIC(18) NOT NULL,
+  PRIMARY KEY (profesional_dni),
  
   CONSTRAINT fk_Profesionales_Usuarios1
-    FOREIGN KEY (usuario_dni)
-    REFERENCES Usuarios (dni),
+    FOREIGN KEY (profesional_dni)
+    REFERENCES Usuarios (usuario_dni),
 
   CONSTRAINT fk_Profesionales_Personas_Detalle
-    FOREIGN KEY (usuario_dni)
+    FOREIGN KEY (profesional_dni)
     REFERENCES Personas_Detalle (dni)
 )
 
@@ -212,7 +216,7 @@ CREATE TABLE Medico_Especialidad (
  
   CONSTRAINT fk_Medico_Especialidad_Profesionales1
     FOREIGN KEY (profesional_dni)
-    REFERENCES Profesionales (usuario_dni)
+    REFERENCES Profesionales (profesional_dni)
 )
 
 -- -----------------------------------------------------
@@ -242,7 +246,7 @@ CREATE TABLE Turnos (
   
   CONSTRAINT fk_Turnos_Afiliados
     FOREIGN KEY (afiliado_usuario_dni)
-    REFERENCES Afiliados (usuario_dni),
+    REFERENCES Afiliados (afiliado_dni),
  
   CONSTRAINT fk_Turnos_Medico_Especialidad
     FOREIGN KEY (medico_especialidad_codigo , medico_dni)
@@ -263,7 +267,7 @@ CREATE TABLE Usuario_Roles (
  
   CONSTRAINT fk_Usuario_has_Rol_Usuario1
     FOREIGN KEY (usuario_dni)
-    REFERENCES Usuarios (dni),
+    REFERENCES Usuarios (usuario_dni),
  
   CONSTRAINT fk_Usuario_has_Rol_Rol1
     FOREIGN KEY (rol_codigo)
@@ -290,7 +294,7 @@ CREATE TABLE Cambios_De_Plan (
     REFERENCES Planes_Medicos (codigo),
   CONSTRAINT fk_Cambios_De_Plan_Afiliados1
     FOREIGN KEY (afiliados_dni)
-    REFERENCES Afiliados (usuario_dni)
+    REFERENCES Afiliados (afiliado_dni)
 )
 
 
