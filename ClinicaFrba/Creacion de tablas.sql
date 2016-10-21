@@ -78,7 +78,7 @@ CREATE TABLE Personas_Detalle (
 -- -----------------------------------------------------
 CREATE TABLE Afiliados (
   afiliado_dni NUMERIC(18) NULL UNIQUE,
-  nro_afiliado INT NOT NULL,
+  nro_afiliado NUMERIC(20) NOT NULL,
   afiliado_responsable NUMERIC(18) NULL,
   afiliado_conyugue NUMERIC(18) NULL,
   plan_medico_codigo NUMERIC(18) NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE Compras (
   fecha DATETIME NULL,
   cantidad INT NULL,
   monto DECIMAL(12,2) NULL,
-  compra_id NUMERIC(18) IDENTITY(1,1) NOT NULL,
+  compra_id NUMERIC(18) NOT NULL IDENTITY(1,1),
   afiliado_usuario_dni NUMERIC(18) NOT NULL,
   PRIMARY KEY (compra_id),
  
@@ -177,7 +177,7 @@ CREATE TABLE Especialidades (
 CREATE TABLE Agendas (
   desde DATETIME NULL,
   hasta DATETIME NULL,
-  agenda_id NUMERIC(18) NOT NULL,
+  agenda_id NUMERIC(18) NOT NULL IDENTITY(1,1),
   PRIMARY KEY (agenda_id))
 
 -- -----------------------------------------------------
