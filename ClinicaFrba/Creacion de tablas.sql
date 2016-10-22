@@ -4,7 +4,7 @@ use consultorio;
 -- Creacion tabla Usuarios
 -- -----------------------------------------------------
 CREATE TABLE Usuarios (
-  contrasena VARCHAR(45) NOT NULL,
+  contrasena BINARY(32) NOT NULL,
   usuario VARCHAR(255) NOT NULL UNIQUE,
   activo BIT NOT NULL,
   cantidad_intentos_login INT NOT NULL,
@@ -27,7 +27,8 @@ CREATE TABLE Roles (
 CREATE TABLE Funcionalidades (
   codigo NUMERIC(18) NOT NULL,
   funcionalidad VARCHAR(255) NOT NULL,
-  PRIMARY KEY (codigo))
+  PRIMARY KEY (codigo)
+)
 
 -- -----------------------------------------------------
 -- Creacion tabla Rol_Funcionalidades
@@ -71,7 +72,8 @@ CREATE TABLE Personas_Detalle (
   nombre VARCHAR(255) NULL,
   apellido VARCHAR(255) NULL,
   estado_civil INT NULL,
-  PRIMARY KEY (dni))
+  PRIMARY KEY (dni)
+ )
 
   -- -----------------------------------------------------
 -- Creacion tabla Afiliados
@@ -82,7 +84,7 @@ CREATE TABLE Afiliados (
   afiliado_responsable NUMERIC(18) NULL,
   afiliado_conyugue NUMERIC(18) NULL,
   plan_medico_codigo NUMERIC(18) NOT NULL,
-  nro_ultimo_bono NUMERIC(18),
+  cantidad_consultas_realizadas NUMERIC(18),
   PRIMARY KEY (nro_afiliado),
  
   CONSTRAINT fk_Personas_Detalles
@@ -130,6 +132,7 @@ CREATE TABLE Bonos (
   plan_codigo NUMERIC(18) NOT NULL,
   nro_bono NUMERIC(18) NOT NULL,
   afiliado_dni NUMERIC(18) NOT NULL,
+  nro_consulta_medica NUMERIC(18) NOT NULL,
 
   PRIMARY KEY (nro_bono),
 
@@ -172,15 +175,6 @@ CREATE TABLE Especialidades (
 )
 
 -- -----------------------------------------------------
--- Creacion tabla Agendas
--- -----------------------------------------------------
-CREATE TABLE Agendas (
-  desde DATETIME NULL,
-  hasta DATETIME NULL,
-  agenda_id NUMERIC(18) NOT NULL IDENTITY(1,1),
-  PRIMARY KEY (agenda_id))
-
--- -----------------------------------------------------
 -- Creacion tabla Profesionales
 -- -----------------------------------------------------
 CREATE TABLE Profesionales (
@@ -202,17 +196,12 @@ CREATE TABLE Profesionales (
 -- -----------------------------------------------------
 CREATE TABLE Medico_Especialidad (
   especialidad_codigo NUMERIC(18) NOT NULL,
-  agenda_id NUMERIC(18) NULL,
   profesional_dni NUMERIC(18) NOT NULL,
   PRIMARY KEY (profesional_dni, especialidad_codigo),
  
   CONSTRAINT fk_especialidades
     FOREIGN KEY (especialidad_codigo)
     REFERENCES Especialidades (codigo),
-
-  CONSTRAINT fk_Medico_Especialidad_Agendas1
-    FOREIGN KEY (agenda_id)
-    REFERENCES Agendas (agenda_id),
  
   CONSTRAINT fk_Medico_Especialidad_Profesionales1
     FOREIGN KEY (profesional_dni)
@@ -220,15 +209,33 @@ CREATE TABLE Medico_Especialidad (
 )
 
 -- -----------------------------------------------------
+-- Creacion tabla Agendas
+-- -----------------------------------------------------
+CREATE TABLE Agendas (
+  desde DATETIME NULL,
+  hasta DATETIME NULL,
+  especialidad_codigo NUMERIC(18) NOT NULL,
+  profesional_dni NUMERIC(18) NOT NULL,
+  PRIMARY KEY (especialidad_codigo, profesional_dni),
+
+  CONSTRAINT fk_Agenda_Medicos_Especialidades
+    FOREIGN KEY (profesional_dni, especialidad_codigo)
+    REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo)
+)
+
+-- -----------------------------------------------------
 -- Creacion tabla Disponibilidad
 -- -----------------------------------------------------
 CREATE TABLE Disponibilidad (
-  dia_horario DATETIME NOT NULL,
-  agenda_id NUMERIC(18) NOT NULL,
-  PRIMARY KEY (agenda_id, dia_horario),
-  CONSTRAINT fk_Rangos_Horario_Agendas1
-    FOREIGN KEY (agenda_id)
-    REFERENCES Agendas (agenda_id)
+  fecha DATETIME NOT NULL,
+  especialidad_codigo NUMERIC(18) NOT NULL,
+  profesional_dni NUMERIC(18) NOT NULL,
+
+  PRIMARY KEY (fecha, especialidad_codigo, profesional_dni),
+
+  CONSTRAINT fk_Dispinibilidad_Agenda
+    FOREIGN KEY (especialidad_codigo, profesional_dni)
+    REFERENCES Agendas (especialidad_codigo, profesional_dni)
 )
 
 
@@ -237,24 +244,24 @@ CREATE TABLE Disponibilidad (
 -- -----------------------------------------------------
 CREATE TABLE Turnos (
   numero NUMERIC(18) NOT NULL,
-  afiliado_usuario_dni NUMERIC(18) NOT NULL,
-  medico_especialidad_codigo NUMERIC(18) NOT NULL,
-  medico_dni NUMERIC(18) NOT NULL,
-  disponibilidad_agenda_id NUMERIC(18) NOT NULL,
-  disponibilidad_dia_horario DATETIME NOT NULL,
+  afiliado_dni NUMERIC(18) NOT NULL,
+  especialidad_codigo NUMERIC(18) NOT NULL,
+  profesional_dni NUMERIC(18) NOT NULL,
+  fecha DATETIME NOT NULL,
   PRIMARY KEY (numero),
   
   CONSTRAINT fk_Turnos_Afiliados
-    FOREIGN KEY (afiliado_usuario_dni)
+    FOREIGN KEY (afiliado_dni)
     REFERENCES Afiliados (afiliado_dni),
  
   CONSTRAINT fk_Turnos_Medico_Especialidad
-    FOREIGN KEY (medico_especialidad_codigo , medico_dni)
+    FOREIGN KEY (profesional_dni, especialidad_codigo)
     REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo),
-   
+
   CONSTRAINT fk_Turnos_Disponibilidad
-    FOREIGN KEY (disponibilidad_agenda_id , disponibilidad_dia_horario)
-    REFERENCES Disponibilidad (agenda_id , dia_horario)
+	FOREIGN KEY (fecha, especialidad_codigo, profesional_dni)
+	REFERENCES Disponibilidad (fecha, especialidad_codigo, profesional_dni)
+   
 )
 
 -- -----------------------------------------------------
