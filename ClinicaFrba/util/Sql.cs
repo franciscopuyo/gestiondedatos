@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Data.SqlTypes;
+using System.Data;
 
 namespace ClinicaFrba.util
 {
@@ -17,7 +19,6 @@ namespace ClinicaFrba.util
             try
             {
                 connection.Open();
-                MessageBox.Show("Me conecte a la base");
             }
             catch (SqlException ex)
             {
@@ -26,5 +27,16 @@ namespace ClinicaFrba.util
 
             return connection;
         }
+
+
+        public static DataTable query(String query){
+            SqlConnection connection = Sql.connect("gd");
+            SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            connection.Close();
+            return dataTable;
+        }
+
     }
 }

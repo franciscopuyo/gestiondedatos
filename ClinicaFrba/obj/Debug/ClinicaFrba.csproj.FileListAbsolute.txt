@@ -15,3 +15,14 @@ C:\Users\Francisco\Desktop\TP CLINICA FRBA 1.0 - 2C 2016\Aplicacion Desktop\Clin
 C:\Users\Francisco\Desktop\TP CLINICA FRBA 1.0 - 2C 2016\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
 C:\Users\Francisco\Desktop\TP CLINICA FRBA 1.0 - 2C 2016\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
 C:\Users\Francisco\Desktop\TP CLINICA FRBA 1.0 - 2C 2016\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Listados.Form1.resources
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.exe
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\bin\Debug\ClinicaFrba.exe
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.Form1.resources
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Form1.resources
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Listados.Form1.resources
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
