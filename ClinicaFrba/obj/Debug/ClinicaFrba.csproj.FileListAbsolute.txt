@@ -26,3 +26,4 @@ C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Form1.resour
 C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Listados.Form1.resources
 C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
 C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
+C:\Users\Admin\Documents\GDD\Repo\ClinicaFrba\obj\Debug\ClinicaFrba.Seleccion_Rol.RoleSelect.resources

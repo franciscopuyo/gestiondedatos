@@ -125,6 +125,13 @@
     <Compile Include="Registro Resultado\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Seleccion Rol\RoleSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seleccion Rol\RoleSelect.Designer.cs">
+      <DependentUpon>RoleSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="util\Session.cs" />
     <Compile Include="util\Sql.cs" />
     <EmbeddedResource Include="AbmRol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -144,6 +151,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Seleccion Rol\RoleSelect.resx">
+      <DependentUpon>RoleSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
