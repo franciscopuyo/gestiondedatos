@@ -38,5 +38,12 @@ namespace ClinicaFrba.util
             return dataTable;
         }
 
+        public static void update(String query)
+        {
+            SqlConnection connection = Sql.connect("gd");
+            SqlCommand command = new SqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
