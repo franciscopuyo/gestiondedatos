@@ -10,6 +10,7 @@ namespace ClinicaFrba.util
     {
 
         public static String user;
-
+        public static int dni;
+        public static int role;
     }
 }

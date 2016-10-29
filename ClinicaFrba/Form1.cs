@@ -22,6 +22,8 @@ namespace ClinicaFrba
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.goToRoles();
+            return;
             String user = textBox1.Text;
             String pass = textBox2.Text;
 
@@ -71,6 +73,8 @@ namespace ClinicaFrba
             
             MessageBox.Show("Todo bien");
             Session.user = user;
+            Session.dni = (int)userExistsResults.Rows[0][4];
+
             String cleanWrongTries = "update usuarios set cantidad_intentos_login = 0 where usuario = {0}";
             cleanWrongTries = String.Format(cleanWrongTries, user);
             Sql.update(cleanWrongTries);
@@ -79,6 +83,14 @@ namespace ClinicaFrba
             RoleSelect roleSelect = new RoleSelect();
             roleSelect.Show();
             
+        }
+
+        private void goToRoles()
+        {
+            Session.dni = 1123960;
+            this.Hide();
+            RoleSelect roleSelect = new RoleSelect();
+            roleSelect.Show();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

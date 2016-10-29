@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.util;
+using ClinicaFrba.Model;
+using ClinicaFrba.Listado_Funcionalidad;
 
 namespace ClinicaFrba.Seleccion_Rol
 {
@@ -19,12 +22,26 @@ namespace ClinicaFrba.Seleccion_Rol
 
         private void RoleSelect_Load(object sender, EventArgs e)
         {
+            DataTable rolesResults = Role.getUserRoles(Session.dni);
 
+            foreach (DataRow row in rolesResults.Rows) {
+                ComboBoxItem RoleItem = new ComboBoxItem(Int32.Parse(row["codigo"].ToString()), row["descripcion"].ToString());  
+                comboBox1.Items.Add(RoleItem);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxItem selectedRole = (ComboBoxItem)comboBox1.SelectedItem;
+            Session.role = selectedRole.Value;
+            this.Hide();
+            Form listadoFuncionalidad = new ListadoFuncionalidad();
+            listadoFuncionalidad.Show();
         }
     }
 }

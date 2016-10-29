@@ -93,12 +93,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Listado Funcionalidad\ListadoFuncionalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Funcionalidad\ListadoFuncionalidad.Designer.cs">
+      <DependentUpon>ListadoFuncionalidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Listados\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Role.cs" />
     <Compile Include="Pedir Turno\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +138,7 @@
     <Compile Include="Seleccion Rol\RoleSelect.Designer.cs">
       <DependentUpon>RoleSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="util\ComboBoxItem.cs" />
     <Compile Include="util\Session.cs" />
     <Compile Include="util\Sql.cs" />
     <EmbeddedResource Include="AbmRol\Form1.resx">
@@ -138,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Funcionalidad\ListadoFuncionalidad.resx">
+      <DependentUpon>ListadoFuncionalidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
