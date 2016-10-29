@@ -18,6 +18,7 @@ CREATE TABLE Usuarios (
 CREATE TABLE Roles (
   codigo NUMERIC(18) NOT NULL,
   descripcion VARCHAR(255) NULL,
+  activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (codigo)
 )
 
