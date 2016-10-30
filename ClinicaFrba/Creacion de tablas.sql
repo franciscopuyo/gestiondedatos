@@ -86,6 +86,7 @@ CREATE TABLE Afiliados (
   afiliado_conyugue NUMERIC(18) NULL,
   plan_medico_codigo NUMERIC(18) NOT NULL,
   cantidad_consultas_realizadas NUMERIC(18),
+  activo BIT,
   PRIMARY KEY (nro_afiliado),
  
   CONSTRAINT fk_Personas_Detalles

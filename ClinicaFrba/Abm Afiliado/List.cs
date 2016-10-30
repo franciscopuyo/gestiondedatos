@@ -26,11 +26,11 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select afiliado_dni, nro_afiliado, plan_medico_codigo from Afiliados";
+            String query = "select afiliado_dni, nro_afiliado, plan_medico_codigo from Afiliados where activo = 1";
 
             if (dniFilter.Text != null && !dniFilter.Text.Equals(""))
             {
-                query += " where afiliado_dni = " + dniFilter.Text;
+                query += " and afiliado_dni = " + dniFilter.Text;
             }
             
             adapter = new SqlDataAdapter(query, connection);
