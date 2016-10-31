@@ -50,19 +50,9 @@ namespace ClinicaFrba.Abm_Afiliado
             loadAfiliados();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             cantResults.Text = "Cantidad de registros: " + bindingSource.Count.ToString(); 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void List_Load(object sender, EventArgs e)

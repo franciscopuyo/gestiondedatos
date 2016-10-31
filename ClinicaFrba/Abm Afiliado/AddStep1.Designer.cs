@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.nombre = new System.Windows.Forms.TextBox();
             this.nombreLabel = new System.Windows.Forms.Label();
             this.ApellidoLabel = new System.Windows.Forms.Label();
@@ -43,7 +44,7 @@
             this.mail = new System.Windows.Forms.TextBox();
             this.mailLabel = new System.Windows.Forms.Label();
             this.fechaNacLabel = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.fechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.sexo = new System.Windows.Forms.ComboBox();
             this.sexoLabel = new System.Windows.Forms.Label();
             this.estadoCivil = new System.Windows.Forms.ComboBox();
@@ -53,6 +54,20 @@
             this.planMedico = new System.Windows.Forms.ComboBox();
             this.planMedicoLabel = new System.Windows.Forms.Label();
             this.guardar = new System.Windows.Forms.Button();
+            this.errorProviderNombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderApellido = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDocumento = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDireccion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderTelefono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderCantResponsables = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderMail = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDocumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDireccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCantResponsables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).BeginInit();
             this.SuspendLayout();
             // 
             // nombre
@@ -67,18 +82,18 @@
             this.nombreLabel.AutoSize = true;
             this.nombreLabel.Location = new System.Drawing.Point(13, 47);
             this.nombreLabel.Name = "nombreLabel";
-            this.nombreLabel.Size = new System.Drawing.Size(44, 13);
+            this.nombreLabel.Size = new System.Drawing.Size(51, 13);
             this.nombreLabel.TabIndex = 1;
-            this.nombreLabel.Text = "Nombre";
+            this.nombreLabel.Text = "Nombre *";
             // 
             // ApellidoLabel
             // 
             this.ApellidoLabel.AutoSize = true;
             this.ApellidoLabel.Location = new System.Drawing.Point(13, 107);
             this.ApellidoLabel.Name = "ApellidoLabel";
-            this.ApellidoLabel.Size = new System.Drawing.Size(44, 13);
+            this.ApellidoLabel.Size = new System.Drawing.Size(51, 13);
             this.ApellidoLabel.TabIndex = 3;
-            this.ApellidoLabel.Text = "Apellido";
+            this.ApellidoLabel.Text = "Apellido *";
             // 
             // apellido
             // 
@@ -92,18 +107,18 @@
             this.tipoDocLabel.AutoSize = true;
             this.tipoDocLabel.Location = new System.Drawing.Point(13, 166);
             this.tipoDocLabel.Name = "tipoDocLabel";
-            this.tipoDocLabel.Size = new System.Drawing.Size(99, 13);
+            this.tipoDocLabel.Size = new System.Drawing.Size(106, 13);
             this.tipoDocLabel.TabIndex = 5;
-            this.tipoDocLabel.Text = "Tipo de documento";
+            this.tipoDocLabel.Text = "Tipo de documento *";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 223);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Documento";
+            this.label1.Text = "Documento *";
             // 
             // documento
             // 
@@ -128,9 +143,9 @@
             this.direccionLabel.AutoSize = true;
             this.direccionLabel.Location = new System.Drawing.Point(14, 284);
             this.direccionLabel.Name = "direccionLabel";
-            this.direccionLabel.Size = new System.Drawing.Size(98, 13);
+            this.direccionLabel.Size = new System.Drawing.Size(105, 13);
             this.direccionLabel.TabIndex = 9;
-            this.direccionLabel.Text = "Direccion completa";
+            this.direccionLabel.Text = "Direccion completa *";
             // 
             // direccion
             // 
@@ -153,9 +168,9 @@
             this.telefonoLabel.AutoSize = true;
             this.telefonoLabel.Location = new System.Drawing.Point(14, 344);
             this.telefonoLabel.Name = "telefonoLabel";
-            this.telefonoLabel.Size = new System.Drawing.Size(49, 13);
+            this.telefonoLabel.Size = new System.Drawing.Size(56, 13);
             this.telefonoLabel.TabIndex = 11;
-            this.telefonoLabel.Text = "Telefono";
+            this.telefonoLabel.Text = "Telefono *";
             this.telefonoLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // mail
@@ -170,25 +185,25 @@
             this.mailLabel.AutoSize = true;
             this.mailLabel.Location = new System.Drawing.Point(14, 403);
             this.mailLabel.Name = "mailLabel";
-            this.mailLabel.Size = new System.Drawing.Size(26, 13);
+            this.mailLabel.Size = new System.Drawing.Size(33, 13);
             this.mailLabel.TabIndex = 13;
-            this.mailLabel.Text = "Mail";
+            this.mailLabel.Text = "Mail *";
             // 
             // fechaNacLabel
             // 
             this.fechaNacLabel.AutoSize = true;
             this.fechaNacLabel.Location = new System.Drawing.Point(12, 460);
             this.fechaNacLabel.Name = "fechaNacLabel";
-            this.fechaNacLabel.Size = new System.Drawing.Size(106, 13);
+            this.fechaNacLabel.Size = new System.Drawing.Size(113, 13);
             this.fechaNacLabel.TabIndex = 15;
-            this.fechaNacLabel.Text = "Fecha de nacimiento";
+            this.fechaNacLabel.Text = "Fecha de nacimiento *";
             // 
-            // dateTimePicker1
+            // fechaNacimiento
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 486);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 16;
+            this.fechaNacimiento.Location = new System.Drawing.Point(12, 486);
+            this.fechaNacimiento.Name = "fechaNacimiento";
+            this.fechaNacimiento.Size = new System.Drawing.Size(200, 20);
+            this.fechaNacimiento.TabIndex = 16;
             // 
             // sexo
             // 
@@ -207,9 +222,9 @@
             this.sexoLabel.AutoSize = true;
             this.sexoLabel.Location = new System.Drawing.Point(258, 47);
             this.sexoLabel.Name = "sexoLabel";
-            this.sexoLabel.Size = new System.Drawing.Size(31, 13);
+            this.sexoLabel.Size = new System.Drawing.Size(38, 13);
             this.sexoLabel.TabIndex = 17;
-            this.sexoLabel.Text = "Sexo";
+            this.sexoLabel.Text = "Sexo *";
             this.sexoLabel.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // estadoCivil
@@ -231,9 +246,9 @@
             this.estadoCivilLabel.AutoSize = true;
             this.estadoCivilLabel.Location = new System.Drawing.Point(258, 107);
             this.estadoCivilLabel.Name = "estadoCivilLabel";
-            this.estadoCivilLabel.Size = new System.Drawing.Size(61, 13);
+            this.estadoCivilLabel.Size = new System.Drawing.Size(68, 13);
             this.estadoCivilLabel.TabIndex = 19;
-            this.estadoCivilLabel.Text = "Estado civil";
+            this.estadoCivilLabel.Text = "Estado civil *";
             // 
             // cantResponsables
             // 
@@ -264,9 +279,9 @@
             this.planMedicoLabel.AutoSize = true;
             this.planMedicoLabel.Location = new System.Drawing.Point(258, 223);
             this.planMedicoLabel.Name = "planMedicoLabel";
-            this.planMedicoLabel.Size = new System.Drawing.Size(65, 13);
+            this.planMedicoLabel.Size = new System.Drawing.Size(72, 13);
             this.planMedicoLabel.TabIndex = 23;
-            this.planMedicoLabel.Text = "Plan medico";
+            this.planMedicoLabel.Text = "Plan medico *";
             // 
             // guardar
             // 
@@ -276,6 +291,35 @@
             this.guardar.TabIndex = 25;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
+            // 
+            // errorProviderNombre
+            // 
+            this.errorProviderNombre.ContainerControl = this;
+            // 
+            // errorProviderApellido
+            // 
+            this.errorProviderApellido.ContainerControl = this;
+            // 
+            // errorProviderDocumento
+            // 
+            this.errorProviderDocumento.ContainerControl = this;
+            // 
+            // errorProviderDireccion
+            // 
+            this.errorProviderDireccion.ContainerControl = this;
+            // 
+            // errorProviderTelefono
+            // 
+            this.errorProviderTelefono.ContainerControl = this;
+            // 
+            // errorProviderCantResponsables
+            // 
+            this.errorProviderCantResponsables.ContainerControl = this;
+            // 
+            // errorProviderMail
+            // 
+            this.errorProviderMail.ContainerControl = this;
             // 
             // Add
             // 
@@ -291,7 +335,7 @@
             this.Controls.Add(this.estadoCivilLabel);
             this.Controls.Add(this.sexo);
             this.Controls.Add(this.sexoLabel);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.fechaNacimiento);
             this.Controls.Add(this.fechaNacLabel);
             this.Controls.Add(this.mail);
             this.Controls.Add(this.mailLabel);
@@ -308,8 +352,15 @@
             this.Controls.Add(this.nombreLabel);
             this.Controls.Add(this.nombre);
             this.Name = "Add";
-            this.Text = "Add";
+            this.Text = "Alta Afiliado - Paso 1";
             this.Load += new System.EventHandler(this.Add_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDocumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDireccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCantResponsables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,7 +383,7 @@
         private System.Windows.Forms.TextBox mail;
         private System.Windows.Forms.Label mailLabel;
         private System.Windows.Forms.Label fechaNacLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker fechaNacimiento;
         private System.Windows.Forms.ComboBox sexo;
         private System.Windows.Forms.Label sexoLabel;
         private System.Windows.Forms.ComboBox estadoCivil;
@@ -342,6 +393,13 @@
         private System.Windows.Forms.ComboBox planMedico;
         private System.Windows.Forms.Label planMedicoLabel;
         private System.Windows.Forms.Button guardar;
+        private System.Windows.Forms.ErrorProvider errorProviderNombre;
+        private System.Windows.Forms.ErrorProvider errorProviderApellido;
+        private System.Windows.Forms.ErrorProvider errorProviderDocumento;
+        private System.Windows.Forms.ErrorProvider errorProviderDireccion;
+        private System.Windows.Forms.ErrorProvider errorProviderTelefono;
+        private System.Windows.Forms.ErrorProvider errorProviderCantResponsables;
+        private System.Windows.Forms.ErrorProvider errorProviderMail;
 
     }
 }

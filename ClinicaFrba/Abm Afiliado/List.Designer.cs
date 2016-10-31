@@ -56,7 +56,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(368, 195);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // timer1
             // 
@@ -70,7 +69,6 @@
             this.cantResults.Size = new System.Drawing.Size(121, 13);
             this.cantResults.TabIndex = 2;
             this.cantResults.Text = "Cantidad de resultados: ";
-            this.cantResults.Click += new System.EventHandler(this.label1_Click);
             // 
             // dniFilter
             // 
