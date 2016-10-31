@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -149,6 +150,15 @@ namespace ClinicaFrba.Abm_Afiliado
             command = new SqlCommand(assignRole, connection);
             command.ExecuteNonQuery();
         }
+
+        public static Boolean documentoYaExiste(String documento) 
+        {
+            String query = "select * from Afiliados where afiliado_dni = {0}";
+            query = String.Format(query, documento);
+            DataTable dataTable = util.Sql.query(query);
+            return dataTable.Rows.Count > 0;
+        }
+
 
     }
 }
