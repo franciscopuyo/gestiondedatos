@@ -25,7 +25,7 @@ namespace ClinicaFrba.Abm_Afiliado
             }
             else
             {
-                //TODO persistir
+                afiliado.persist();
                 MessageBox.Show("Afiliados cargados con exito. \nUsuario principal: " + afiliado.username + "Contrasena: " + afiliado.password + ".");
             } 
         }
@@ -33,13 +33,14 @@ namespace ClinicaFrba.Abm_Afiliado
         private void NO_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //TODO persistir
+            afiliado.persist();
             MessageBox.Show("Afiliados cargados con exito. \nUsuario principal: " + afiliado.username + "Contrasena: " + afiliado.password + ".");
         }
 
         private void SI_Click(object sender, EventArgs e)
         {
             DatosResponsable datosResponsable = new DatosResponsable(this.afiliado);
+            this.Hide();
         }
 
         private void PreguntarDatosResponsables_Load(object sender, EventArgs e)

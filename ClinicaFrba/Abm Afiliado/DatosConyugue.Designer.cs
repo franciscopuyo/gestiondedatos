@@ -72,7 +72,6 @@
             this.sexo.Name = "sexo";
             this.sexo.Size = new System.Drawing.Size(121, 21);
             this.sexo.TabIndex = 30;
-            this.sexo.SelectedIndexChanged += new System.EventHandler(this.sexo_SelectedIndexChanged);
             // 
             // sexoLabel
             // 
@@ -82,7 +81,6 @@
             this.sexoLabel.Size = new System.Drawing.Size(38, 13);
             this.sexoLabel.TabIndex = 29;
             this.sexoLabel.Text = "Sexo *";
-            this.sexoLabel.Click += new System.EventHandler(this.sexoLabel_Click);
             // 
             // direccion
             // 
@@ -90,7 +88,6 @@
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(100, 20);
             this.direccion.TabIndex = 28;
-            this.direccion.TextChanged += new System.EventHandler(this.direccion_TextChanged);
             // 
             // direccionLabel
             // 
@@ -100,8 +97,7 @@
             this.direccionLabel.Size = new System.Drawing.Size(105, 13);
             this.direccionLabel.TabIndex = 27;
             this.direccionLabel.Text = "Direccion completa *";
-            this.direccionLabel.Click += new System.EventHandler(this.direccionLabel_Click);
-            // 
+             // 
             // tipoDoc
             // 
             this.tipoDoc.FormattingEnabled = true;
@@ -112,7 +108,6 @@
             this.tipoDoc.Name = "tipoDoc";
             this.tipoDoc.Size = new System.Drawing.Size(121, 21);
             this.tipoDoc.TabIndex = 26;
-            this.tipoDoc.SelectedIndexChanged += new System.EventHandler(this.tipoDoc_SelectedIndexChanged);
             // 
             // documento
             // 
@@ -120,7 +115,6 @@
             this.documento.Name = "documento";
             this.documento.Size = new System.Drawing.Size(100, 20);
             this.documento.TabIndex = 25;
-            this.documento.TextChanged += new System.EventHandler(this.documento_TextChanged);
             // 
             // label1
             // 
@@ -130,7 +124,6 @@
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 24;
             this.label1.Text = "Documento *";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tipoDocLabel
             // 
@@ -140,7 +133,6 @@
             this.tipoDocLabel.Size = new System.Drawing.Size(106, 13);
             this.tipoDocLabel.TabIndex = 23;
             this.tipoDocLabel.Text = "Tipo de documento *";
-            this.tipoDocLabel.Click += new System.EventHandler(this.tipoDocLabel_Click);
             // 
             // ApellidoLabel
             // 
@@ -150,7 +142,6 @@
             this.ApellidoLabel.Size = new System.Drawing.Size(51, 13);
             this.ApellidoLabel.TabIndex = 22;
             this.ApellidoLabel.Text = "Apellido *";
-            this.ApellidoLabel.Click += new System.EventHandler(this.ApellidoLabel_Click);
             // 
             // apellido
             // 
@@ -158,8 +149,7 @@
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(100, 20);
             this.apellido.TabIndex = 21;
-            this.apellido.TextChanged += new System.EventHandler(this.apellido_TextChanged);
-            // 
+           // 
             // nombreLabel
             // 
             this.nombreLabel.AutoSize = true;
@@ -168,7 +158,6 @@
             this.nombreLabel.Size = new System.Drawing.Size(51, 13);
             this.nombreLabel.TabIndex = 20;
             this.nombreLabel.Text = "Nombre *";
-            this.nombreLabel.Click += new System.EventHandler(this.nombreLabel_Click);
             // 
             // nombre
             // 
@@ -176,7 +165,6 @@
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(100, 20);
             this.nombre.TabIndex = 19;
-            this.nombre.TextChanged += new System.EventHandler(this.nombre_TextChanged);
             // 
             // guardar
             // 
@@ -194,7 +182,6 @@
             this.fechaNacimiento.Name = "fechaNacimiento";
             this.fechaNacimiento.Size = new System.Drawing.Size(200, 20);
             this.fechaNacimiento.TabIndex = 34;
-            this.fechaNacimiento.ValueChanged += new System.EventHandler(this.fechaNacimiento_ValueChanged);
             // 
             // fechaNacLabel
             // 
@@ -204,7 +191,6 @@
             this.fechaNacLabel.Size = new System.Drawing.Size(113, 13);
             this.fechaNacLabel.TabIndex = 33;
             this.fechaNacLabel.Text = "Fecha de nacimiento *";
-            this.fechaNacLabel.Click += new System.EventHandler(this.fechaNacLabel_Click);
             // 
             // mail
             // 
@@ -212,7 +198,6 @@
             this.mail.Name = "mail";
             this.mail.Size = new System.Drawing.Size(100, 20);
             this.mail.TabIndex = 32;
-            this.mail.TextChanged += new System.EventHandler(this.mail_TextChanged);
             // 
             // mailLabel
             // 
@@ -222,7 +207,6 @@
             this.mailLabel.Size = new System.Drawing.Size(33, 13);
             this.mailLabel.TabIndex = 31;
             this.mailLabel.Text = "Mail *";
-            this.mailLabel.Click += new System.EventHandler(this.mailLabel_Click);
             // 
             // errorProviderNombre
             // 
@@ -254,7 +238,6 @@
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(100, 20);
             this.telefono.TabIndex = 37;
-            this.telefono.TextChanged += new System.EventHandler(this.telefono_TextChanged);
             // 
             // telefonoLabel
             // 
@@ -264,7 +247,6 @@
             this.telefonoLabel.Size = new System.Drawing.Size(56, 13);
             this.telefonoLabel.TabIndex = 36;
             this.telefonoLabel.Text = "Telefono *";
-            this.telefonoLabel.Click += new System.EventHandler(this.telefonoLabel_Click);
             // 
             // DatosConyugue
             // 

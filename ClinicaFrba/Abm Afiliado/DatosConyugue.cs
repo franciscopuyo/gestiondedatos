@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
@@ -23,16 +24,16 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            //if (!validInputs())
-            //{
-            //    return;
-            //};
+            if (!validInputs())
+            {
+                return;
+            };
 
             Afiliado conyugue = new Afiliado();
             conyugue.nombre = nombre.Text;
             conyugue.apellido = apellido.Text;
-            conyugue.tipoDNI = tipoDoc.Text;
-            conyugue.DNI = documento.Text;
+            conyugue.tipoDocumento = tipoDoc.Text;
+            conyugue.documento = int.Parse(documento.Text);
             conyugue.direccion = direccion.Text;
             conyugue.telefono = telefono.Text;
             conyugue.mail = mail.Text;
@@ -49,93 +50,25 @@ namespace ClinicaFrba.Abm_Afiliado
 
         }
 
-        private void nombreLabel_Click(object sender, EventArgs e)
+        private Boolean validInputs()
         {
 
-        }
+            Boolean validInputs = true;
 
-        private void ApellidoLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void apellido_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sexoLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sexo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mailLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tipoDocLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tipoDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void documento_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fechaNacLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fechaNacimiento_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void telefonoLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void telefono_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void direccionLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void direccion_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nombre_TextChanged(object sender, EventArgs e)
-        {
+            Validations.validateOnlyAlphabetical(nombre, errorProviderNombre, "Nombre vacio o invalido", ref validInputs);
+            Validations.validateOnlyAlphabetical(apellido, errorProviderApellido, "Apellido vacio o invalido", ref validInputs);
+            Validations.validateString(direccion, errorProviderDireccion, "Direccion vacia o invalida", ref validInputs);
+            if (tipoDoc.Text == "DNI")
+            {
+                Validations.validateIntWithLength(documento, errorProviderDocumento, "Documento vacio o invalido", 8, ref validInputs);
+            }
+            if (tipoDoc.Text == "LE")
+            {
+                Validations.validateIntWithLength(documento, errorProviderDocumento, "Documento vacio o invalido", 8, ref validInputs);
+            }
+            Validations.validateEmail(mail, errorProviderMail, "Email vacio o invalido", ref validInputs);
+            Validations.validateDateBeforeNow(fechaNacimiento, errorProviderFechaNacimiento, "Fecha de nacimiento invalida", ref validInputs);
+            return validInputs;
 
         }
     }

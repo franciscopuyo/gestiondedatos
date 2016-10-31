@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
@@ -23,16 +24,16 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            //if (!validInputs())
-            //{
-            //    return;
-            //};
+            if (!validInputs())
+            {
+                return;
+            };
 
             Afiliado responsable = new Afiliado();
             responsable.nombre = nombre.Text;
             responsable.apellido = apellido.Text;
-            responsable.tipoDNI = tipoDoc.Text;
-            responsable.DNI = documento.Text;
+            responsable.tipoDocumento = tipoDoc.Text;
+            responsable.documento = int.Parse(documento.Text);
             responsable.direccion = direccion.Text;
             responsable.telefono = telefono.Text;
             responsable.mail = mail.Text;
@@ -46,6 +47,28 @@ namespace ClinicaFrba.Abm_Afiliado
             this.Hide();
 
             PreguntarDatosResponsables preguntarDatosResponsables = new PreguntarDatosResponsables(this.afiliado);
+        }
+
+        private Boolean validInputs()
+        {
+
+            Boolean validInputs = true;
+
+            Validations.validateOnlyAlphabetical(nombre, errorProviderNombre, "Nombre vacio o invalido", ref validInputs);
+            Validations.validateOnlyAlphabetical(apellido, errorProviderApellido, "Apellido vacio o invalido", ref validInputs);
+            Validations.validateString(direccion, errorProviderDireccion, "Direccion vacia o invalida", ref validInputs);
+            if (tipoDoc.Text == "DNI")
+            {
+                Validations.validateIntWithLength(documento, errorProviderDocumento, "Documento vacio o invalido", 8, ref validInputs);
+            }
+            if (tipoDoc.Text == "LE")
+            {
+                Validations.validateIntWithLength(documento, errorProviderDocumento, "Documento vacio o invalido", 8, ref validInputs);
+            }
+            Validations.validateEmail(mail, errorProviderMail, "Email vacio o invalido", ref validInputs);
+            Validations.validateDateBeforeNow(fechaNacimiento, errorProviderFechaNacimiento, "Fecha de nacimiento invalida", ref validInputs);
+            return validInputs;
+
         }
     }
 }

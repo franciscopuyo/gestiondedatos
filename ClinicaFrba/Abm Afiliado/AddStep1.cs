@@ -46,8 +46,9 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void Add_Load(object sender, EventArgs e)
         {
-            
+   
             DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+
 
             List<String> options = new List<string>();
 
@@ -62,16 +63,16 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            //if (!validInputs())
-            //{
-            //    return;
-            //};
+            if (!validInputs())
+            {
+                return;
+            };
 
             Afiliado afiliado = new Afiliado();
             afiliado.nombre = nombre.Text;
             afiliado.apellido = apellido.Text;
-            afiliado.tipoDNI = tipoDoc.Text;
-            afiliado.DNI = documento.Text;
+            afiliado.tipoDocumento = tipoDoc.Text;
+            afiliado.documento = int.Parse(documento.Text);
             afiliado.direccion = direccion.Text;
             afiliado.telefono = telefono.Text;
             afiliado.mail = mail.Text;

@@ -18,7 +18,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             InitializeComponent();
             this.afiliado = afiliado;
-            if (afiliado.estadoCivil == "Casado/a" || afiliado.estadoCivil == "Concubinato")
+            if (afiliado.estadoCivil == "Casado" || afiliado.estadoCivil == "Concubinato")
             {
                 this.Show();
             }

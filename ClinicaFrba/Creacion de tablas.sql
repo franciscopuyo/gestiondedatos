@@ -6,8 +6,8 @@ use consultorio;
 CREATE TABLE Usuarios (
   contrasena BINARY(32) NOT NULL,
   usuario VARCHAR(255) NOT NULL UNIQUE,
-  activo BIT NOT NULL,
-  cantidad_intentos_login INT NOT NULL,
+  activo BIT NOT NULL DEFAULT 1,
+  cantidad_intentos_login INT NOT NULL DEFAULT 0,
   usuario_dni NUMERIC(18) NOT NULL,
   PRIMARY KEY (usuario_dni)
 )
@@ -81,22 +81,15 @@ CREATE TABLE Personas_Detalle (
 -- -----------------------------------------------------
 CREATE TABLE Afiliados (
   afiliado_dni NUMERIC(18) NULL UNIQUE,
+  tipo_documento VARCHAR(5);
   nro_afiliado NUMERIC(20) NOT NULL,
   afiliado_responsable NUMERIC(18) NULL,
   afiliado_conyugue NUMERIC(18) NULL,
   plan_medico_codigo NUMERIC(18) NOT NULL,
   cantidad_consultas_realizadas NUMERIC(18),
-  activo BIT,
+  activo BIT DEFAULT 1,
   PRIMARY KEY (nro_afiliado),
  
-  CONSTRAINT fk_Personas_Detalles
-    FOREIGN KEY (afiliado_dni)
-    REFERENCES Personas_Detalle (dni),
-
-  CONSTRAINT fk_Usuarios_Afiliados
-    FOREIGN KEY (afiliado_dni)
-    REFERENCES Usuarios (usuario_dni),
-
   CONSTRAINT fk_Afiliados_Afiliados_Responsable
     FOREIGN KEY (afiliado_responsable)
     REFERENCES Afiliados (afiliado_dni),

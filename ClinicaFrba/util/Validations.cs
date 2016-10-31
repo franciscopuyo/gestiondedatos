@@ -11,7 +11,7 @@ namespace ClinicaFrba.util
 
         public static Boolean isOnlyAlphabetical(String text)
         {
-            return !isEmpty(text) && !System.Text.RegularExpressions.Regex.IsMatch(text, @"^[A-Z]{1}[a-z]+$");
+            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^[a-zA-Z]+$");
         }
 
         public static Boolean isValidString(String text)

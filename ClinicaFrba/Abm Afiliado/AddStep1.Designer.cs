@@ -233,11 +233,11 @@
             // 
             this.estadoCivil.FormattingEnabled = true;
             this.estadoCivil.Items.AddRange(new object[] {
-            "Soltero/a",
-            "Casado/a",
-            "Viudo/a",
+            "Soltero",
+            "Casado",
+            "Viudo",
             "Concubinato",
-            "Divorciado/a"});
+            "Divorciado"});
             this.estadoCivil.Location = new System.Drawing.Point(261, 123);
             this.estadoCivil.Name = "estadoCivil";
             this.estadoCivil.Size = new System.Drawing.Size(121, 21);
