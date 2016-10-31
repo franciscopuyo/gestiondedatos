@@ -117,5 +117,18 @@ namespace ClinicaFrba.util
             }
         }
 
+        internal static void validateDateBeforeNow(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (dateTimePicker.Value.Date >= DateTime.Now.Date)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
     }
 }

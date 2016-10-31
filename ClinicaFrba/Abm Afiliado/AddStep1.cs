@@ -62,10 +62,10 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            if (!validInputs())
-            {
-                return;
-            };
+            //if (!validInputs())
+            //{
+            //    return;
+            //};
 
             Afiliado afiliado = new Afiliado();
             afiliado.nombre = nombre.Text;
@@ -78,11 +78,12 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado.fechaNacimiento = fechaNacimiento.Value;
             afiliado.sexo = sexo.Text;
             afiliado.estadoCivil = estadoCivil.Text;
+            afiliado.planMedico = planMedico.Text;
+            afiliado.cantidadResponsables = int.Parse(cantResponsables.Text);
 
             this.Hide();
 
-            Add___Step_2 step2 = new Add___Step_2(afiliado);
-            step2.Show();
+            PreguntarDatosConyugue preguntarDatosConyugue = new PreguntarDatosConyugue(afiliado);
         }
 
 
@@ -103,7 +104,7 @@ namespace ClinicaFrba.Abm_Afiliado
             }
             Validations.validateEmail(mail, errorProviderMail, "Email vacio o invalido", ref validInputs);
             Validations.validateIntWithMaxLength(cantResponsables, errorProviderCantResponsables, "Cantidad de responsables no valida", 2, ref validInputs);
-            
+            Validations.validateDateBeforeNow(fechaNacimiento, errorProviderFechaNacimiento, "Fecha de nacimiento invalida", ref validInputs);
             return validInputs;
 
         }

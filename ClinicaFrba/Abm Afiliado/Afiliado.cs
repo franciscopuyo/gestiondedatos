@@ -18,7 +18,14 @@ namespace ClinicaFrba.Abm_Afiliado
         public DateTime fechaNacimiento;
         public String sexo;
         public String estadoCivil;
-        public Int16 cantidadResponsables;
+        public int cantidadResponsables;
         public String planMedico;
+
+        public Afiliado conyugue;
+        public List<Afiliado> responsables = new List<Afiliado>();
+        public Boolean ingresarProximoResponsable = true;
+
+        public String username;
+        public String password;
     }
 }

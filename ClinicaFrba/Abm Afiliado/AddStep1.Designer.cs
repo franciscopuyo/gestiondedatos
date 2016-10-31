@@ -61,6 +61,7 @@
             this.errorProviderTelefono = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderCantResponsables = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderMail = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderFechaNacimiento = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDocumento)).BeginInit();
@@ -68,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCantResponsables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFechaNacimiento)).BeginInit();
             this.SuspendLayout();
             // 
             // nombre
@@ -321,6 +323,10 @@
             // 
             this.errorProviderMail.ContainerControl = this;
             // 
+            // errorProviderFechaNacimiento
+            // 
+            this.errorProviderFechaNacimiento.ContainerControl = this;
+            // 
             // Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +367,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCantResponsables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFechaNacimiento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,6 +407,7 @@
         private System.Windows.Forms.ErrorProvider errorProviderTelefono;
         private System.Windows.Forms.ErrorProvider errorProviderCantResponsables;
         private System.Windows.Forms.ErrorProvider errorProviderMail;
+        private System.Windows.Forms.ErrorProvider errorProviderFechaNacimiento;
 
     }
 }
