@@ -118,5 +118,101 @@ namespace ClinicaFrba.Abm_Afiliado
 
         }
 
+        private void nombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ApellidoLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void apellido_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void estadoCivil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void estadoCivilLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tipoDocLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tipoDoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cantHijosLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cantResponsables_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void documento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void planMedicoLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void planMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void direccionLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mailLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fechaNacLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fechaNacimiento_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nombreLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }

@@ -78,6 +78,7 @@
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(100, 20);
             this.nombre.TabIndex = 0;
+            this.nombre.TextChanged += new System.EventHandler(this.nombre_TextChanged);
             // 
             // nombreLabel
             // 
@@ -87,6 +88,7 @@
             this.nombreLabel.Size = new System.Drawing.Size(51, 13);
             this.nombreLabel.TabIndex = 1;
             this.nombreLabel.Text = "Nombre *";
+            this.nombreLabel.Click += new System.EventHandler(this.nombreLabel_Click);
             // 
             // ApellidoLabel
             // 
@@ -96,6 +98,7 @@
             this.ApellidoLabel.Size = new System.Drawing.Size(51, 13);
             this.ApellidoLabel.TabIndex = 3;
             this.ApellidoLabel.Text = "Apellido *";
+            this.ApellidoLabel.Click += new System.EventHandler(this.ApellidoLabel_Click);
             // 
             // apellido
             // 
@@ -103,6 +106,7 @@
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(100, 20);
             this.apellido.TabIndex = 2;
+            this.apellido.TextChanged += new System.EventHandler(this.apellido_TextChanged);
             // 
             // tipoDocLabel
             // 
@@ -112,6 +116,7 @@
             this.tipoDocLabel.Size = new System.Drawing.Size(106, 13);
             this.tipoDocLabel.TabIndex = 5;
             this.tipoDocLabel.Text = "Tipo de documento *";
+            this.tipoDocLabel.Click += new System.EventHandler(this.tipoDocLabel_Click);
             // 
             // label1
             // 
@@ -121,6 +126,7 @@
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Documento *";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // documento
             // 
@@ -128,6 +134,7 @@
             this.documento.Name = "documento";
             this.documento.Size = new System.Drawing.Size(100, 20);
             this.documento.TabIndex = 7;
+            this.documento.TextChanged += new System.EventHandler(this.documento_TextChanged);
             // 
             // tipoDoc
             // 
@@ -139,6 +146,7 @@
             this.tipoDoc.Name = "tipoDoc";
             this.tipoDoc.Size = new System.Drawing.Size(121, 21);
             this.tipoDoc.TabIndex = 8;
+            this.tipoDoc.SelectedIndexChanged += new System.EventHandler(this.tipoDoc_SelectedIndexChanged);
             // 
             // direccionLabel
             // 
@@ -148,6 +156,7 @@
             this.direccionLabel.Size = new System.Drawing.Size(105, 13);
             this.direccionLabel.TabIndex = 9;
             this.direccionLabel.Text = "Direccion completa *";
+            this.direccionLabel.Click += new System.EventHandler(this.direccionLabel_Click);
             // 
             // direccion
             // 
@@ -181,6 +190,7 @@
             this.mail.Name = "mail";
             this.mail.Size = new System.Drawing.Size(100, 20);
             this.mail.TabIndex = 14;
+            this.mail.TextChanged += new System.EventHandler(this.mail_TextChanged);
             // 
             // mailLabel
             // 
@@ -190,6 +200,7 @@
             this.mailLabel.Size = new System.Drawing.Size(33, 13);
             this.mailLabel.TabIndex = 13;
             this.mailLabel.Text = "Mail *";
+            this.mailLabel.Click += new System.EventHandler(this.mailLabel_Click);
             // 
             // fechaNacLabel
             // 
@@ -199,6 +210,7 @@
             this.fechaNacLabel.Size = new System.Drawing.Size(113, 13);
             this.fechaNacLabel.TabIndex = 15;
             this.fechaNacLabel.Text = "Fecha de nacimiento *";
+            this.fechaNacLabel.Click += new System.EventHandler(this.fechaNacLabel_Click);
             // 
             // fechaNacimiento
             // 
@@ -206,6 +218,7 @@
             this.fechaNacimiento.Name = "fechaNacimiento";
             this.fechaNacimiento.Size = new System.Drawing.Size(200, 20);
             this.fechaNacimiento.TabIndex = 16;
+            this.fechaNacimiento.ValueChanged += new System.EventHandler(this.fechaNacimiento_ValueChanged);
             // 
             // sexo
             // 
@@ -242,6 +255,7 @@
             this.estadoCivil.Name = "estadoCivil";
             this.estadoCivil.Size = new System.Drawing.Size(121, 21);
             this.estadoCivil.TabIndex = 20;
+            this.estadoCivil.SelectedIndexChanged += new System.EventHandler(this.estadoCivil_SelectedIndexChanged);
             // 
             // estadoCivilLabel
             // 
@@ -251,6 +265,7 @@
             this.estadoCivilLabel.Size = new System.Drawing.Size(68, 13);
             this.estadoCivilLabel.TabIndex = 19;
             this.estadoCivilLabel.Text = "Estado civil *";
+            this.estadoCivilLabel.Click += new System.EventHandler(this.estadoCivilLabel_Click);
             // 
             // cantResponsables
             // 
@@ -258,6 +273,7 @@
             this.cantResponsables.Name = "cantResponsables";
             this.cantResponsables.Size = new System.Drawing.Size(100, 20);
             this.cantResponsables.TabIndex = 22;
+            this.cantResponsables.TextChanged += new System.EventHandler(this.cantResponsables_TextChanged);
             // 
             // cantHijosLabel
             // 
@@ -267,6 +283,7 @@
             this.cantHijosLabel.Size = new System.Drawing.Size(182, 13);
             this.cantHijosLabel.TabIndex = 21;
             this.cantHijosLabel.Text = "Cantidad de hijos o familiares a cargo";
+            this.cantHijosLabel.Click += new System.EventHandler(this.cantHijosLabel_Click);
             // 
             // planMedico
             // 
@@ -275,6 +292,7 @@
             this.planMedico.Name = "planMedico";
             this.planMedico.Size = new System.Drawing.Size(121, 21);
             this.planMedico.TabIndex = 24;
+            this.planMedico.SelectedIndexChanged += new System.EventHandler(this.planMedico_SelectedIndexChanged);
             // 
             // planMedicoLabel
             // 
@@ -284,6 +302,7 @@
             this.planMedicoLabel.Size = new System.Drawing.Size(72, 13);
             this.planMedicoLabel.TabIndex = 23;
             this.planMedicoLabel.Text = "Plan medico *";
+            this.planMedicoLabel.Click += new System.EventHandler(this.planMedicoLabel_Click);
             // 
             // guardar
             // 

@@ -11,12 +11,12 @@ namespace ClinicaFrba.util
 
         public static Boolean isOnlyAlphabetical(String text)
         {
-            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^[a-zA-Z]+$");
+            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^([\w]+[ ]?)+$");
         }
 
         public static Boolean isValidString(String text)
         {
-            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^[A-Z a-z 0-9]+$");
+            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^([\w\d.]+[ ]?)+$");
         }
 
          public static Boolean isValidEmail(String text)
