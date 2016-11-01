@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.apellido = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.planMedico = new System.Windows.Forms.TextBox();
             this.nombre = new System.Windows.Forms.TextBox();
+            this.planMedico = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(191, 12);
+            this.label2.Location = new System.Drawing.Point(210, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 7;
@@ -115,7 +115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(194, 39);
+            this.label3.Location = new System.Drawing.Point(213, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 8;
@@ -123,7 +123,7 @@
             // 
             // apellido
             // 
-            this.apellido.Location = new System.Drawing.Point(261, 39);
+            this.apellido.Location = new System.Drawing.Point(280, 39);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(100, 20);
             this.apellido.TabIndex = 10;
@@ -137,27 +137,28 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Plan";
             // 
-            // planMedico
-            // 
-            this.planMedico.Location = new System.Drawing.Point(66, 37);
-            this.planMedico.Name = "planMedico";
-            this.planMedico.Size = new System.Drawing.Size(100, 20);
-            this.planMedico.TabIndex = 12;
-            // 
             // nombre
             // 
-            this.nombre.Location = new System.Drawing.Point(261, 9);
+            this.nombre.Location = new System.Drawing.Point(280, 9);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(100, 20);
             this.nombre.TabIndex = 13;
+            // 
+            // planMedico
+            // 
+            this.planMedico.FormattingEnabled = true;
+            this.planMedico.Location = new System.Drawing.Point(67, 37);
+            this.planMedico.Name = "planMedico";
+            this.planMedico.Size = new System.Drawing.Size(121, 21);
+            this.planMedico.TabIndex = 14;
             // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 344);
-            this.Controls.Add(this.nombre);
             this.Controls.Add(this.planMedico);
+            this.Controls.Add(this.nombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.apellido);
             this.Controls.Add(this.label3);
@@ -190,7 +191,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox apellido;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox planMedico;
         private System.Windows.Forms.TextBox nombre;
+        private System.Windows.Forms.ComboBox planMedico;
     }
 }
