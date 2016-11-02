@@ -47,7 +47,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 query += apellidoFilter;
             }
 
-            if (planMedico.Text != "")
+            if (planMedico.Text != "" && planMedico.Text != "Todos")
             {
                 String planFilter = " and ((select descripcion from Planes_Medicos where codigo = plan_medico_codigo ) like '%{0}%') ";
                 planFilter = String.Format(planFilter, planMedico.Text);
@@ -80,6 +80,20 @@ namespace ClinicaFrba.Abm_Afiliado
         private void List_Load(object sender, EventArgs e)
         {
             timer1.Start();
+
+            DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+
+
+            List<String> options = new List<string>();
+
+            options.Add("Todos");
+
+            for (int i = 0; i < planes.Rows.Count; i++)
+            {
+                options.Add(planes.Rows[i][0].ToString());
+            }
+
+            planMedico.DataSource = options;
         }
 
         private void button2_Click(object sender, EventArgs e)
