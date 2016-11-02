@@ -14,6 +14,11 @@ namespace ClinicaFrba.util
             return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^([\w]+[ ]?)+$");
         }
 
+        public static Boolean isOnlyNumeric(String text)
+        {
+            return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^[0-9]*$");
+        }
+
         public static Boolean isValidString(String text)
         {
             return !isEmpty(text) && System.Text.RegularExpressions.Regex.IsMatch(text, @"^([\w\d.]+[ ]?)+$");
@@ -80,6 +85,20 @@ namespace ClinicaFrba.util
         {
 
             if (!isValidNumeric(textBox.Text, length))
+            {
+                errorProvider.SetError(textBox, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        internal static void validateIntWithLength(System.Windows.Forms.TextBox textBox, String number, System.Windows.Forms.ErrorProvider errorProvider, string msg, int length, ref bool valid)
+        {
+
+            if (!isOnlyNumeric(number) && number.Length == length)
             {
                 errorProvider.SetError(textBox, msg);
                 valid = false;
