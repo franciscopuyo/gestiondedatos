@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.util;
-using ClinicaFrba.Model;
+using ClinicaFrba.Abm_Rol;
 using ClinicaFrba.Listado_Funcionalidad;
 
 namespace ClinicaFrba.Seleccion_Rol

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.util;
-using ClinicaFrba.Model;
 
 namespace ClinicaFrba.Listado_Funcionalidad
 {

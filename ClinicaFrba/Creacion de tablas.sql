@@ -16,7 +16,7 @@ CREATE TABLE Usuarios (
 -- Creacion tabla roles
 -- -----------------------------------------------------
 CREATE TABLE Roles (
-  codigo NUMERIC(18) NOT NULL,
+  codigo NUMERIC(18) NOT NULL IDENTITY(1,1),
   descripcion VARCHAR(255) NULL,
   activo BIT NOT NULL DEFAULT 1,
   PRIMARY KEY (codigo)
@@ -26,7 +26,7 @@ CREATE TABLE Roles (
 -- Creacion tabla Funcionalidades
 -- -----------------------------------------------------
 CREATE TABLE Funcionalidades (
-  codigo NUMERIC(18) NOT NULL,
+  codigo NUMERIC(18) NOT NULL IDENTITY(1,1),
   funcionalidad VARCHAR(255) NOT NULL,
   PRIMARY KEY (codigo)
 )
@@ -81,7 +81,7 @@ CREATE TABLE Personas_Detalle (
 -- -----------------------------------------------------
 CREATE TABLE Afiliados (
   afiliado_dni NUMERIC(18) NULL UNIQUE,
-  tipo_documento VARCHAR(5);
+  tipo_documento VARCHAR(5),
   nro_afiliado NUMERIC(20) NOT NULL,
   afiliado_responsable NUMERIC(18) NULL,
   afiliado_conyugue NUMERIC(18) NULL,

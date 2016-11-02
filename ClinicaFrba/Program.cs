@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.util;
+using ClinicaFrba.Abm_Rol;
 
 namespace ClinicaFrba
 {
