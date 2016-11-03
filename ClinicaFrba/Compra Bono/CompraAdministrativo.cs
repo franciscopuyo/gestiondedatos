@@ -20,7 +20,7 @@ namespace ClinicaFrba.Compra_Bono
 
         private void Cancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            ClinicaFrba.util.Session.mainMenu(this);
         }
 
         private void continuar_Click(object sender, EventArgs e)

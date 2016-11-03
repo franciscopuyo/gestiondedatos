@@ -13,21 +13,19 @@ using ClinicaFrba.Seleccion_Rol;
 
 namespace ClinicaFrba
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.goToRoles();
-            return;
             String user = textBox1.Text;
             String pass = textBox2.Text;
 
-            String userExists = "select * from Usuarios where usuario = {0}";
+            String userExists = "select * from Usuarios where usuario = '{0}'";
             userExists = String.Format(userExists, user);
 
             DataTable userExistsResults = Sql.query(userExists);
@@ -45,7 +43,7 @@ namespace ClinicaFrba
                 return;
             }
 
-            String userPassQuery = "select * from Usuarios where usuario = {0} and contrasena = HASHBYTES('SHA2_256', '{1}')";
+            String userPassQuery = "select * from Usuarios where usuario = '{0}' and contrasena = HASHBYTES('SHA2_256', '{1}')";
             userPassQuery = String.Format(userPassQuery, user, pass);
 
             DataTable userResults = Sql.query(userPassQuery);
@@ -54,7 +52,7 @@ namespace ClinicaFrba
 
             if (count == 0) {
                 MessageBox.Show("Contrasena inválida");
-                String incrementWrongTries = "update usuarios set cantidad_intentos_login = cantidad_intentos_login + 1 where usuario = {0}";
+                String incrementWrongTries = "update usuarios set cantidad_intentos_login = cantidad_intentos_login + 1 where usuario = '{0}'";
                 incrementWrongTries = String.Format(incrementWrongTries, user);
 
                 Sql.update(incrementWrongTries);
@@ -62,7 +60,7 @@ namespace ClinicaFrba
                 int tries = (int) userExistsResults.Rows[0][3];
                 if (tries + 1 == 3)
                 {
-                    String unactivate = "update usuarios set activo = 0 where usuario = {0}";
+                    String unactivate = "update usuarios set activo = 0 where usuario = '{0}'";
                     unactivate = String.Format(unactivate, user);
                     Sql.update(unactivate);
                     MessageBox.Show("Fuiste deshabilitado por intentar muchas veces");
@@ -70,12 +68,10 @@ namespace ClinicaFrba
                 return;
             } 
             
-            
-            MessageBox.Show("Todo bien");
             Session.user = user;
-            Session.dni = (int)userExistsResults.Rows[0][4];
+            Session.dni = Int32.Parse(userExistsResults.Rows[0]["usuario_dni"].ToString());
 
-            String cleanWrongTries = "update usuarios set cantidad_intentos_login = 0 where usuario = {0}";
+            String cleanWrongTries = "update usuarios set cantidad_intentos_login = 0 where usuario = '{0}'";
             cleanWrongTries = String.Format(cleanWrongTries, user);
             Sql.update(cleanWrongTries);
 
@@ -87,7 +83,6 @@ namespace ClinicaFrba
 
         private void goToRoles()
         {
-            Session.dni = 1123960;
             this.Hide();
             RoleSelect roleSelect = new RoleSelect();
             roleSelect.Show();

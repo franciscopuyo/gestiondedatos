@@ -30,7 +30,7 @@ namespace ClinicaFrba.Compra_Bono
 
         private void cancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            ClinicaFrba.util.Session.mainMenu(this);
         }
 
         private void ConfirmarCompraAdministrativo_Load(object sender, EventArgs e)

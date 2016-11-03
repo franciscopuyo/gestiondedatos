@@ -1,7 +1,7 @@
 ﻿using ClinicaFrba.util;
 namespace ClinicaFrba
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// Variable del diseñador requerida.

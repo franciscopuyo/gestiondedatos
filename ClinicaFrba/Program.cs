@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.util;
-using ClinicaFrba.Abm_Rol;
+using ClinicaFrba.Listado_Funcionalidad;
 
 namespace ClinicaFrba
 {
@@ -18,7 +18,7 @@ namespace ClinicaFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Login());
         }
     }
 }
