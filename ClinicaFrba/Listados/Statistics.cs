@@ -28,6 +28,8 @@ namespace ClinicaFrba.Listados
             loadStatisticOptions();
             loadYearOptions();
             loadSemesterOptions();
+            loadPlanes();
+            loadEspecialidades();
         }
 
         private void loadStatisticOptions()
@@ -71,6 +73,28 @@ namespace ClinicaFrba.Listados
             semestre.DataSource = options;
         }
 
+        private void loadPlanes()
+        {
+            DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+            List<String> options = new List<string>();
+            for (int i = 0; i < planes.Rows.Count; i++)
+            {
+                options.Add(planes.Rows[i][0].ToString());
+            }
+            planMedico.DataSource = options;
+        }
+
+        private void loadEspecialidades()
+        {
+            DataTable especialidades = util.Sql.query("select descripcion from Especialidades");
+            List<String> options = new List<string>();
+            for (int i = 0; i < especialidades.Rows.Count; i++)
+            {
+                options.Add(especialidades.Rows[i][0].ToString());
+            }
+            especialidadCombo.DataSource = options;
+        }
+
         private void volver_Click(object sender, EventArgs e)
         {
             ClinicaFrba.util.Session.mainMenu(this);
@@ -97,8 +121,29 @@ namespace ClinicaFrba.Listados
 
         private String profesionalesMAsConsultados()
         {
-            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from Cancelaciones, Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from  Especialidades e order by Cancelaciones desc";
-            return String.Format(query, anio.Text, getSemestreInterval());
+            String query = @"select top 5 nombre as Nombre, apellido as Apellido, Planes_Medicos.descripcion as Plan_Medico, Especialidades.descripcion as Especialidad, COUNT(*) as Consultas
+from Personas_Detalle, Profesionales, Turnos, Bonos, Atencion_Medica, Planes_Medicos, Especialidades
+where 
+Profesionales.profesional_dni = Personas_Detalle.dni
+and
+Profesionales.profesional_dni = Turnos.profesional_dni
+and
+Atencion_Medica.nro_bono = Bonos.nro_bono
+and
+Atencion_Medica.turno_numero = Turnos.numero
+and
+Planes_Medicos.codigo = Bonos.plan_codigo
+and
+Especialidades.codigo = Turnos.especialidad_codigo
+and
+Planes_Medicos.descripcion = '{0}'
+group by
+nombre, apellido, Planes_Medicos.descripcion, Especialidades.descripcion
+order by Consultas desc";
+            query = String.Format(query, planMedico.Text);
+            query = query.Replace("\r", " ");
+            query = query.Replace("\n", " ");
+            return query;
         }
 
         private String listProfesionalesMenosHoras()
@@ -163,6 +208,12 @@ namespace ClinicaFrba.Listados
             especialidadCombo.Show();
         }
 
+        private void showPlanFilter()
+        {
+            planLabel.Show();
+            planMedico.Show();
+        }
+
         private void tipoDeListado_SelectedIndexChanged(object sender, EventArgs e)
         {
             String listado = tipoDeListado.Text;
@@ -173,7 +224,13 @@ namespace ClinicaFrba.Listados
             }
             else
             {
-                hidePlanYEspeciaidadFilters();
+                if (listado == "Profesionales más consultados")
+                {
+                    showPlanFilter();
+                } else
+                {
+                    hidePlanYEspeciaidadFilters();
+                }
             }
         }
 
