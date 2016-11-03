@@ -89,7 +89,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Listados estadisticos"){
-                selectedAction = new Registro_Resultado.Form1();
+                selectedAction = new Listados.Statistics();
             }
 
             this.Hide();
