@@ -137,10 +137,14 @@ and
 Especialidades.codigo = Turnos.especialidad_codigo
 and
 Planes_Medicos.descripcion = '{0}'
+and
+YEAR(Turnos.fecha) = {1}
+and
+MONTH(Turnos.Fecha) BETWEEN {2}
 group by
 nombre, apellido, Planes_Medicos.descripcion, Especialidades.descripcion
 order by Consultas desc";
-            query = String.Format(query, planMedico.Text);
+            query = String.Format(query, planMedico.Text, anio.Text, getSemestreInterval());
             query = query.Replace("\r", " ");
             query = query.Replace("\n", " ");
             return query;
@@ -154,7 +158,28 @@ order by Consultas desc";
 
         private String afiliadosConMasBonos()
         {
-            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from Cancelaciones, Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from  Especialidades e order by Cancelaciones desc";
+            String query = @"select top 5
+Afiliados.afiliado_dni as Documento, nombre as Nombre, apellido as Apellido, 
+dbo.StringPerteneceAGrupoFamiliar(Afiliados.afiliado_dni) as Grupo_Familiar,
+SUM(Compras.cantidad) as Bonos_Comprados
+from Afiliados, Personas_Detalle, Compras
+where 
+Afiliados.afiliado_dni = dni
+and
+Afiliados.afiliado_dni = Personas_Detalle.dni
+and
+Compras.afiliado_usuario_dni = Afiliados.afiliado_dni
+and 
+YEAR(Compras.fecha) = {0}
+and
+MONTH(Compras.fecha) BETWEEN {1}
+group by 
+Afiliados.afiliado_dni, nombre, apellido
+order by Bonos_Comprados desc
+";
+            query = String.Format(query, anio.Text, getSemestreInterval());
+            query = query.Replace("\r", " ");
+            query = query.Replace("\n", " ");
             return String.Format(query, anio.Text, getSemestreInterval());
         }
 
