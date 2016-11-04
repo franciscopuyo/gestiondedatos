@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.util;
-using ClinicaFrba.Abm_Rol;
+using ClinicaFrba.Agenda_Medico;
 
 namespace ClinicaFrba
 {
@@ -16,9 +16,10 @@ namespace ClinicaFrba
         [STAThread]
         static void Main()
         {
+            Application.Run(new Agendas(1465925));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
         }
     }
 }

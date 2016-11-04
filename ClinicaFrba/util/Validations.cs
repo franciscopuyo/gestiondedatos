@@ -149,5 +149,71 @@ namespace ClinicaFrba.util
             }
         }
 
+        internal static void validateDateAfterNow(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (dateTimePicker.Value.Date < DateTime.Now.Date)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        internal static void validateDateBefore(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.DateTimePicker dateToCompare, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (dateTimePicker.Value.Date > dateToCompare.Value.Date)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        internal static void validateDateAfter(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.DateTimePicker dateToCompare, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (dateTimePicker.Value.Date < dateToCompare.Value.Date)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+
+        internal static void validateHourAfter(System.Windows.Forms.DateTimePicker dateTimePicker, TimeSpan hourToCompare, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (TimeSpan.Compare(dateTimePicker.Value.TimeOfDay, hourToCompare) == -1)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        internal static void validateHourBefore(System.Windows.Forms.DateTimePicker dateTimePicker, TimeSpan hourToCompare, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
+        {
+            if (TimeSpan.Compare(dateTimePicker.Value.TimeOfDay, hourToCompare) == 1)
+            {
+                errorProvider.SetError(dateTimePicker, msg);
+                valid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
     }
 }

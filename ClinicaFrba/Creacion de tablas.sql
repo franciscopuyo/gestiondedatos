@@ -207,8 +207,8 @@ CREATE TABLE Medico_Especialidad (
 -- Creacion tabla Agendas
 -- -----------------------------------------------------
 CREATE TABLE Agendas (
-  desde DATETIME NULL,
-  hasta DATETIME NULL,
+  desde DATE NULL,
+  hasta DATE NULL,
   especialidad_codigo NUMERIC(18) NOT NULL,
   profesional_dni NUMERIC(18) NOT NULL,
   PRIMARY KEY (especialidad_codigo, profesional_dni),
@@ -222,11 +222,13 @@ CREATE TABLE Agendas (
 -- Creacion tabla Disponibilidad
 -- -----------------------------------------------------
 CREATE TABLE Disponibilidad (
-  fecha DATETIME NOT NULL,
+  dia INT NOT NULL,
+  desde TIME NOT NULL,
+  hasta TIME NOT NULL,
   especialidad_codigo NUMERIC(18) NOT NULL,
   profesional_dni NUMERIC(18) NOT NULL,
 
-  PRIMARY KEY (fecha, especialidad_codigo, profesional_dni),
+  PRIMARY KEY (dia, especialidad_codigo, profesional_dni),
 
   CONSTRAINT fk_Dispinibilidad_Agenda
     FOREIGN KEY (especialidad_codigo, profesional_dni)
