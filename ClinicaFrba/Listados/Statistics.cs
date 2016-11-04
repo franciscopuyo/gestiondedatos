@@ -152,8 +152,7 @@ order by Consultas desc";
 
         private String listProfesionalesMenosHoras()
         {
-            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from Cancelaciones, Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from  Especialidades e order by Cancelaciones desc";
-            return String.Format(query, anio.Text, getSemestreInterval());
+           return  "";
         }
 
         private String afiliadosConMasBonos()
@@ -185,8 +184,23 @@ order by Bonos_Comprados desc
 
         private String especialidadesConMasBonos()
         {
-            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from Cancelaciones, Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from  Especialidades e order by Cancelaciones desc";
-            return String.Format(query, anio.Text, getSemestreInterval());
+            String query = @"select top 5 Especialidades.descripcion as Especialidad, COUNT(*) Bonos_Utilizados 
+from Especialidades, Turnos, Atencion_Medica
+where Turnos.especialidad_codigo = Especialidades.codigo
+and
+Atencion_Medica.turno_numero = Turnos.numero
+and
+Atencion_Medica.nro_bono is not null
+AND
+YEAR(Turnos.fecha) = {0}
+and
+MONTH(Turnos.fecha) BETWEEN {1}
+group by descripcion
+order by Bonos_Utilizados desc";
+            query = String.Format(query, anio.Text, getSemestreInterval());
+            query = query.Replace("\r", " ");
+            query = query.Replace("\n", " ");
+            return query;
         }
 
         private String constructQuery()
