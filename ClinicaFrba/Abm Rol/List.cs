@@ -60,5 +60,10 @@ namespace ClinicaFrba.Abm_Rol
             Edit edit = new Edit(0, "");
             edit.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ClinicaFrba.util.Session.mainMenu(this);            
+        }
     }
 }

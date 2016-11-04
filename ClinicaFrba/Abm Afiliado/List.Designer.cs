@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.planMedico = new System.Windows.Forms.ComboBox();
+            this.Volver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,11 +153,22 @@
             this.planMedico.Size = new System.Drawing.Size(121, 21);
             this.planMedico.TabIndex = 14;
             // 
+            // Volver
+            // 
+            this.Volver.Location = new System.Drawing.Point(25, 362);
+            this.Volver.Name = "Volver";
+            this.Volver.Size = new System.Drawing.Size(75, 23);
+            this.Volver.TabIndex = 15;
+            this.Volver.Text = "Volver";
+            this.Volver.UseVisualStyleBackColor = true;
+            this.Volver.Click += new System.EventHandler(this.Volver_Click);
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 344);
+            this.ClientSize = new System.Drawing.Size(416, 397);
+            this.Controls.Add(this.Volver);
             this.Controls.Add(this.planMedico);
             this.Controls.Add(this.nombre);
             this.Controls.Add(this.label4);
@@ -193,5 +205,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.ComboBox planMedico;
+        private System.Windows.Forms.Button Volver;
     }
 }

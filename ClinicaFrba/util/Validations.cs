@@ -98,7 +98,7 @@ namespace ClinicaFrba.util
         internal static void validateIntWithLength(System.Windows.Forms.TextBox textBox, String number, System.Windows.Forms.ErrorProvider errorProvider, string msg, int length, ref bool valid)
         {
 
-            if (!isOnlyNumeric(number) && number.Length == length)
+            if (!isOnlyNumeric(number) || number.Length != length)
             {
                 errorProvider.SetError(textBox, msg);
                 valid = false;

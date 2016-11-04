@@ -30,7 +30,7 @@ namespace ClinicaFrba.Compra_Bono
 
         private void cancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            ClinicaFrba.util.Session.mainMenu(this);
         }
 
         private void ConfirmarCompraAdministrativo_Load(object sender, EventArgs e)
@@ -48,9 +48,11 @@ namespace ClinicaFrba.Compra_Bono
         {
             this.Hide();
 
-            Compras.comprarConNroDeAfiliado(nroAfiliado, cantidad, monto);
+            String bonosGenerados = Compras.comprarConNroDeAfiliado(nroAfiliado, cantidad, monto);
+            MessageBox.Show("Compra realizada correctamente\nBonos generados:\n" + bonosGenerados);
 
-            MessageBox.Show("Compra realizada correctamente");
+            ClinicaFrba.util.Session.mainMenu(this);
+
         }
     }
 }

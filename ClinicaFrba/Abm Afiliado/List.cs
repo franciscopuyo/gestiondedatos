@@ -130,5 +130,10 @@ namespace ClinicaFrba.Abm_Afiliado
             }
         }
 
+        private void Volver_Click(object sender, EventArgs e)
+        {
+            ClinicaFrba.util.Session.mainMenu(this);
+        }
+
     }
 }

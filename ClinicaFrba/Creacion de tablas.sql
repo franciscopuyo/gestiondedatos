@@ -127,7 +127,7 @@ CREATE TABLE Bonos (
   plan_codigo NUMERIC(18) NOT NULL,
   nro_bono NUMERIC(18) NOT NULL,
   afiliado_dni NUMERIC(18) NOT NULL,
-  nro_consulta_medica NUMERIC(18) NOT NULL,
+  nro_consulta_medica NUMERIC(18),
 
   PRIMARY KEY (nro_bono),
 
