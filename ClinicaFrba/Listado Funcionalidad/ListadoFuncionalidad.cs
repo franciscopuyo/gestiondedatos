@@ -73,7 +73,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Pedir turno"){
-                selectedAction = new Pedir_Turno.Form1();
+                selectedAction = new Pedir_Turno.PedirTurno();
             }
 
             if(action == "Registrar llegada para atencion"){
