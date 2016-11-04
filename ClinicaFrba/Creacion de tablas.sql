@@ -253,11 +253,7 @@ CREATE TABLE Turnos (
  
   CONSTRAINT fk_Turnos_Medico_Especialidad
     FOREIGN KEY (profesional_dni, especialidad_codigo)
-    REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo),
-
-  CONSTRAINT fk_Turnos_Disponibilidad
-	FOREIGN KEY (fecha, especialidad_codigo, profesional_dni)
-	REFERENCES Disponibilidad (fecha, especialidad_codigo, profesional_dni)
+    REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo)
    
 )
 

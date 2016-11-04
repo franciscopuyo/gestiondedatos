@@ -69,7 +69,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Registrar agenda"){
-                //selectedAction = new Registrar_Agenta_Medico.Form1();
+                selectedAction = new Agenda_Medico.ElegirProfesional();
             }
 
             if(action == "Pedir turno"){
