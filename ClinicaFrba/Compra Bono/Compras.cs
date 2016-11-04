@@ -11,13 +11,13 @@ namespace ClinicaFrba.Compra_Bono
     class Compras
     {
 
-        public static void comprarConNroDeAfiliado(string nroAfiliado, int cantidad, Double monto)
+        public static String comprarConNroDeAfiliado(string nroAfiliado, int cantidad, Double monto)
         {
             String dni = nroAfiliado.Substring(0, 8);
-            comprar(int.Parse(dni), cantidad, monto);
+            return comprar(int.Parse(dni), cantidad, monto);
         }
 
-        public static void comprar(int documento, int cantidad, Double monto)
+        public static String comprar(int documento, int cantidad, Double monto)
         {
             SqlConnection connection = util.Sql.connect("gd");
 
@@ -41,6 +41,16 @@ namespace ClinicaFrba.Compra_Bono
             }
 
             connection.Close();
+
+            String bonosGenerados = "";
+            String queryBonosGenerados = "select top {0} nro_bono from Bonos, Compras where Compras.compra_id = Bonos.compra_id and afiliado_dni = {1} order by Compras.fecha desc";
+            queryBonosGenerados = String.Format(queryBonosGenerados, cantidad, documento);
+            DataTable bonosGeneradosREsults = util.Sql.query(queryBonosGenerados);
+            for(int i = 0 ; i<bonosGeneradosREsults.Rows.Count; i++)
+            {
+                bonosGenerados += (bonosGeneradosREsults.Rows[i][0].ToString()) + "\n" ;
+            }
+            return bonosGenerados;
         }
 
 

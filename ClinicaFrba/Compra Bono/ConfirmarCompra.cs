@@ -29,11 +29,10 @@ namespace ClinicaFrba.Compra_Bono
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            Compras.comprar(Session.dni, cantidad, monto);
+            String bonosGenerados = Compras.comprar(Session.dni, cantidad, monto);
+            MessageBox.Show("Compra realizada correctamente\nBonos generados:\n" + bonosGenerados);
 
-            this.Hide();
-
-            MessageBox.Show("Compra realizada con exito");
+            ClinicaFrba.util.Session.mainMenu(this);
         }
 
         private void ConfirmarCompra_Load(object sender, EventArgs e)
