@@ -329,23 +329,6 @@ CREATE TABLE Cancelaciones (
     REFERENCES Turnos (numero)
 )
 
-
--- -----------------------------------------------------
--- Table Horas_Trabajadas
--- -----------------------------------------------------
-CREATE TABLE Horas_Trabajadas (
-  plan_codigo NUMERIC(18) NOT NULL,
-  cantidad VARCHAR(45) NULL,
-  profesional_dni NUMERIC(18) NOT NULL,
-  especialidad_codigo NUMERIC(18) NOT NULL,
-  PRIMARY KEY (profesional_dni, especialidad_codigo, plan_codigo),
-
-  CONSTRAINT fk_Horas_Trabajadas_Medico_Especialidad
-    FOREIGN KEY (profesional_dni, especialidad_codigo)
-    REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo)
-)
-
-
 -- -----------------------------------------------------
 -- Table Diagnosticos
 -- -----------------------------------------------------

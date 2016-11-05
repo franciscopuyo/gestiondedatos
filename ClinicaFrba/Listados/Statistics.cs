@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaFrba.Abm_Especialidades_Medicas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -152,7 +153,26 @@ order by Consultas desc";
 
         private String listProfesionalesMenosHoras()
         {
-           return  "";
+            String query = @"SELECT TOP 5
+Personas_Detalle.nombre as Nombre,
+Personas_Detalle.apellido as Apellido,
+Medico_Especialidad.profesional_dni as Documento, 
+COUNT(*) * 0.5 as Horas_Trabajadas
+FROM Medico_Especialidad, Turnos, Atencion_Medica, Personas_Detalle, Bonos, Planes_Medicos
+WHERE Medico_Especialidad.especialidad_codigo = Turnos.especialidad_codigo
+AND Medico_Especialidad.profesional_dni = Turnos.profesional_dni
+AND Atencion_Medica.turno_numero = Turnos.numero
+AND Personas_Detalle.dni = Medico_Especialidad.profesional_dni
+AND Bonos.nro_bono = Atencion_Medica.nro_bono
+AND Bonos.plan_codigo = Planes_Medicos.codigo
+AND Planes_Medicos.descripcion = '{0}'
+AND Medico_Especialidad.especialidad_codigo = {1}
+GROUP BY nombre, apellido, Medico_Especialidad.profesional_dni
+ORDER BY Horas_Trabajadas ASC";
+            query = String.Format(query, planMedico.Text, Profession.getCodeByDescription(especialidadCombo.Text));
+            query = query.Replace("\r", " ");
+            query = query.Replace("\n", " ");
+            return query;
         }
 
         private String afiliadosConMasBonos()
@@ -260,17 +280,22 @@ order by Bonos_Utilizados desc";
             if (listado == "Profesionales con menos horas trabajadas")
             {
                 showPlanYEspeciaidadFilters();
+                return;
             }
-            else
+
+            if (listado == "Profesionales más consultados")
             {
-                if (listado == "Profesionales más consultados")
-                {
-                    showPlanFilter();
-                } else
-                {
-                    hidePlanYEspeciaidadFilters();
-                }
+                showPlanFilter();
+                return;
+            } 
+
+            if(listado == "Profesionales con menos horas trabajadas")
+            {
+                showPlanYEspeciaidadFilters();
+                return;
             }
+
+            hidePlanYEspeciaidadFilters();
         }
 
         private String getSemestreInterval()
