@@ -167,9 +167,13 @@ AND Bonos.nro_bono = Atencion_Medica.nro_bono
 AND Bonos.plan_codigo = Planes_Medicos.codigo
 AND Planes_Medicos.descripcion = '{0}'
 AND Medico_Especialidad.especialidad_codigo = {1}
+AND
+YEAR(Turnos.fecha) = {2}
+and
+MONTH(Turnos.Fecha) BETWEEN {3}
 GROUP BY nombre, apellido, Medico_Especialidad.profesional_dni
 ORDER BY Horas_Trabajadas ASC";
-            query = String.Format(query, planMedico.Text, Profession.getCodeByDescription(especialidadCombo.Text));
+            query = String.Format(query, planMedico.Text, Profession.getCodeByDescription(especialidadCombo.Text), anio.Text, getSemestreInterval());
             query = query.Replace("\r", " ");
             query = query.Replace("\n", " ");
             return query;
