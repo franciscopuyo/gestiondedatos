@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.Abm_Profesional;
 using System.Data.SqlClient;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.Agenda_Medico
 {
@@ -63,6 +64,11 @@ namespace ClinicaFrba.Agenda_Medico
                 Agenda remove = new Agenda(professionCode, this.dni);
                 remove.Show();
             }
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
         }
     }
 }

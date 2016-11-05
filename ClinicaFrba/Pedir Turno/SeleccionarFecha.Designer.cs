@@ -30,6 +30,12 @@
         {
             this.titulo = new System.Windows.Forms.Label();
             this.volver = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.timetableGrid = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.save = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.timetableGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // titulo
@@ -51,16 +57,66 @@
             this.volver.UseVisualStyleBackColor = true;
             this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(231, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(125, 13);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Horarios de atención";
+            // 
+            // timetableGrid
+            // 
+            this.timetableGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.timetableGrid.Location = new System.Drawing.Point(83, 88);
+            this.timetableGrid.Name = "timetableGrid";
+            this.timetableGrid.Size = new System.Drawing.Size(403, 132);
+            this.timetableGrid.TabIndex = 52;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(129, 255);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 54;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 262);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "Elegir fecha:";
+            // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(377, 342);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 56;
+            this.save.Text = "Pedir Turno";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
             // SeleccionarFecha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 409);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.timetableGrid);
             this.Controls.Add(this.volver);
             this.Controls.Add(this.titulo);
             this.Name = "SeleccionarFecha";
             this.Text = "Seleccionar fecha";
             this.Load += new System.EventHandler(this.SeleccionarFecha_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.timetableGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,5 +126,10 @@
 
         private System.Windows.Forms.Label titulo;
         private System.Windows.Forms.Button volver;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView timetableGrid;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button save;
     }
 }

@@ -17,12 +17,42 @@ namespace ClinicaFrba.Agenda_Medico
     {
         private int professionCode;
         private int dni;
+        private DateTime mondayFromPrev;
+        private DateTime mondayToPrev;
+        private DateTime tuesdayFromPrev;
+        private DateTime tuesdayToPrev;
+        private DateTime wednesdayFromPrev;
+        private DateTime wednesdayToPrev;
+        private DateTime thursdayFromPrev;
+        private DateTime thursdayToPrev;
+        private DateTime fridayFromPrev;
+        private DateTime fridayToPrev;
+        private DateTime saturdayFromPrev;
+        private DateTime saturdayToPrev;
+
+        private bool initialized = false;
+        private bool called = false;
 
         public AltaHorarios(int professionCode, int dni)
         {
             this.professionCode = professionCode;
             this.dni = dni;
             InitializeComponent();
+
+            this.initializeDatePickerTime(ref mondayTo, ref mondayToPrev);
+            this.initializeDatePickerTime(ref mondayFrom, ref mondayFromPrev);
+            this.initializeDatePickerTime(ref tuesdayTo, ref tuesdayToPrev);
+            this.initializeDatePickerTime(ref tuesdayFrom, ref tuesdayFromPrev);
+            this.initializeDatePickerTime(ref wednesdayTo, ref wednesdayToPrev);
+            this.initializeDatePickerTime(ref wednesdayFrom, ref wednesdayFromPrev);
+            this.initializeDatePickerTime(ref thursdayTo, ref thursdayToPrev);
+            this.initializeDatePickerTime(ref thursdayFrom, ref thursdayFromPrev);
+            this.initializeDatePickerTime(ref fridayTo, ref fridayToPrev);
+            this.initializeDatePickerTime(ref fridayFrom, ref fridayFromPrev);
+            this.initializeDatePickerTime(ref saturdayTo, ref saturdayToPrev);
+            this.initializeDatePickerTime(ref saturdayFrom, ref saturdayFromPrev);
+
+            this.initialized = true;
         }
 
 
@@ -153,6 +183,105 @@ namespace ClinicaFrba.Agenda_Medico
             this.Hide();
             Agendas timetables = new Agendas(this.dni);
             timetables.Show();
+        }
+
+        private void initializeDatePickerTime(ref DateTimePicker timePicker, ref DateTime prevDate)
+        {
+            DateTime dt = timePicker.Value;
+            timePicker.Value = dt.AddSeconds(-dt.Second);
+            timePicker.CustomFormat = "HH:mm";
+            timePicker.Format = DateTimePickerFormat.Custom;
+
+            if (dt.Minute % 30 > 15) {
+                timePicker.Value = dt.AddMinutes(30 - dt.Minute % 30);
+            }
+            else
+            {
+                timePicker.Value = dt.AddMinutes(-(dt.Minute % 30));
+            }
+
+            prevDate = timePicker.Value;
+        }
+
+        private void updateTimePicker(ref DateTimePicker timePicker, ref DateTime prevDate)
+        {
+            if (called)
+            {
+                called = false;
+                return;
+            }
+            if (!this.initialized) return;
+            DateTime dt = timePicker.Value;
+            TimeSpan diff = dt - prevDate;
+
+            if (diff.Ticks < 0)
+                timePicker.Value = prevDate.AddMinutes(-30);
+            else
+                timePicker.Value = prevDate.AddMinutes(30);
+
+
+            called = true;
+            prevDate = timePicker.Value;
+        }
+
+        private void mondayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref mondayFrom, ref mondayFromPrev);
+        }
+
+        private void mondayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref mondayTo, ref mondayToPrev);
+        }
+
+        private void tuesdayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref tuesdayFrom, ref tuesdayFromPrev);
+        }
+
+        private void wednesdayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref wednesdayFrom, ref wednesdayFromPrev);
+        }
+
+        private void thursdayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref thursdayFrom, ref thursdayFromPrev);
+        }
+
+        private void fridayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref fridayFrom, ref fridayFromPrev);
+        }
+
+        private void saturdayFrom_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref saturdayFrom, ref saturdayFromPrev);
+        }
+
+        private void tuesdayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref tuesdayTo, ref tuesdayToPrev);
+        }
+
+        private void wednesdayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref wednesdayTo, ref wednesdayToPrev);
+        }
+
+        private void thursdayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref thursdayTo, ref thursdayToPrev);
+        }
+
+        private void fridayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref fridayTo, ref fridayToPrev);
+        }
+
+        private void saturdayTo_ValueChanged(object sender, EventArgs e)
+        {
+            this.updateTimePicker(ref saturdayTo, ref saturdayToPrev);
         }
     }
 }

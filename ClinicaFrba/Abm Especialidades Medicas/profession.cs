@@ -19,7 +19,7 @@ namespace ClinicaFrba.Abm_Especialidades_Medicas
 
         public static int getCodeByDescription(String description)
         {
-            String query = "SELECT codigo from Especialidades where descripcion = {0}";
+            String query = "SELECT codigo from Especialidades where descripcion = '{0}'";
             query = String.Format(query, description);
             return Int32.Parse(Sql.query(query).Rows[0][0].ToString());
         }

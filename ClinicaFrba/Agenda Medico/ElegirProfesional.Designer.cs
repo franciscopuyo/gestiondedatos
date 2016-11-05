@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buscar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.buscar.TabIndex = 7;
             this.buscar.Text = "Buscar";
             this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click_1);
             // 
             // dataGridView1
             // 
@@ -70,12 +72,24 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(509, 242);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(307, 344);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(75, 23);
+            this.back.TabIndex = 10;
+            this.back.Text = "Volver";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
             // 
             // ElegirProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 345);
+            this.ClientSize = new System.Drawing.Size(632, 382);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.especialidadesCombo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buscar);
@@ -95,5 +109,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button back;
     }
 }

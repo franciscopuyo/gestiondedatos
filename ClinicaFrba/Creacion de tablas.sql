@@ -240,7 +240,7 @@ CREATE TABLE Disponibilidad (
 -- Creacion tabla Turnos
 -- -----------------------------------------------------
 CREATE TABLE Turnos (
-  numero NUMERIC(18) NOT NULL,
+  numero NUMERIC(18) NOT NULL IDENTITY(1,1),
   afiliado_dni NUMERIC(18) NOT NULL,
   especialidad_codigo NUMERIC(18) NOT NULL,
   profesional_dni NUMERIC(18) NOT NULL,

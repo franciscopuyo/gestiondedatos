@@ -161,21 +161,23 @@
             // 
             // mondayFrom
             // 
-            this.mondayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.mondayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.mondayFrom.Location = new System.Drawing.Point(58, 181);
             this.mondayFrom.Name = "mondayFrom";
             this.mondayFrom.ShowUpDown = true;
             this.mondayFrom.Size = new System.Drawing.Size(200, 20);
             this.mondayFrom.TabIndex = 6;
+            this.mondayFrom.ValueChanged += new System.EventHandler(this.mondayFrom_ValueChanged);
             // 
             // mondayTo
             // 
-            this.mondayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.mondayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.mondayTo.Location = new System.Drawing.Point(315, 181);
             this.mondayTo.Name = "mondayTo";
             this.mondayTo.ShowUpDown = true;
             this.mondayTo.Size = new System.Drawing.Size(200, 20);
             this.mondayTo.TabIndex = 7;
+            this.mondayTo.ValueChanged += new System.EventHandler(this.mondayTo_ValueChanged);
             // 
             // label5
             // 
@@ -215,21 +217,23 @@
             // 
             // tuesdayTo
             // 
-            this.tuesdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.tuesdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.tuesdayTo.Location = new System.Drawing.Point(315, 238);
             this.tuesdayTo.Name = "tuesdayTo";
             this.tuesdayTo.ShowUpDown = true;
             this.tuesdayTo.Size = new System.Drawing.Size(200, 20);
             this.tuesdayTo.TabIndex = 12;
+            this.tuesdayTo.ValueChanged += new System.EventHandler(this.tuesdayTo_ValueChanged);
             // 
             // tuesdayFrom
             // 
-            this.tuesdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.tuesdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.tuesdayFrom.Location = new System.Drawing.Point(58, 238);
             this.tuesdayFrom.Name = "tuesdayFrom";
             this.tuesdayFrom.ShowUpDown = true;
             this.tuesdayFrom.Size = new System.Drawing.Size(200, 20);
             this.tuesdayFrom.TabIndex = 11;
+            this.tuesdayFrom.ValueChanged += new System.EventHandler(this.tuesdayFrom_ValueChanged);
             // 
             // label9
             // 
@@ -260,21 +264,23 @@
             // 
             // wednesdayTo
             // 
-            this.wednesdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.wednesdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.wednesdayTo.Location = new System.Drawing.Point(315, 296);
             this.wednesdayTo.Name = "wednesdayTo";
             this.wednesdayTo.ShowUpDown = true;
             this.wednesdayTo.Size = new System.Drawing.Size(200, 20);
             this.wednesdayTo.TabIndex = 17;
+            this.wednesdayTo.ValueChanged += new System.EventHandler(this.wednesdayTo_ValueChanged);
             // 
             // wednesdayFrom
             // 
-            this.wednesdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.wednesdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.wednesdayFrom.Location = new System.Drawing.Point(58, 296);
             this.wednesdayFrom.Name = "wednesdayFrom";
             this.wednesdayFrom.ShowUpDown = true;
             this.wednesdayFrom.Size = new System.Drawing.Size(200, 20);
             this.wednesdayFrom.TabIndex = 16;
+            this.wednesdayFrom.ValueChanged += new System.EventHandler(this.wednesdayFrom_ValueChanged);
             // 
             // label12
             // 
@@ -345,21 +351,23 @@
             // 
             // thursdayTo
             // 
-            this.thursdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.thursdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.thursdayTo.Location = new System.Drawing.Point(315, 358);
             this.thursdayTo.Name = "thursdayTo";
             this.thursdayTo.ShowUpDown = true;
             this.thursdayTo.Size = new System.Drawing.Size(200, 20);
             this.thursdayTo.TabIndex = 25;
+            this.thursdayTo.ValueChanged += new System.EventHandler(this.thursdayTo_ValueChanged);
             // 
             // thursdayFrom
             // 
-            this.thursdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.thursdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.thursdayFrom.Location = new System.Drawing.Point(58, 358);
             this.thursdayFrom.Name = "thursdayFrom";
             this.thursdayFrom.ShowUpDown = true;
             this.thursdayFrom.Size = new System.Drawing.Size(200, 20);
             this.thursdayFrom.TabIndex = 24;
+            this.thursdayFrom.ValueChanged += new System.EventHandler(this.thursdayFrom_ValueChanged);
             // 
             // label15
             // 
@@ -400,21 +408,23 @@
             // 
             // fridayTo
             // 
-            this.fridayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.fridayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fridayTo.Location = new System.Drawing.Point(315, 424);
             this.fridayTo.Name = "fridayTo";
             this.fridayTo.ShowUpDown = true;
             this.fridayTo.Size = new System.Drawing.Size(200, 20);
             this.fridayTo.TabIndex = 31;
+            this.fridayTo.ValueChanged += new System.EventHandler(this.fridayTo_ValueChanged);
             // 
             // fridayFrom
             // 
-            this.fridayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.fridayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fridayFrom.Location = new System.Drawing.Point(58, 424);
             this.fridayFrom.Name = "fridayFrom";
             this.fridayFrom.ShowUpDown = true;
             this.fridayFrom.Size = new System.Drawing.Size(200, 20);
             this.fridayFrom.TabIndex = 30;
+            this.fridayFrom.ValueChanged += new System.EventHandler(this.fridayFrom_ValueChanged);
             // 
             // label18
             // 
@@ -456,21 +466,23 @@
             // 
             // saturdayTo
             // 
-            this.saturdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.saturdayTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.saturdayTo.Location = new System.Drawing.Point(315, 492);
             this.saturdayTo.Name = "saturdayTo";
             this.saturdayTo.ShowUpDown = true;
             this.saturdayTo.Size = new System.Drawing.Size(200, 20);
             this.saturdayTo.TabIndex = 37;
+            this.saturdayTo.ValueChanged += new System.EventHandler(this.saturdayTo_ValueChanged);
             // 
             // saturdayFrom
             // 
-            this.saturdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.saturdayFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.saturdayFrom.Location = new System.Drawing.Point(58, 492);
             this.saturdayFrom.Name = "saturdayFrom";
             this.saturdayFrom.ShowUpDown = true;
             this.saturdayFrom.Size = new System.Drawing.Size(200, 20);
             this.saturdayFrom.TabIndex = 36;
+            this.saturdayFrom.ValueChanged += new System.EventHandler(this.saturdayFrom_ValueChanged);
             // 
             // label_sabado
             // 

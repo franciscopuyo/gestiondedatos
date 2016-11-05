@@ -59,12 +59,17 @@ namespace ClinicaFrba.Agenda_Medico
             especialidadesCombo.DataSource = options;
         }
 
-        private void buscar_Click(object sender, EventArgs e)
+        private void buscar_Click_1(object sender, EventArgs e)
         {
             loadProfesionales();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void back_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             String accion = dataGridView1.Columns[e.ColumnIndex].HeaderText.ToString();
             String dni = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -72,14 +77,8 @@ namespace ClinicaFrba.Agenda_Medico
             String apellido = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             this.Hide();
 
-            Agendas sel = new Agendas(Int32.Parse(dni));
-            sel.Show();
+            Agendas agendas = new Agendas(Int32.Parse(dni));
+            agendas.Show();
         }
-
-        private void volver_Click(object sender, EventArgs e)
-        {
-            Session.mainMenu(this);
-        }
-
     }
 }

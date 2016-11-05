@@ -32,6 +32,7 @@
             this.labelProfesional = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.timetablesGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,11 +73,22 @@
             this.label1.TabIndex = 50;
             this.label1.Text = "Agendas";
             // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(283, 313);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(75, 23);
+            this.back.TabIndex = 53;
+            this.back.Text = "Volver";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
+            // 
             // Agendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 296);
+            this.ClientSize = new System.Drawing.Size(627, 352);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.labelProfesional);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label1);
@@ -96,5 +108,6 @@
         private System.Windows.Forms.Label labelProfesional;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button back;
     }
 }
