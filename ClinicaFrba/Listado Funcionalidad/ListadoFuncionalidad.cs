@@ -81,7 +81,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Registrar resultado de atencion"){
-                selectedAction = new Registro_Resultado.Form1();
+                selectedAction = new Registrar_Atencion.SeleccionConsulta(Session.dni);
             }
 
             if(action == "Cancelar atencion"){

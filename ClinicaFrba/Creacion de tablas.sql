@@ -303,8 +303,10 @@ CREATE TABLE Cambios_De_Plan (
 -- -----------------------------------------------------
 CREATE TABLE Atencion_Medica (
   turno_numero NUMERIC(18) NOT NULL,
+  fecha_llegada DATETIME NULL,
   fecha_efectivizacion DATETIME NULL,
   nro_bono NUMERIC(18) NULL,
+  efectivizada BOOLEAN DEFAULT 0,
   PRIMARY KEY (turno_numero),
   CONSTRAINT fk_Atencion_Medica_Turnos1
     FOREIGN KEY (turno_numero)

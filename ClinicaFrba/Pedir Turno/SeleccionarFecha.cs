@@ -71,7 +71,7 @@ namespace ClinicaFrba.Pedir_Turno
                 return;
             }
 
-            if (!cumpleHorario)
+                if (!cumpleHorario)
             {
                 MessageBox.Show("El medico no atiende a esa hora");
                 return;

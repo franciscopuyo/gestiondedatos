@@ -205,22 +205,19 @@ namespace ClinicaFrba.Agenda_Medico
 
         private void updateTimePicker(ref DateTimePicker timePicker, ref DateTime prevDate)
         {
-            if (called)
-            {
-                called = false;
-                return;
-            }
+
             if (!this.initialized) return;
+
             DateTime dt = timePicker.Value;
             TimeSpan diff = dt - prevDate;
 
-            if (diff.Ticks < 0)
+            if (diff.Ticks < 0  || 
+                (prevDate.Minute == 0 && dt.Minute == 59 && prevDate.Hour == dt.Hour))
                 timePicker.Value = prevDate.AddMinutes(-30);
             else
                 timePicker.Value = prevDate.AddMinutes(30);
 
-
-            called = true;
+           
             prevDate = timePicker.Value;
         }
 
