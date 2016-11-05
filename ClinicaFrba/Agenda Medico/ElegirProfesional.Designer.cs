@@ -50,9 +50,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(60, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(245, 13);
+            this.label1.Size = new System.Drawing.Size(228, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Seleccione el profesional con el que sera atendido";
+            this.label1.Text = "Seleccione el profesional para registrar agenda";
             // 
             // buscar
             // 

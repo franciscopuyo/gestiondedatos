@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaFrba.util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,6 +68,11 @@ namespace ClinicaFrba.Registro_Llegada
 
             SeleccionarBono s = new SeleccionarBono(nroTurno, dniAfiliado);
             s.Show();
+        }
+
+        private void volver_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
         }
     }
 }

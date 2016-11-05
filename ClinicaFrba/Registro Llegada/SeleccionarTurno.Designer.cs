@@ -58,8 +58,9 @@
             this.volver.Name = "volver";
             this.volver.Size = new System.Drawing.Size(75, 23);
             this.volver.TabIndex = 5;
-            this.volver.Text = "Volver";
+            this.volver.Text = "Cancelar";
             this.volver.UseVisualStyleBackColor = true;
+            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // SeleccionarTurno
             // 

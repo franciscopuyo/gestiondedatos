@@ -32,8 +32,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         public static void crear(int dniAfiliado, String dni, String codigoEspecialidad, DateTime horario)
         {
-            dniAfiliado = 1123960;
-            String query = "INSERT INTO Turnos (afiliado_dni, especialidad_codigo, profesional_dni, fecha) VALUES ({0},{1},{2},'{3}')";
+            String query = "INSERT INTO Turnos (numero, afiliado_dni, especialidad_codigo, profesional_dni, fecha) VALUES ((select top 1 numero + 1 from Turnos order by numero desc) ,{0},{1},{2},'{3}')";
             query = String.Format(query, dniAfiliado, codigoEspecialidad, dni, horario);
             Sql.query(query);
         }
