@@ -18,9 +18,29 @@ namespace ClinicaFrba.Registrar_Atencion
             return Sql.query(query);
         }
 
-        public static void update(bool done, DateTime doneDate, ListView.ListViewItemCollection simpthoms, ListView.ListViewItemCollections diagnostic)
+        public static void update(int tourn, bool done, DateTime doneDate, ListView.ListViewItemCollection simpthoms, ListView.ListViewItemCollection diagnostic)
         {
+            int realizada = done ? 1 : 0; 
+            String query = "UPDATE Atencion_Medica set realizada = {0}, fecha_efectivizacion = '{1}' where turno_numero = {2}";
+            query = String.Format(query, realizada, doneDate, tourn);
+            Sql.query(query);
 
+            if (done)
+            {
+                foreach (String item in simpthoms)
+                {
+                    query = "INSERT INTO Sintomas (atencion, sintoma) VALUES ({0}, '{1}')";
+                    query = String.Format(query, tourn, item);
+                    Sql.query(query);
+                }
+
+                foreach (String item in diagnostic)
+                {
+                    query = "INSERT INTO Diagnosticos (atencion, sintoma) VALUES ({0}, '{1}')";
+                    query = String.Format(query, tourn, item);
+                    Sql.query(query);
+                }
+            }
         }
     }
 }

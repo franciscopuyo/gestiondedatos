@@ -12,8 +12,10 @@ namespace ClinicaFrba.Registrar_Atencion
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private int atentionCode;
+        public Form1(int atentionCode)
         {
+            this.atentionCode = atentionCode;
             InitializeComponent();
         }
 
@@ -42,6 +44,11 @@ namespace ClinicaFrba.Registrar_Atencion
         {
             diagnosticView.Items.Add(diagnosticInput.Text);
             diagnosticInput.Text = "";
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            MedicalAtention.update(atentionCode, doneCheckbox.Checked, dateTimePicker1.Value, simpthompsView.Items, diagnosticView.Items);
         }
     }
 }

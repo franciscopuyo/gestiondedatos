@@ -41,6 +41,8 @@
             this.diagnosticInput = new System.Windows.Forms.TextBox();
             this.diagnosticView = new System.Windows.Forms.ListView();
             this.simpthompsView = new System.Windows.Forms.ListView();
+            this.save = new System.Windows.Forms.Button();
+            this.back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // doneCheckbox
@@ -158,11 +160,32 @@
             this.simpthompsView.UseCompatibleStateImageBehavior = false;
             this.simpthompsView.SelectedIndexChanged += new System.EventHandler(this.simpthompsView_SelectedIndexChanged);
             // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(362, 428);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 13;
+            this.save.Text = "Guardar";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(90, 428);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(75, 23);
+            this.back.TabIndex = 14;
+            this.back.Text = "Volver";
+            this.back.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 463);
+            this.Controls.Add(this.back);
+            this.Controls.Add(this.save);
             this.Controls.Add(this.diagnosticView);
             this.Controls.Add(this.simpthompsView);
             this.Controls.Add(this.addDiagnostic);
@@ -199,5 +222,7 @@
         private System.Windows.Forms.TextBox diagnosticInput;
         private System.Windows.Forms.ListView diagnosticView;
         private System.Windows.Forms.ListView simpthompsView;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button back;
     }
 }

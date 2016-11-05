@@ -75,11 +75,11 @@ namespace ClinicaFrba.Registrar_Atencion
             String action = atentionsGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
 
             if (action == "Efectivizar")
-            {/*
+            {
                 this.Hide();
-                Edit edit = new Edit(roleId, roleDescription);
+                Form1 edit = new Form1(atention);
                 edit.Show();
-            */}
+            }
         }
 
         private void especialidadesCombo_SelectedIndexChanged(object sender, EventArgs e)
