@@ -70,5 +70,12 @@ namespace ClinicaFrba.Agenda_Medico
             Agendas timetables = new Agendas(this.dni);
             timetables.Show();
         }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CancelarPeriodo cancelarPeriodo = new CancelarPeriodo(dni, professionCode);
+            cancelarPeriodo.Show();
+        }
     }
 }

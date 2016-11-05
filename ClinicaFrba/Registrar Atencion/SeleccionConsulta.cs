@@ -72,9 +72,8 @@ namespace ClinicaFrba.Registrar_Atencion
             String accion = atentionsGrid.Columns[e.ColumnIndex].HeaderText.ToString();
             if (e.RowIndex >= atentionsGrid.Rows.Count) return;
             int atention = Int32.Parse(atentionsGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
-            String action = atentionsGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-            if (action == "Efectivizar")
+            if (accion == "Efectivizar")
             {
                 this.Hide();
                 Form1 edit = new Form1(atention);

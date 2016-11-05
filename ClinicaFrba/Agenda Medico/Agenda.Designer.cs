@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.jobsGrid = new System.Windows.Forms.DataGridView();
             this.back = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.timetableGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobsGrid)).BeginInit();
             this.SuspendLayout();
@@ -131,7 +132,7 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(170, 474);
+            this.back.Location = new System.Drawing.Point(77, 474);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
             this.back.TabIndex = 54;
@@ -139,11 +140,22 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(228, 474);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(135, 23);
+            this.cancelButton.TabIndex = 55;
+            this.cancelButton.Text = "Cancelar Periodo";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // Agenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(403, 509);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.back);
             this.Controls.Add(this.jobsGrid);
             this.Controls.Add(this.label3);
@@ -176,5 +188,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView jobsGrid;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

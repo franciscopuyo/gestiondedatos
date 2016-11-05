@@ -306,7 +306,7 @@ CREATE TABLE Atencion_Medica (
   fecha_llegada DATETIME NULL,
   fecha_efectivizacion DATETIME NULL,
   nro_bono NUMERIC(18) NULL,
-  efectivizada BOOLEAN DEFAULT 0,
+  realizada BIT DEFAULT 0,
   PRIMARY KEY (turno_numero),
   CONSTRAINT fk_Atencion_Medica_Turnos1
     FOREIGN KEY (turno_numero)
@@ -342,7 +342,6 @@ CREATE TABLE Diagnosticos (
     REFERENCES Atencion_Medica (turno_numero)
 )
 
-
 -- -----------------------------------------------------
 -- Table Sintomas
 -- -----------------------------------------------------
@@ -365,6 +364,6 @@ CREATE TABLE Periodos_Cancelados (
   PRIMARY KEY (especialidad_codigo, profesional_dni),
 
   CONSTRAINT fk_Agendas
-    FOREIGN KEY (profesional_dni, especialidad_codigo)
-    REFERENCES Agendas (profesional_dni, especialidad_codigo)
+    FOREIGN KEY (especialidad_codigo, profesional_dni)
+    REFERENCES Agendas (especialidad_codigo, profesional_dni)
 )

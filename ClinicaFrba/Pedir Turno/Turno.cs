@@ -37,5 +37,12 @@ namespace ClinicaFrba.Pedir_Turno
             query = String.Format(query, dniAfiliado, codigoEspecialidad, dni, horario);
             Sql.query(query);
         }
+
+        public static void cancelarTurnosPorProfesional(int dniProfesional, int professionCode, String reason, DateTime from, DateTime to)
+        {
+            String query = "INSERT INTO Cancelaciones SELECT t.Numero as turno_nro, 2 as tipo, '{0}' as motivo, from Turno t where t.desde >= '{1}' and t.hasta <= '{2}' and profesional_dni = {3} and especialidad_codigo = {4}";
+            query = String.Format(query, reason, from, to, dniProfesional, professionCode);
+            Sql.query(query);
+        }
     }
 }

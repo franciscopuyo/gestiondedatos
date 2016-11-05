@@ -35,6 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cancel = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.reasonInput = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -96,12 +98,31 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Volver";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // reasonInput
+            // 
+            this.reasonInput.Location = new System.Drawing.Point(63, 186);
+            this.reasonInput.Name = "reasonInput";
+            this.reasonInput.Size = new System.Drawing.Size(200, 20);
+            this.reasonInput.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 193);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Razon:";
             // 
             // CancelarPeriodo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.reasonInput);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.label3);
@@ -125,5 +146,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox reasonInput;
+        private System.Windows.Forms.Label label4;
     }
 }

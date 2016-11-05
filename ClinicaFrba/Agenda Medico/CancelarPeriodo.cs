@@ -14,14 +14,24 @@ namespace ClinicaFrba.Agenda_Medico
     {
         private int dni;
         private int professionCode;
-        public CancelarPeriodo()
+
+        public CancelarPeriodo(int dni, int professionCode)
         {
+            this.dni = dni;
+            this.professionCode = professionCode;
             InitializeComponent();
         }
 
         private void cancel_Click(object sender, EventArgs e)
         {
-           // Agenda.cancelatePeriod(dni, professionCode, dateFrom.Value.Date, dateTo.Value.Date);
+           Timetable.cancelPeriod(dni, professionCode, dateFrom.Value.Date, dateTo.Value.Date, reasonInput.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Agenda agenda = new Agenda(professionCode, dni);
+            agenda.Show();
         }
     }
 }

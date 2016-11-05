@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Threading.Tasks;
 using ClinicaFrba.util;
+using ClinicaFrba.Pedir_Turno;
 
 namespace ClinicaFrba.Agenda_Medico
 {
@@ -51,6 +52,15 @@ namespace ClinicaFrba.Agenda_Medico
 
             query = String.Format(query, dni.ToString());
             return Sql.query(query);
+        }
+
+        public static void cancelPeriod(int dni, int professionCode, DateTime from, DateTime to, String reason)
+        {
+            String query = "INSERT INTO Periodos_Cancelados (desde, hasta, especialidad_codigo, profesional_dni) VALUES ('{0}','{1}',{2},{3})";
+            query = String.Format(query, from, to, professionCode, dni);
+            Sql.query(query);
+
+            Turno.cancelarTurnosPorProfesional(dni, professionCode, reason, from, to);
         }
     }
 }
