@@ -29,7 +29,19 @@ namespace ClinicaFrba.Registrar_Atencion
 
         private void simpthompsView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            simpthompsView.Contro
+            
+        }
+
+        private void addSimpthom_Click(object sender, EventArgs e)
+        {
+            simpthompsView.Items.Add(simpthomsInput.Text);
+            simpthomsInput.Text = "";
+        }
+
+        private void addDiagnostic_Click(object sender, EventArgs e)
+        {
+            diagnosticView.Items.Add(diagnosticInput.Text);
+            diagnosticInput.Text = "";
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ClinicaFrba.Abm_Especialidades_Medicas;
 namespace ClinicaFrba.Registro_Llegada
 {
     public partial class RegistroLlegada : Form
@@ -60,6 +60,18 @@ namespace ClinicaFrba.Registro_Llegada
         private void volver_Click(object sender, EventArgs e)
         {
             Session.mainMenu(this);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String accion = dataGridView1.Columns[e.ColumnIndex].HeaderText.ToString();
+            String dni = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            String nombre = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            String apellido = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            this.Hide();
+
+            SeleccionarTurno select = new SeleccionarTurno(dni, Profession.getCodeByDescription(especialidadesCombo.Text));
+            select.Show();
         }
 
     }

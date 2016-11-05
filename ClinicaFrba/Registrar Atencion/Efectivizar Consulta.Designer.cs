@@ -33,14 +33,14 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.simpthomsInput = new System.Windows.Forms.TextBox();
             this.addSimpthom = new System.Windows.Forms.Button();
             this.simpthomsLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.addDiagnostic = new System.Windows.Forms.Button();
             this.diagnosticInput = new System.Windows.Forms.TextBox();
-            this.simpthompsView = new System.Windows.Forms.ListView();
             this.diagnosticView = new System.Windows.Forms.ListView();
+            this.simpthompsView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // doneCheckbox
@@ -88,13 +88,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Sintomas";
             // 
-            // textBox1
+            // simpthomsInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 254);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(497, 20);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.simpthomsInput.Location = new System.Drawing.Point(12, 254);
+            this.simpthomsInput.Name = "simpthomsInput";
+            this.simpthomsInput.Size = new System.Drawing.Size(497, 20);
+            this.simpthomsInput.TabIndex = 5;
+            this.simpthomsInput.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // addSimpthom
             // 
@@ -104,6 +104,7 @@
             this.addSimpthom.TabIndex = 6;
             this.addSimpthom.Text = "+";
             this.addSimpthom.UseVisualStyleBackColor = true;
+            this.addSimpthom.Click += new System.EventHandler(this.addSimpthom_Click);
             // 
             // simpthomsLabel
             // 
@@ -131,6 +132,7 @@
             this.addDiagnostic.TabIndex = 10;
             this.addDiagnostic.Text = "+";
             this.addDiagnostic.UseVisualStyleBackColor = true;
+            this.addDiagnostic.Click += new System.EventHandler(this.addDiagnostic_Click);
             // 
             // diagnosticInput
             // 
@@ -138,6 +140,14 @@
             this.diagnosticInput.Name = "diagnosticInput";
             this.diagnosticInput.Size = new System.Drawing.Size(497, 20);
             this.diagnosticInput.TabIndex = 9;
+            // 
+            // diagnosticView
+            // 
+            this.diagnosticView.Location = new System.Drawing.Point(12, 321);
+            this.diagnosticView.Name = "diagnosticView";
+            this.diagnosticView.Size = new System.Drawing.Size(541, 61);
+            this.diagnosticView.TabIndex = 12;
+            this.diagnosticView.UseCompatibleStateImageBehavior = false;
             // 
             // simpthompsView
             // 
@@ -147,14 +157,6 @@
             this.simpthompsView.TabIndex = 11;
             this.simpthompsView.UseCompatibleStateImageBehavior = false;
             this.simpthompsView.SelectedIndexChanged += new System.EventHandler(this.simpthompsView_SelectedIndexChanged);
-            // 
-            // diagnosticView
-            // 
-            this.diagnosticView.Location = new System.Drawing.Point(12, 321);
-            this.diagnosticView.Name = "diagnosticView";
-            this.diagnosticView.Size = new System.Drawing.Size(541, 61);
-            this.diagnosticView.TabIndex = 12;
-            this.diagnosticView.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
@@ -168,7 +170,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.simpthomsLabel);
             this.Controls.Add(this.addSimpthom);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.simpthomsInput);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
@@ -189,13 +191,13 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox simpthomsInput;
         private System.Windows.Forms.Button addSimpthom;
         private System.Windows.Forms.Label simpthomsLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button addDiagnostic;
         private System.Windows.Forms.TextBox diagnosticInput;
-        private System.Windows.Forms.ListView simpthompsView;
         private System.Windows.Forms.ListView diagnosticView;
+        private System.Windows.Forms.ListView simpthompsView;
     }
 }
