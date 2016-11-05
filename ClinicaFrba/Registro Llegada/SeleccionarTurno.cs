@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.Registro_Llegada
 {
@@ -67,6 +68,11 @@ namespace ClinicaFrba.Registro_Llegada
 
             SeleccionarBono s = new SeleccionarBono(nroTurno, dniAfiliado);
             s.Show();
+        }
+
+        private void volver_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
         }
     }
 }
