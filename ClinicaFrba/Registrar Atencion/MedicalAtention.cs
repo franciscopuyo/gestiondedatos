@@ -27,17 +27,17 @@ namespace ClinicaFrba.Registrar_Atencion
 
             if (done)
             {
-                foreach (String item in simpthoms)
+                foreach (ListViewItem item in simpthoms)
                 {
                     query = "INSERT INTO Sintomas (atencion, sintoma) VALUES ({0}, '{1}')";
-                    query = String.Format(query, tourn, item);
+                    query = String.Format(query, tourn, item.Text);
                     Sql.query(query);
                 }
 
-                foreach (String item in diagnostic)
+                foreach (ListViewItem item in diagnostic)
                 {
-                    query = "INSERT INTO Diagnosticos (atencion, sintoma) VALUES ({0}, '{1}')";
-                    query = String.Format(query, tourn, item);
+                    query = "INSERT INTO Diagnosticos (atencion, diagnostico) VALUES ({0}, '{1}')";
+                    query = String.Format(query, tourn, item.Text);
                     Sql.query(query);
                 }
             }

@@ -12,11 +12,10 @@ namespace ClinicaFrba.Pedir_Turno
         public static bool cumpleHorarioMedico(String dni, String codigoEspecialidad, DateTime horario)
         {
             int dia = (int)horario.DayOfWeek;
-            String query = "SELECT * FROM Disponibilidad, Agendas WHERE dia = {0} AND Disponibilidad.profesional_dni = {1} AND Disponibilidad.especialidad_codigo = {2} AND " +
-                " Disponibilidad.desde <= CONVERT(time,'{3}') AND Disponibilidad.hasta >= CONVERT(time,'{4}') and  " +
-                " Agendas.especialidad_codigo = Disponibilidad.especialidad_codigo " +
-                "and Disponibilidad.profesional_dni = Disponibilidad.profesional_dni " +
-                "and CONVERT(date, '{5}') between Agendas.desde and Agendas.hasta";
+            String query = "SELECT * FROM Disponibilidad d JOIN Agendas a ON (d.profesional_dni = a.profesional_dni AND a.especialidad_codigo = d.especialidad_codigo) LEFT JOIN Periodos_Cancelados pc ON (pc.profesional_dni = a.profesional_dni AND pc.especialidad_codigo = a.especialidad_codigo) WHERE dia = {0} AND d.profesional_dni = {1} AND d.especialidad_codigo = {2} AND " +
+                " d.desde <= CONVERT(time,'{3}') AND d.hasta >= CONVERT(time,'{4}') " +
+                "and CONVERT(date, '{5}') between a.desde and a.hasta " + 
+                "and (pc.profesional_dni IS NOT NULL OR '{5}' NOT BETWEEN pc.desde AND pc.hasta)";
             query = String.Format(query, dia, dni, codigoEspecialidad, horario, horario.AddMinutes(30), horario);
             DataTable results = Sql.query(query);
             return results.Rows.Count > 0;
@@ -24,7 +23,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         public static bool esSobreturno(String dni, String codigoEspecialidad, DateTime horario)
         {
-            String query = "SELECT * FROM Turnos WHERE (fecha BETWEEN '{0}' AND '{1}') AND especialidad_codigo = {2} AND profesional_dni = {3}";
+            String query = "SELECT * FROM Turnos t LEFT JOIN cancelaciones can ON (can.turno_nro = t.numero) WHERE (t.fecha BETWEEN '{0}' AND '{1}') AND especialidad_codigo = {2} AND profesional_dni = {3} AND can.turno_nro IS NULL";
             query = String.Format(query, horario.AddMinutes(-30), horario.AddMinutes(30), codigoEspecialidad, dni);
             DataTable results = Sql.query(query);
             return results.Rows.Count > 0;
@@ -39,8 +38,8 @@ namespace ClinicaFrba.Pedir_Turno
 
         public static void cancelarTurnosPorProfesional(int dniProfesional, int professionCode, String reason, DateTime from, DateTime to)
         {
-            String query = "INSERT INTO Cancelaciones SELECT t.Numero as turno_nro, 2 as tipo, '{0}' as motivo, from Turno t where t.desde >= '{1}' and t.hasta <= '{2}' and profesional_dni = {3} and especialidad_codigo = {4}";
-            query = String.Format(query, reason, from, to, dniProfesional, professionCode);
+            String query = "INSERT INTO Cancelaciones SELECT t.Numero as turno_nro, 2 as tipo, '{0}' as motivo from Turnos t LEFT JOIN Cancelaciones can ON (can.turno_nro = t.numero) where can.turno_nro AND (t.fecha BETWEEN '{1}' AND '{2}') and profesional_dni = {3} and especialidad_codigo = {4}";
+            query = String.Format(query, reason, from, to.AddMinutes(30), dniProfesional, professionCode);
             Sql.query(query);
         }
     }

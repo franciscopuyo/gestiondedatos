@@ -69,7 +69,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(12, 102);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(322, 20);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // label2
@@ -178,6 +178,7 @@
             this.back.TabIndex = 14;
             this.back.Text = "Volver";
             this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
             // 
             // Form1
             // 

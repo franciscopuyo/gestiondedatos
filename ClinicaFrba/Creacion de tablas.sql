@@ -353,17 +353,17 @@ CREATE TABLE Sintomas (
   CONSTRAINT fk_Sintomas_Atencion_Medica1
     FOREIGN KEY (atencion)
     REFERENCES Atencion_Medica (turno_numero)
-)
+		)
 
 CREATE TABLE Periodos_Cancelados (
   id_cancelacion NUMERIC(18) NOT NULL IDENTITY(1,1),
-  desde DATE NOT NULL,
-  hasta DATE NOT NULL,
+  desde DATETIME NOT NULL,
+  hasta DATETIME NOT NULL,
   especialidad_codigo NUMERIC(18) NOT NULL,
   profesional_dni NUMERIC(18) NOT NULL,
-  PRIMARY KEY (especialidad_codigo, profesional_dni),
+  PRIMARY KEY (id_cancelacion),
 
   CONSTRAINT fk_Agendas
-    FOREIGN KEY (especialidad_codigo, profesional_dni)
-    REFERENCES Agendas (especialidad_codigo, profesional_dni)
+	FOREIGN KEY (especialidad_codigo, profesional_dni)
+	REFERENCES Agendas (especialidad_codigo, profesional_dni)
 )

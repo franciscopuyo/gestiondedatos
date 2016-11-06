@@ -76,7 +76,7 @@ namespace ClinicaFrba.Registrar_Atencion
             if (accion == "Efectivizar")
             {
                 this.Hide();
-                Form1 edit = new Form1(atention);
+                Form1 edit = new Form1(atention, dni);
                 edit.Show();
             }
         }

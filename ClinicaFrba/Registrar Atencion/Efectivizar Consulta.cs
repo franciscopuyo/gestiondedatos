@@ -13,9 +13,11 @@ namespace ClinicaFrba.Registrar_Atencion
     public partial class Form1 : Form
     {
         private int atentionCode;
-        public Form1(int atentionCode)
+        private int dni;
+        public Form1(int atentionCode, int dni)
         {
             this.atentionCode = atentionCode;
+            this.dni = dni;
             InitializeComponent();
         }
 
@@ -26,7 +28,8 @@ namespace ClinicaFrba.Registrar_Atencion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
         }
 
         private void simpthompsView_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,6 +52,17 @@ namespace ClinicaFrba.Registrar_Atencion
         private void save_Click(object sender, EventArgs e)
         {
             MedicalAtention.update(atentionCode, doneCheckbox.Checked, dateTimePicker1.Value, simpthompsView.Items, diagnosticView.Items);
+            MessageBox.Show("Atencion médica actualizada correctamente");
+            this.Hide();
+            SeleccionConsulta seleccion = new SeleccionConsulta(dni);
+            seleccion.Show();
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SeleccionConsulta seleccion = new SeleccionConsulta(dni);
+            seleccion.Show();
         }
     }
 }

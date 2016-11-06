@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dateFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTo = new System.Windows.Forms.DateTimePicker();
@@ -37,6 +38,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.reasonInput = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.oneDayCheckbox = new System.Windows.Forms.CheckBox();
+            this.errorProviderDateFrom = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDateTo = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateTo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -116,11 +122,31 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Razon:";
             // 
+            // oneDayCheckbox
+            // 
+            this.oneDayCheckbox.AutoSize = true;
+            this.oneDayCheckbox.Location = new System.Drawing.Point(12, 108);
+            this.oneDayCheckbox.Name = "oneDayCheckbox";
+            this.oneDayCheckbox.Size = new System.Drawing.Size(116, 17);
+            this.oneDayCheckbox.TabIndex = 9;
+            this.oneDayCheckbox.Text = "Cancelar solo 1 dia";
+            this.oneDayCheckbox.UseVisualStyleBackColor = true;
+            this.oneDayCheckbox.CheckedChanged += new System.EventHandler(this.oneDayCheckbox_CheckedChanged);
+            // 
+            // errorProviderDateFrom
+            // 
+            this.errorProviderDateFrom.ContainerControl = this;
+            // 
+            // errorProviderDateTo
+            // 
+            this.errorProviderDateTo.ContainerControl = this;
+            // 
             // CancelarPeriodo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(312, 261);
+            this.Controls.Add(this.oneDayCheckbox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.reasonInput);
             this.Controls.Add(this.button1);
@@ -132,6 +158,9 @@
             this.Controls.Add(this.label1);
             this.Name = "CancelarPeriodo";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.CancelarPeriodo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateTo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +177,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox reasonInput;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox oneDayCheckbox;
+        private System.Windows.Forms.ErrorProvider errorProviderDateFrom;
+        private System.Windows.Forms.ErrorProvider errorProviderDateTo;
     }
 }
