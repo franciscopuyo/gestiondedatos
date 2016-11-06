@@ -9,24 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClinicaFrba.Abm_Especialidades_Medicas;
-namespace ClinicaFrba.Registro_Llegada
+
+namespace ClinicaFrba.Registrar_Atenccion
 {
-    public partial class RegistroLlegada : Form
+    public partial class ElegirMedico : Form
     {
+
         private BindingSource bindingSource;
         private SqlDataAdapter adapter;
 
-        public RegistroLlegada()
+        public ElegirMedico()
         {
             InitializeComponent();
         }
-
-        private void RegistroLlegada_Load(object sender, EventArgs e)
-        {
-            loadEspecialidades();
-            loadProfesionales();
-        }
+       
 
         private void loadProfesionales()
         {
@@ -57,26 +53,31 @@ namespace ClinicaFrba.Registro_Llegada
             especialidadesCombo.DataSource = options;
         }
 
-        private void volver_Click(object sender, EventArgs e)
+        private void buscar_Click_1(object sender, EventArgs e)
         {
-            Session.mainMenu(this);
+            loadProfesionales();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             String accion = dataGridView1.Columns[e.ColumnIndex].HeaderText.ToString();
             String dni = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             String nombre = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             String apellido = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             this.Hide();
-
-            SeleccionarTurno select = new SeleccionarTurno(dni, Profession.getCodeByDescription(especialidadesCombo.Text));
-            select.Show();
+            ClinicaFrba.Registrar_Atencion.SeleccionConsulta seleccion = new ClinicaFrba.Registrar_Atencion.SeleccionConsulta(Int32.Parse(dni));
+            seleccion.Show();
         }
 
-        private void buscar_Click(object sender, EventArgs e)
+        private void ElegirMedico_Load(object sender, EventArgs e)
         {
+            loadEspecialidades();
             loadProfesionales();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
         }
     }
 }

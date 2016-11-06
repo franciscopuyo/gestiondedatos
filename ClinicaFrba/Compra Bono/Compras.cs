@@ -13,7 +13,7 @@ namespace ClinicaFrba.Compra_Bono
 
         public static String comprarConNroDeAfiliado(string nroAfiliado, int cantidad, Double monto)
         {
-            String dni = nroAfiliado.Substring(0, 8);
+            String dni = nroAfiliado.Substring(0, nroAfiliado.Length-2);
             return comprar(int.Parse(dni), cantidad, monto);
         }
 
@@ -53,6 +53,16 @@ namespace ClinicaFrba.Compra_Bono
             return bonosGenerados;
         }
 
+        internal static Double calcularMontoPorNroDeAfiliado(int cantidad, string dni)
+        {
+            SqlConnection connection = util.Sql.connect("gd");
+
+            String queryPrecio = "select precio_bono_consulta from Planes_Medicos where codigo = (select plan_medico_codigo from Afiliados where nro_afiliado = {0})";
+            queryPrecio = String.Format(queryPrecio, dni);
+            DataTable precioData = util.Sql.query(queryPrecio);
+            Double precio = Double.Parse(precioData.Rows[0][0].ToString());
+            return precio * cantidad;
+        }
 
         internal static Double calcularMonto(int cantidad, int dni)
         {
@@ -63,12 +73,6 @@ namespace ClinicaFrba.Compra_Bono
             DataTable precioData = util.Sql.query(queryPrecio);
             Double precio = Double.Parse(precioData.Rows[0][0].ToString());
             return precio * cantidad;
-        }
-
-        internal static Double calcularMontoPorNroDeAfiliado(int cantidad, string nroAfiliado)
-        {
-            String dni = nroAfiliado.Substring(0, 8);
-            return calcularMonto(cantidad, int.Parse(dni));
         }
     }
 }

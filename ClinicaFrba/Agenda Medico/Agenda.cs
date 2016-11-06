@@ -129,5 +129,10 @@ namespace ClinicaFrba.Agenda_Medico
             loadTourns();
             loadCanceledPeriods();
         }
+
+        private void timetableGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

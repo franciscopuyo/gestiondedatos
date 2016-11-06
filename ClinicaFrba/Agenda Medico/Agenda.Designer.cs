@@ -67,6 +67,7 @@
             this.timetableGrid.Name = "timetableGrid";
             this.timetableGrid.Size = new System.Drawing.Size(403, 132);
             this.timetableGrid.TabIndex = 0;
+            this.timetableGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.timetableGrid_CellContentClick);
             // 
             // labelEspecialidad
             // 

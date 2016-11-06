@@ -68,8 +68,13 @@ namespace ClinicaFrba.Listado_Funcionalidad
                 }
             }
 
-            if(action == "Registrar agenda"){
-                selectedAction = new Agenda_Medico.ElegirProfesional();
+            if(action == "Gestionar agendas"){
+                if (Session.isProfesional())
+                {
+                    selectedAction = new Agenda_Medico.Agendas(Session.dni);
+                } else { 
+                    selectedAction = new Agenda_Medico.ElegirProfesional();
+                }
             }
 
             if(action == "Pedir turno"){
@@ -81,11 +86,21 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Registrar resultado de atencion"){
-                selectedAction = new Registrar_Atencion.SeleccionConsulta(Session.dni);
+                if (Session.isProfesional()) { 
+                    selectedAction = new Registrar_Atencion.SeleccionConsulta(Session.dni);
+                } else
+                {
+                    selectedAction = new Registrar_Atenccion.ElegirMedico();
+                }
             }
 
-            if(action == "Cancelar atencion"){
-                selectedAction = new Cancelar_Turno.Listado(98042849);
+            if(action == "Cancelar atencion") {
+                if (Session.isAfiliado())
+                {
+                    selectedAction = new Cancelar_Turno.Listado(Session.dni);
+                } else {
+                    selectedAction = new Cancelar_Turno.List();
+                }
             }
 
             if(action == "Listados estadisticos"){

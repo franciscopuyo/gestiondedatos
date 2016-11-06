@@ -32,7 +32,7 @@ namespace ClinicaFrba.Registro_Llegada
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select nombre as Nombre, apellido as Apellido, Turnos.afiliado_dni as DNI_Afiliado,Turnos.numero as Numero_Turno, 'Seleccionar' as Seleccionar from Turnos, Personas_Detalle where Turnos.profesional_dni = {0} and Turnos.especialidad_codigo = {1} and fecha = CONVERT(DATE, GETDATE()) and Personas_Detalle.dni = Turnos.afiliado_dni";
+            String query = "select nombre as Nombre, apellido as Apellido, Turnos.afiliado_dni as DNI_Afiliado,Turnos.numero as Numero_Turno, 'Seleccionar' as Seleccionar from Turnos, Personas_Detalle where Turnos.profesional_dni = {0} and Turnos.especialidad_codigo = {1} and CONVERT(DATE, fecha) = CONVERT(DATE, GETDATE()) and Personas_Detalle.dni = Turnos.afiliado_dni";
             query = String.Format(query, dniProfesional, esp);
             adapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
@@ -41,7 +41,7 @@ namespace ClinicaFrba.Registro_Llegada
             bindingSource = new BindingSource();
             bindingSource.DataSource = dataTable;
 
-            dataGridView1.DataSource = bindingSource;
+            tournsGrid.DataSource = bindingSource;
 
             adapter.Update(dataTable);
         }
@@ -53,7 +53,7 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void SeleccionarTurno_Load(object sender, EventArgs e)
         {
-
+            loadTurnos();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -63,8 +63,8 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            String nroTurno = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            String dniAfiliado = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            String nroTurno = tournsGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+            String dniAfiliado = tournsGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
             this.Hide();
 
             SeleccionarBono s = new SeleccionarBono(nroTurno, dniAfiliado);

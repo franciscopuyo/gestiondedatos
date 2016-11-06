@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.Abm_Afiliado;
 
 namespace ClinicaFrba.Compra_Bono
 {
@@ -27,9 +28,20 @@ namespace ClinicaFrba.Compra_Bono
         {
             Boolean valid = true;
             Validations.validateIntWithMaxLength(cantidad, errorProviderCantidad, "Cantidad vacia o invalida", 10, ref valid);
-            Validations.validateIntWithLength(nroAfiliado, nroAfiliado.Text, errorProviderAfiliado, "Nro de afiliado vacio o invalido", 10, ref valid);
+            Validations.validateIntWithMaxLength(nroAfiliado, errorProviderAfiliado, "Nro de afiliado vacio o invalido", 10, ref valid);
+
+            valid = Validations.isOnlyNumeric(nroAfiliado.Text);
+            valid = Validations.isOnlyNumeric(cantidad.Text);
+            
             if (!valid)
             {
+                return;
+            }
+
+            Boolean existeAfiliado = Afiliado.nroAfiliadoExiste(nroAfiliado.Text);
+            if (!existeAfiliado)
+            {
+                errorProviderAfiliado.SetError(nroAfiliado, "El afiliado ingresado no existe");
                 return;
             }
 

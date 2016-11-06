@@ -21,7 +21,6 @@ namespace ClinicaFrba.Registrar_Atencion
         public SeleccionConsulta(int dni)
         {
             this.dni = dni;
-            this.dni = 20407720;
             InitializeComponent();
             loadEspecialidades();
             loadConsultas();

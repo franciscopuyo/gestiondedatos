@@ -160,7 +160,13 @@ namespace ClinicaFrba.Abm_Afiliado
             return dataTable.Rows.Count > 0;
         }
 
-
+        public static Boolean nroAfiliadoExiste(String nroAfiliado)
+        {
+            String query = "select * from Afiliados where nro_afiliado = {0}";
+            query = String.Format(query, nroAfiliado);
+            DataTable dataTable = util.Sql.query(query);
+            return dataTable.Rows.Count > 0;
+        }
 
         public static Afiliado GetAfiliado(string documento)
         {

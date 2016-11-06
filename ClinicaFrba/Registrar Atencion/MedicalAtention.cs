@@ -13,7 +13,7 @@ namespace ClinicaFrba.Registrar_Atencion
     {
         public static DataTable getPendingByProfessional(int dni, int professionCode)
         {
-            String query = "SELECT turno_numero as Turno, t.fecha as Fecha_Turno, CONCAT(pd.Apellido, ' ',pd.Nombre) as Paciente, fecha_llegada as Fecha_Llegada, 'Efectivizar' as Efectivizar FROM Atencion_Medica am JOIN Turnos t ON (am.turno_numero = t.numero) JOIN Afiliados a ON (t.afiliado_dni = a.afiliado_dni) JOIN Personas_Detalle pd ON (pd.dni = a.afiliado_dni) WHERE t.profesional_dni = {0} AND t.especialidad_codigo = {1} AND fecha_efectivizacion IS NULL AND t.fecha <= GETDATE()";
+            String query = "SELECT turno_numero as Turno, t.fecha as Fecha_Turno, CONCAT(pd.Apellido, ' ',pd.Nombre) as Paciente, fecha_llegada as Fecha_Llegada, 'Efectivizar' as Efectivizar FROM Atencion_Medica am JOIN Turnos t ON (am.turno_numero = t.numero) JOIN Afiliados a ON (t.afiliado_dni = a.afiliado_dni) JOIN Personas_Detalle pd ON (pd.dni = a.afiliado_dni) WHERE t.profesional_dni = {0} AND t.especialidad_codigo = {1} AND fecha_efectivizacion IS NULL AND fecha_llegada IS NOT NULL";
             query = String.Format(query, dni, professionCode);
             return Sql.query(query);
         }
