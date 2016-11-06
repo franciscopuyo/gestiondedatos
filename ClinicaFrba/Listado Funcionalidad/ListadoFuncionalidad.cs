@@ -85,7 +85,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
             }
 
             if(action == "Cancelar atencion"){
-                selectedAction = new Cancelar_Atencion.Form1();
+                selectedAction = new Cancelar_Turno.Listado(98042849);
             }
 
             if(action == "Listados estadisticos"){

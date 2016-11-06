@@ -62,13 +62,18 @@ namespace ClinicaFrba.Pedir_Turno
             DateTime horarioTurno = dateTimePicker1.Value;
             bool cumpleHorario = Turno.cumpleHorarioMedico(dni, codigoEspecialidad, horarioTurno);
             bool esSobreturno = Turno.esSobreturno(dni, codigoEspecialidad, horarioTurno);
-
-            if (cumpleHorario && !esSobreturno) 
+            bool franjaCancelada = Turno.hayCancelacion(dni, codigoEspecialidad, horarioTurno);
+            if (cumpleHorario && !esSobreturno && !franjaCancelada) 
             {
                 Turno.crear(Session.dni, dni, codigoEspecialidad, horarioTurno);
                 MessageBox.Show("El turno fue asignado"); ;
                 Session.mainMenu(this);
                 return;
+            }
+
+            if (franjaCancelada)
+            {
+                MessageBox.Show("El medico cancelo una franja horaria en ese horario");
             }
 
                 if (!cumpleHorario)

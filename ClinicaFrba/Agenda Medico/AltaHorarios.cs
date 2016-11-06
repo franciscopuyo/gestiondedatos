@@ -31,7 +31,6 @@ namespace ClinicaFrba.Agenda_Medico
         private DateTime saturdayToPrev;
 
         private bool initialized = false;
-        private bool called = false;
 
         public AltaHorarios(int professionCode, int dni)
         {
@@ -114,8 +113,8 @@ namespace ClinicaFrba.Agenda_Medico
             Validations.validateDateAfterNow(from, errorProviderFrom, "La fecha de inicio de la agenda no puede ser menor a la actual", ref isValid);
             Validations.validateDateAfter(to, from, errorProviderTo, "La fecha de inicio no puede ser anterior a la de final", ref isValid);
 
-            TimeSpan fromWeekDays = new TimeSpan(7, 0, 0);
-            TimeSpan toWeekDays = new TimeSpan(21, 0, 0);
+            TimeSpan fromWeekDays = new TimeSpan(6, 59, 0);
+            TimeSpan toWeekDays = new TimeSpan(21, 1, 0);
 
             if (mondayEnabled.Checked) { 
                 Validations.validateHourAfter(mondayFrom, fromWeekDays, errorProviderMondayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
@@ -151,8 +150,8 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(fridayTo, fridayFrom.Value.TimeOfDay, errorProviderFridayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
             }
 
-            TimeSpan fromSaturday = new TimeSpan(10, 0, 0);
-            TimeSpan toSaturday = new TimeSpan(15, 0, 0);
+            TimeSpan fromSaturday = new TimeSpan(9, 59, 0);
+            TimeSpan toSaturday = new TimeSpan(15, 1, 0);
 
             if (saturdayEnabled.Checked)
             {
