@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ClinicaFrba.Abm_Profesional;
 using ClinicaFrba.Abm_Especialidades_Medicas;
 using ClinicaFrba.util;
+using ClinicaFrba.Pedir_Turno;
 using System.Data.SqlClient;
 
 namespace ClinicaFrba.Agenda_Medico
@@ -47,6 +48,35 @@ namespace ClinicaFrba.Agenda_Medico
             timetableGrid.DataSource = bindingSource;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.Update(timetable);
+
+            loadTourns();
+            loadCanceledPeriods();
+        }
+
+        private void loadTourns()
+        {
+
+            DataTable tourns = Turno.conseguirPorProfesional(this.dni, this.professionCode, this.from.Value, this.to.Value);
+
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = tourns;
+
+            tournsGrid.DataSource = bindingSource;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.Update(tourns);
+        }
+
+        private void loadCanceledPeriods()
+        {
+
+            DataTable periods = Timetable.getCanceledPeriods(this.dni, this.professionCode, this.from.Value, this.to.Value);
+
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = periods;
+
+            periodGrid.DataSource = bindingSource;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.Update(periods);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -76,6 +106,28 @@ namespace ClinicaFrba.Agenda_Medico
             this.Hide();
             CancelarPeriodo cancelarPeriodo = new CancelarPeriodo(dni, professionCode);
             cancelarPeriodo.Show();
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelEspecialidad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void from_ValueChanged(object sender, EventArgs e)
+        {
+            loadTourns();
+            loadCanceledPeriods();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            loadTourns();
+            loadCanceledPeriods();
         }
     }
 }

@@ -52,6 +52,15 @@ namespace ClinicaFrba.Pedir_Turno
             Sql.query(query);
         }
 
+        public static DataTable conseguirPorProfesional(int dniProfesional, int professionCode, DateTime from, DateTime to)
+        {
+            String query = "SELECT t.Numero, t.Fecha, CASE WHEN can.turno_nro IS NULL THEN 'SI' ELSE 'NO' END as Cancelado from Turnos t LEFT JOIN Cancelaciones can ON (can.turno_nro = t.numero) where profesional_dni = {0} and especialidad_codigo = {1} AND (t.fecha BETWEEN '{2}' AND '{3}')";
+            query = String.Format(query, dniProfesional, professionCode, from, to);
+            return Sql.query(query);
+        }
+
+
+
         public static DataTable conseguirPorAfiliado(int dni)
         {
             String query = "SELECT numero, e.descripcion as Especialidad, CONCAT(pd.apellido, ' ', pd.nombre) as Medico, CASE WHEN fecha >= dateadd(DAY, 1,GETDATE()) THEN 'Cancelar' ELSE 'X' END as Cancelar FROM Turnos t JOIN Profesionales p ON (p.profesional_dni = t.profesional_dni) JOIN Personas_Detalle pd ON (p.profesional_dni = pd.dni) JOIN Especialidades e ON (e.codigo = t.especialidad_codigo) LEFT JOIN Cancelaciones c ON (c.turno_nro = t.numero) WHERE afiliado_dni = {0} AND FECHA >= GETDATE() AND c.turno_nro IS NULL";

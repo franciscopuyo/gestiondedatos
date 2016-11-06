@@ -62,5 +62,12 @@ namespace ClinicaFrba.Agenda_Medico
 
             Turno.cancelarTurnosPorProfesional(dni, professionCode, reason, from, to);
         }
+
+        public static DataTable getCanceledPeriods(int dni, int professionCode, DateTime from, DateTime to)
+        {
+            String query = "SELECT * from Periodos_Cancelados where profesional_dni = {0} and especialidad_codigo = {1} AND ((desde BETWEEN '{2}' AND '{3}') OR (desde BETWEEN '{2}' AND '{3}'))";
+            query = String.Format(query, dni, professionCode, from, to);
+            return Sql.query(query);
+        }
     }
 }
