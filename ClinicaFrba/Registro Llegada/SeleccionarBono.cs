@@ -35,7 +35,7 @@ namespace ClinicaFrba.Registro_Llegada
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             String nroBono = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            String query = "INSERT INTO Atencion_Medica(fecha_llegada, nro_bono, turno_numero) VALUES(GETDATE(), {0}, {1})";
+            String query = "INSERT INTO group_by.Atencion_Medica(fecha_llegada, nro_bono, turno_numero) VALUES(GETDATE(), {0}, {1})";
             query = String.Format(query, nroBono, nroTurno);
             Sql.query(query);
 
@@ -47,7 +47,7 @@ namespace ClinicaFrba.Registro_Llegada
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "SELECT Bonos.nro_bono as Numero_De_Bono, Planes_Medicos.descripcion as Plan_Medico, Compras.fecha as Fecha_De_Compra, 'Seleccionar' as Seleccionar FROM Bonos, Planes_Medicos, Compras where Bonos.plan_codigo = Planes_Medicos.codigo and Compras.compra_id = Bonos.compra_id and Bonos.afiliado_dni = {0} and Bonos.nro_consulta_medica IS NULL";
+            String query = "SELECT Bonos.nro_bono as Numero_De_Bono, Planes_Medicos.descripcion as Plan_Medico, Compras.fecha as Fecha_De_Compra, 'Seleccionar' as Seleccionar FROM group_by.Bonos, group_by.Planes_Medicos, group_by.Compras where Bonos.plan_codigo = Planes_Medicos.codigo and Compras.compra_id = Bonos.compra_id and Bonos.afiliado_dni = {0} and Bonos.nro_consulta_medica IS NULL";
             query = String.Format(query, dniAfiliado);
             adapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();

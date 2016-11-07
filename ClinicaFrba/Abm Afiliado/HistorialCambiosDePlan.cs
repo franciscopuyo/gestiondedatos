@@ -34,7 +34,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select(select descripcion from Planes_Medicos where codigo = c.plan_viejo) as PlanViejo,(select descripcion from Planes_Medicos where codigo = c.plan_nuevo) as PlanNuevo,fecha,motivo from Cambios_De_Plan c where afiliados_dni = " + dni;
+            String query = "select(select descripcion from group_by.Planes_Medicos where codigo = c.plan_viejo) as PlanViejo,(select descripcion from group_by.Planes_Medicos where codigo = c.plan_nuevo) as PlanNuevo,fecha,motivo from group_by.Cambios_De_Plan c where afiliados_dni = " + dni;
 
             BindingSource bindingSource;
             SqlDataAdapter adapter;

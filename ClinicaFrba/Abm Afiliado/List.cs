@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
@@ -26,30 +27,35 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select (select nombre from Personas_Detalle where dni = afiliado_dni) as Nombre, (select apellido from Personas_Detalle where dni = afiliado_dni) as Apellido, afiliado_dni as Documento, nro_afiliado as NroAfiliado, (select descripcion from Planes_Medicos where codigo = plan_medico_codigo ) as Plan_Medico, 'Editar' as Editar, 'Borrar' as Borrar, 'Ver historial cambios de plan' as Historial from Afiliados where activo = 1 ";
+            String query = "select (select nombre from group_by.Personas_Detalle where dni = afiliado_dni) as Nombre, (select apellido from group_by.Personas_Detalle where dni = afiliado_dni) as Apellido, afiliado_dni as Documento, nro_afiliado as NroAfiliado, (select descripcion from group_by.Planes_Medicos where codigo = plan_medico_codigo ) as Plan_Medico, 'Editar' as Editar, 'Borrar' as Borrar, 'Ver historial cambios de plan' as Historial from group_by.Afiliados where activo = 1 ";
            
             if (dniFilter.Text != null && !dniFilter.Text.Equals(""))
             {
+                if (!Validations.isOnlyNumeric(dniFilter.Text))
+                {
+                    MessageBox.Show("El dni ingresado no tiene un formato correcto");
+                    return;
+                }
                 query += " and (afiliado_dni = " + dniFilter.Text + ")";
             }
 
             if (nombre.Text != "")
             {
-                String nombreFilter = " and ((select nombre from Personas_Detalle where dni = afiliado_dni) like '%{0}%') ";
+                String nombreFilter = " and ((select nombre from group_by.Personas_Detalle where dni = afiliado_dni) like '%{0}%') ";
                 nombreFilter = String.Format(nombreFilter, nombre.Text);
                 query += nombreFilter;
             }
 
             if (apellido.Text != "")
             {
-                String apellidoFilter = " and ((select apellido from Personas_Detalle where dni = afiliado_dni) like '%{0}%') ";
+                String apellidoFilter = " and ((select apellido from group_by.Personas_Detalle where dni = afiliado_dni) like '%{0}%') ";
                 apellidoFilter = String.Format(apellidoFilter, apellido.Text);
                 query += apellidoFilter;
             }
 
             if (planMedico.Text != "" && planMedico.Text != "Todos")
             {
-                String planFilter = " and ((select descripcion from Planes_Medicos where codigo = plan_medico_codigo ) like '%{0}%') ";
+                String planFilter = " and ((select descripcion from group_by.Planes_Medicos where codigo = plan_medico_codigo ) like '%{0}%') ";
                 planFilter = String.Format(planFilter, planMedico.Text);
                 query += planFilter;
             }
@@ -81,7 +87,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             timer1.Start();
 
-            DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+            DataTable planes = util.Sql.query("select descripcion from group_by.Planes_Medicos");
 
 
             List<String> options = new List<string>();

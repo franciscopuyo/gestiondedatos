@@ -18,20 +18,20 @@ namespace ClinicaFrba.util
 
         internal static bool isAdmin()
         {
-            DataTable result = util.Sql.query("select descripcion from Roles where codigo = " + role);
+            DataTable result = util.Sql.query("select descripcion from group_by.Roles where codigo = " + role);
             return result.Rows[0][0].ToString().ToUpper() == "ADMIN";
         }
 
 
         internal static bool isAfiliado()
         {
-            DataTable result = util.Sql.query("select descripcion from Roles where codigo = " + role);
+            DataTable result = util.Sql.query("select descripcion from group_by.Roles where codigo = " + role);
             return result.Rows[0][0].ToString().ToUpper() == "AFILIADO";
         }
 
         internal static bool isProfesional()
         {
-            DataTable result = util.Sql.query("select descripcion from Roles where codigo = " + role);
+            DataTable result = util.Sql.query("select descripcion from group_by.Roles where codigo = " + role);
             return result.Rows[0][0].ToString().ToUpper() == "PROFESIONAL";
         }
 

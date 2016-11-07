@@ -25,7 +25,7 @@ namespace ClinicaFrba
             String user = textBox1.Text;
             String pass = textBox2.Text;
 
-            String userExists = "select * from Usuarios where usuario = '{0}'";
+            String userExists = "select * from group_by.Usuarios where usuario = '{0}'";
             userExists = String.Format(userExists, user);
 
             DataTable userExistsResults = Sql.query(userExists);
@@ -43,7 +43,7 @@ namespace ClinicaFrba
                 return;
             }
 
-            String userPassQuery = "select * from Usuarios where usuario = '{0}' and contrasena = HASHBYTES('SHA2_256', '{1}')";
+            String userPassQuery = "select * from group_by.Usuarios where usuario = '{0}' and contrasena = HASHBYTES('SHA2_256', '{1}')";
             userPassQuery = String.Format(userPassQuery, user, pass);
 
             DataTable userResults = Sql.query(userPassQuery);
@@ -52,7 +52,7 @@ namespace ClinicaFrba
 
             if (count == 0) {
                 MessageBox.Show("Contrasena inválida");
-                String incrementWrongTries = "update usuarios set cantidad_intentos_login = cantidad_intentos_login + 1 where usuario = '{0}'";
+                String incrementWrongTries = "update group_by.usuarios set cantidad_intentos_login = cantidad_intentos_login + 1 where usuario = '{0}'";
                 incrementWrongTries = String.Format(incrementWrongTries, user);
 
                 Sql.update(incrementWrongTries);
@@ -60,7 +60,7 @@ namespace ClinicaFrba
                 int tries = (int) userExistsResults.Rows[0][3];
                 if (tries + 1 == 3)
                 {
-                    String unactivate = "update usuarios set activo = 0 where usuario = '{0}'";
+                    String unactivate = "update group_by.usuarios set activo = 0 where usuario = '{0}'";
                     unactivate = String.Format(unactivate, user);
                     Sql.update(unactivate);
                     MessageBox.Show("Fuiste deshabilitado por intentar muchas veces");
@@ -71,7 +71,7 @@ namespace ClinicaFrba
             Session.user = user;
             Session.dni = Int32.Parse(userExistsResults.Rows[0]["usuario_dni"].ToString());
 
-            String cleanWrongTries = "update usuarios set cantidad_intentos_login = 0 where usuario = '{0}'";
+            String cleanWrongTries = "update group_by.usuarios set cantidad_intentos_login = 0 where usuario = '{0}'";
             cleanWrongTries = String.Format(cleanWrongTries, user);
             Sql.update(cleanWrongTries);
 

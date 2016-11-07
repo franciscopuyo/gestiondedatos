@@ -71,7 +71,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void Edit_Load(object sender, EventArgs e)
         {
-            DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+            DataTable planes = util.Sql.query("select descripcion from group_by.Planes_Medicos");
 
             List<String> options = new List<string>();
 

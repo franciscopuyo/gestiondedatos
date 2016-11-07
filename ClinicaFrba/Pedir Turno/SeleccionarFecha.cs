@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using ClinicaFrba.Abm_Profesional;
 using ClinicaFrba.Abm_Especialidades_Medicas;
 using ClinicaFrba.Agenda_Medico;
-using ClinicaFrba.util;
+using ClinicaFrba.Abm_Afiliado;
 
 namespace ClinicaFrba.Pedir_Turno
 {
@@ -35,6 +35,11 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void SeleccionarFecha_Load(object sender, EventArgs e)
         {
+            if (Session.isAfiliado())
+            {
+                labelAfiliado.Hide();
+                nroAfiliado.Hide();
+            }
             titulo.Text = "Asignando turno con " + nombre.ToUpper() + " " + apellido.ToUpper();
 
             int dni = Int32.Parse(this.dni);
@@ -57,15 +62,41 @@ namespace ClinicaFrba.Pedir_Turno
             Session.mainMenu(this);
         }
 
+        private Boolean validateAfiliado()
+        {
+            Boolean valid = true;
+            Validations.validateIntWithMaxLength(nroAfiliado, errorProviderAfiliado, "Nro de afiliado vacio o invalido", 10, ref valid);
+            valid = Validations.isOnlyNumeric(nroAfiliado.Text);
+
+            if (!valid)
+            {
+                return false;
+            }
+
+
+            Boolean existeAfiliado = Afiliado.nroAfiliadoExiste(nroAfiliado.Text);
+            if (!existeAfiliado)
+            {
+                errorProviderAfiliado.SetError(nroAfiliado, "El afiliado ingresado no existe");
+                return false;
+            }
+            return true;
+        }
+
         private void save_Click(object sender, EventArgs e)
         {
+            if (!Session.isAfiliado() && !this.validateAfiliado())
+                return;
+
             DateTime horarioTurno = dateTimePicker1.Value;
             bool cumpleHorario = Turno.cumpleHorarioMedico(dni, codigoEspecialidad, horarioTurno);
             bool esSobreturno = Turno.esSobreturno(dni, codigoEspecialidad, horarioTurno);
             bool franjaCancelada = Turno.hayCancelacion(dni, codigoEspecialidad, horarioTurno);
+
+            int dniAfiliado = Session.isAfiliado() ? Session.dni : Int32.Parse(nroAfiliado.Text.Substring(0, nroAfiliado.Text.Length-2));
             if (cumpleHorario && !esSobreturno && !franjaCancelada) 
             {
-                Turno.crear(Session.dni, dni, codigoEspecialidad, horarioTurno);
+                Turno.crear(dniAfiliado, dni, codigoEspecialidad, horarioTurno);
                 MessageBox.Show("El turno fue asignado"); ;
                 Session.mainMenu(this);
                 return;

@@ -21,21 +21,21 @@ namespace ClinicaFrba.Compra_Bono
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String insertCompra = "INSERT INTO Compras(fecha, cantidad, monto, afiliado_usuario_dni) VALUES(GETDATE(), {0}, {1}, {2})";
+            String insertCompra = "INSERT INTO group_by.Compras(fecha, cantidad, monto, afiliado_usuario_dni) VALUES(GETDATE(), {0}, {1}, {2})";
             insertCompra = String.Format(insertCompra, cantidad, monto, documento);
 
             SqlCommand command = new SqlCommand(insertCompra, connection);
             command.ExecuteNonQuery();
 
-            String compraIdQuery = "select top 1 compra_id from Compras where afiliado_usuario_dni = {0} order by fecha desc";
+            String compraIdQuery = "select top 1 compra_id from group_by.Compras where afiliado_usuario_dni = {0} order by fecha desc";
             compraIdQuery = String.Format(compraIdQuery, documento);
             DataTable compraIdResult = util.Sql.query(compraIdQuery);
             String compraID = compraIdResult.Rows[0][0].ToString();
 
             for (int i = 0; i < cantidad; i++)
             {
-                String insertBono = "insert into Bonos(afiliado_dni, compra_id, nro_bono, plan_codigo) VALUES({0}, {1}, ({2}), (select plan_medico_codigo from Afiliados where afiliado_dni = {3}))";
-                insertBono = String.Format(insertBono, documento, compraID, "select top 1 nro_bono + 1 from Bonos order by nro_bono desc", documento);
+                String insertBono = "insert into group_by.Bonos(afiliado_dni, compra_id, nro_bono, plan_codigo) VALUES({0}, {1}, ({2}), (select plan_medico_codigo from group_by.Afiliados where afiliado_dni = {3}))";
+                insertBono = String.Format(insertBono, documento, compraID, "select top 1 nro_bono + 1 from group_by.Bonos order by nro_bono desc", documento);
                 command = new SqlCommand(insertBono, connection);
                 command.ExecuteNonQuery();
             }
@@ -43,7 +43,7 @@ namespace ClinicaFrba.Compra_Bono
             connection.Close();
 
             String bonosGenerados = "";
-            String queryBonosGenerados = "select top {0} nro_bono from Bonos, Compras where Compras.compra_id = Bonos.compra_id and afiliado_dni = {1} order by Compras.fecha desc";
+            String queryBonosGenerados = "select top {0} nro_bono from group_by.Bonos, group_by.Compras where Compras.compra_id = Bonos.compra_id and afiliado_dni = {1} order by Compras.fecha desc";
             queryBonosGenerados = String.Format(queryBonosGenerados, cantidad, documento);
             DataTable bonosGeneradosREsults = util.Sql.query(queryBonosGenerados);
             for(int i = 0 ; i<bonosGeneradosREsults.Rows.Count; i++)
@@ -57,7 +57,7 @@ namespace ClinicaFrba.Compra_Bono
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String queryPrecio = "select precio_bono_consulta from Planes_Medicos where codigo = (select plan_medico_codigo from Afiliados where nro_afiliado = {0})";
+            String queryPrecio = "select precio_bono_consulta from group_by.Planes_Medicos where codigo = (select plan_medico_codigo from group_by.Afiliados where nro_afiliado = {0})";
             queryPrecio = String.Format(queryPrecio, dni);
             DataTable precioData = util.Sql.query(queryPrecio);
             Double precio = Double.Parse(precioData.Rows[0][0].ToString());
@@ -68,7 +68,7 @@ namespace ClinicaFrba.Compra_Bono
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String queryPrecio = "select precio_bono_consulta from Planes_Medicos where codigo = (select plan_medico_codigo from Afiliados where afiliado_dni = {0})";
+            String queryPrecio = "select precio_bono_consulta from group_by.Planes_Medicos where codigo = (select plan_medico_codigo from group_by.Afiliados where afiliado_dni = {0})";
             queryPrecio = String.Format(queryPrecio, dni);
             DataTable precioData = util.Sql.query(queryPrecio);
             Double precio = Double.Parse(precioData.Rows[0][0].ToString());

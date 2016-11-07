@@ -25,7 +25,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
 
         private void ListadoFuncionalidad_Load(object sender, EventArgs e)
         {
-            String query = "select funcionalidad from  Rol_Funcionalidades, Funcionalidades where rol_codigo = {0} and codigo = funcionalidad_codigo";
+            String query = "select funcionalidad from  group_by.Rol_Funcionalidades, group_by.Funcionalidades where rol_codigo = {0} and codigo = funcionalidad_codigo";
             query = string.Format(query, Session.role);
             DataTable results = util.Sql.query(query);
 
@@ -77,7 +77,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
                 }
             }
 
-            if(action == "Pedir turno"){
+            if(action == "Pedir turno") {
                 selectedAction = new Pedir_Turno.PedirTurno();
             }
 

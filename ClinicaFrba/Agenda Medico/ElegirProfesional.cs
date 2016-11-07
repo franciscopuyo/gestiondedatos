@@ -34,7 +34,7 @@ namespace ClinicaFrba.Agenda_Medico
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select nombre as Nombre, apellido as Apellido, Especialidades.descripcion, Profesionales.profesional_dni as Documento,'Seleccionar' as Seleccionar from  Profesionales, Especialidades, Medico_Especialidad, Personas_Detalle where  Medico_Especialidad.profesional_dni = Profesionales.profesional_dni and Medico_Especialidad.especialidad_codigo = Especialidades.codigo and Personas_Detalle.dni = Profesionales.profesional_dni and Especialidades.descripcion = '{0}'";
+            String query = "select nombre as Nombre, apellido as Apellido, Especialidades.descripcion, Profesionales.profesional_dni as Documento,'Seleccionar' as Seleccionar from  group_by.Profesionales, group_by.Especialidades, group_by.Medico_Especialidad, group_by.Personas_Detalle where  group_by.Medico_Especialidad.profesional_dni = Profesionales.profesional_dni and Medico_Especialidad.especialidad_codigo = Especialidades.codigo and group_by.Personas_Detalle.dni = Profesionales.profesional_dni and Especialidades.descripcion = '{0}'";
             query = String.Format(query, especialidadesCombo.Text);
             adapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
@@ -50,7 +50,7 @@ namespace ClinicaFrba.Agenda_Medico
 
         private void loadEspecialidades()
         {
-            DataTable especialidades = util.Sql.query("select descripcion from Especialidades");
+            DataTable especialidades = util.Sql.query("select descripcion from group_by.Especialidades");
             List<String> options = new List<string>();
             for (int i = 0; i < especialidades.Rows.Count; i++)
             {

@@ -11,7 +11,7 @@ namespace ClinicaFrba.Abm_Profesional
     {
         public static DataTable getProfessionalByDni(int dni)
         {
-            String query = "SELECT * from Profesionales p JOIN Personas_Detalle pd ON (p.profesional_dni = pd.dni) WHERE profesional_dni = {0}";
+            String query = "SELECT * from group_by.Profesionales p JOIN group_by.Personas_Detalle pd ON (p.profesional_dni = pd.dni) WHERE profesional_dni = {0}";
             query = String.Format(query, dni.ToString());
             return Sql.query(query);
         }

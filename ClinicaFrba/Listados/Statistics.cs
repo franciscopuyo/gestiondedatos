@@ -53,7 +53,7 @@ namespace ClinicaFrba.Listados
 
         private void loadYearOptions()
         {
-            DataTable anios = util.Sql.query("select distinct YEAR(fecha) from Turnos union select YEAR(fecha_efectivizacion) from Atencion_Medica union select YEAR(fecha) from Compras");
+            DataTable anios = util.Sql.query("select distinct YEAR(fecha) from group_by.Turnos union select YEAR(fecha_efectivizacion) from group_by.Atencion_Medica union select YEAR(fecha) from group_by.Compras");
             List<String> options = new List<string>();
             for (int i = 0; i < anios.Rows.Count; i++)
             {
@@ -76,7 +76,7 @@ namespace ClinicaFrba.Listados
 
         private void loadPlanes()
         {
-            DataTable planes = util.Sql.query("select descripcion from Planes_Medicos");
+            DataTable planes = util.Sql.query("select descripcion from group_by.Planes_Medicos");
             List<String> options = new List<string>();
             for (int i = 0; i < planes.Rows.Count; i++)
             {
@@ -87,7 +87,7 @@ namespace ClinicaFrba.Listados
 
         private void loadEspecialidades()
         {
-            DataTable especialidades = util.Sql.query("select descripcion from Especialidades");
+            DataTable especialidades = util.Sql.query("select descripcion from group_by.Especialidades");
             List<String> options = new List<string>();
             for (int i = 0; i < especialidades.Rows.Count; i++)
             {
@@ -116,14 +116,14 @@ namespace ClinicaFrba.Listados
 
         private String especialidadesMasCanceladas()
         {
-            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from Cancelaciones, Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from  Especialidades e order by Cancelaciones desc";
+            String query = "select top 5 e.descripcion as Especialidad,(select COUNT(*) from group_by.Cancelaciones, group_by.Turnos where Cancelaciones.turno_nro = Turnos.numero and Turnos.especialidad_codigo = e.codigo and YEAR(Turnos.fecha) = {0} and MONTH(Turnos.fecha) BETWEEN {1}) as Cancelaciones from group_by.Especialidades e order by Cancelaciones desc";
             return String.Format(query, anio.Text, getSemestreInterval());
         }
 
         private String profesionalesMAsConsultados()
         {
             String query = @"select top 5 nombre as Nombre, apellido as Apellido, Planes_Medicos.descripcion as Plan_Medico, Especialidades.descripcion as Especialidad, COUNT(*) as Consultas
-from Personas_Detalle, Profesionales, Turnos, Bonos, Atencion_Medica, Planes_Medicos, Especialidades
+from group_by.Personas_Detalle, group_by.Profesionales, group_by.Turnos, group_by.Bonos, group_by.Atencion_Medica, group_by.Planes_Medicos, group_by.Especialidades
 where 
 Profesionales.profesional_dni = Personas_Detalle.dni
 and
@@ -158,7 +158,7 @@ Personas_Detalle.nombre as Nombre,
 Personas_Detalle.apellido as Apellido,
 Medico_Especialidad.profesional_dni as Documento, 
 COUNT(*) * 0.5 as Horas_Trabajadas
-FROM Medico_Especialidad, Turnos, Atencion_Medica, Personas_Detalle, Bonos, Planes_Medicos
+FROM group_by.Medico_Especialidad, group_by.Turnos, group_by.Atencion_Medica, group_by.Personas_Detalle, group_by.Bonos, group_by.Planes_Medicos
 WHERE Medico_Especialidad.especialidad_codigo = Turnos.especialidad_codigo
 AND Medico_Especialidad.profesional_dni = Turnos.profesional_dni
 AND Atencion_Medica.turno_numero = Turnos.numero
@@ -183,9 +183,9 @@ ORDER BY Horas_Trabajadas ASC";
         {
             String query = @"select top 5
 Afiliados.afiliado_dni as Documento, nombre as Nombre, apellido as Apellido, 
-dbo.StringPerteneceAGrupoFamiliar(Afiliados.afiliado_dni) as Grupo_Familiar,
+group_by.StringPerteneceAGrupoFamiliar(Afiliados.afiliado_dni) as Grupo_Familiar,
 SUM(Compras.cantidad) as Bonos_Comprados
-from Afiliados, Personas_Detalle, Compras
+from group_by.Afiliados, group_by.Personas_Detalle, group_by.Compras
 where 
 Afiliados.afiliado_dni = dni
 and
@@ -209,7 +209,7 @@ order by Bonos_Comprados desc
         private String especialidadesConMasBonos()
         {
             String query = @"select top 5 Especialidades.descripcion as Especialidad, COUNT(*) Bonos_Utilizados 
-from Especialidades, Turnos, Atencion_Medica
+from group_by.Especialidades, group_by.Turnos, group_by.Atencion_Medica
 where Turnos.especialidad_codigo = Especialidades.codigo
 and
 Atencion_Medica.turno_numero = Turnos.numero

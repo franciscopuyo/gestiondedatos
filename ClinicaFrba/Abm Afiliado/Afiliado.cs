@@ -35,12 +35,12 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void persistAfiliadoPrincipal(SqlConnection connection)
         {
-            String insertAfiliadoPrincipal = "INSERT INTO Afiliados(afiliado_dni, tipo_documento,nro_afiliado,plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},0)";
+            String insertAfiliadoPrincipal = "INSERT INTO group_by.Afiliados(afiliado_dni, tipo_documento,nro_afiliado,plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},0)";
             insertAfiliadoPrincipal = String.Format(insertAfiliadoPrincipal,
                                                     this.documento,
                                                     this.tipoDocumento,
                                                     this.documento.ToString() + "0" + count.ToString(),
-                                                    "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')");
+                                                    "(select codigo from group_by.Planes_Medicos where descripcion = '" + this.planMedico + "')");
             SqlCommand command = new SqlCommand(insertAfiliadoPrincipal, connection);
             command.ExecuteNonQuery();
             count++;
@@ -54,13 +54,13 @@ namespace ClinicaFrba.Abm_Afiliado
                 return;
             }
 
-            String insertAfiliadoConyugue = @"INSERT INTO Afiliados(afiliado_dni,tipo_documento, nro_afiliado, afiliado_conyugue,  plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},{4},0)";
+            String insertAfiliadoConyugue = @"INSERT INTO group_by.Afiliados(afiliado_dni,tipo_documento, nro_afiliado, afiliado_conyugue,  plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},{4},0)";
             insertAfiliadoConyugue = String.Format(insertAfiliadoConyugue,
                                                     this.conyugue.documento,
                                                     this.conyugue.tipoDocumento,
                                                     this.documento.ToString() + "0" + count.ToString(),
                                                     this.documento.ToString(),
-                                                    "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')");
+                                                    "(select codigo from group_by.Planes_Medicos where descripcion = '" + this.planMedico + "')");
             SqlCommand command = new SqlCommand(insertAfiliadoConyugue, connection);
             command.ExecuteNonQuery();
             count++;
@@ -73,13 +73,13 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             foreach(Afiliado responsable in this.responsables)
             {
-                String insertAfiliadoConyugue = @"INSERT INTO Afiliados(afiliado_dni, tipo_documento, nro_afiliado, afiliado_responsable, plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},{4},0)";
+                String insertAfiliadoConyugue = @"INSERT INTO group_by.Afiliados(afiliado_dni, tipo_documento, nro_afiliado, afiliado_responsable, plan_medico_codigo, cantidad_consultas_realizadas) VALUES({0},'{1}',{2},{3},{4},0)";
                 insertAfiliadoConyugue = String.Format(insertAfiliadoConyugue,
                                                         responsable.documento,
                                                         responsable.tipoDocumento,
                                                         this.documento.ToString() + "0" + count.ToString(),
                                                         this.documento.ToString(),
-                                                        "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')");
+                                                        "(select codigo from group_by.Planes_Medicos where descripcion = '" + this.planMedico + "')");
                 SqlCommand command = new SqlCommand(insertAfiliadoConyugue, connection);
                 command.ExecuteNonQuery();
                 count++;
@@ -90,7 +90,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void relateMainWithConyugue(SqlConnection connection, int conyugue)
         {
-            String update = "UPDATE Afiliados SET afiliado_conyugue={0} WHERE nro_afiliado={1}";
+            String update = "UPDATE group_by.Afiliados SET afiliado_conyugue={0} WHERE nro_afiliado={1}";
             update = String.Format(update, conyugue, this.documento.ToString());
             SqlCommand command = new SqlCommand(update, connection);
             command.ExecuteNonQuery();
@@ -98,7 +98,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void persistPersonDetails(SqlConnection connection, Afiliado afiliado)
         {
-            String insert = @"INSERT INTO Personas_Detalle(dni,direccion,telefono, mail, nacimiento, sexo,nombre,  apellido,  estado_civil) VALUES({0},'{1}',{2},'{3}','{4}',{5},'{6}','{7}',{8})";
+            String insert = @"INSERT INTO group_by.Personas_Detalle(dni,direccion,telefono, mail, nacimiento, sexo,nombre,  apellido,  estado_civil) VALUES({0},'{1}',{2},'{3}','{4}',{5},'{6}','{7}',{8})";
 
             int sexoInt;
             int estadoCivilInt;
@@ -141,12 +141,12 @@ namespace ClinicaFrba.Abm_Afiliado
             this.password = this.apellido + this.nombre;
             this.username = this.documento.ToString();
 
-            String createUser = "INSERT INTO Usuarios(contrasena, usuario, usuario_dni, activo, cantidad_intentos_login) VALUES({0}, '{1}', {2}, 1, 0)";
+            String createUser = "INSERT INTO group_by.Usuarios(contrasena, usuario, usuario_dni, activo, cantidad_intentos_login) VALUES({0}, '{1}', {2}, 1, 0)";
             createUser = String.Format(createUser, "HASHBYTES('SHA2_256', '"+ this.password + "')", this.username, this.documento);
             SqlCommand command = new SqlCommand(createUser, connection);
             command.ExecuteNonQuery();
 
-            String assignRole = "INSERT INTO Usuario_Roles(rol_codigo,usuario_dni) VALUES({0}, {1})";
+            String assignRole = "INSERT INTO groupBy.Usuario_Roles(rol_codigo,usuario_dni) VALUES({0}, {1})";
             assignRole = String.Format(assignRole, 2, this.documento);
             command = new SqlCommand(assignRole, connection);
             command.ExecuteNonQuery();
@@ -154,7 +154,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         public static Boolean documentoYaExiste(String documento) 
         {
-            String query = "select * from Afiliados where afiliado_dni = {0}";
+            String query = "select * from group_by.Afiliados where afiliado_dni = {0}";
             query = String.Format(query, documento);
             DataTable dataTable = util.Sql.query(query);
             return dataTable.Rows.Count > 0;
@@ -162,7 +162,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         public static Boolean nroAfiliadoExiste(String nroAfiliado)
         {
-            String query = "select * from Afiliados where nro_afiliado = {0}";
+            String query = "select * from group_by.Afiliados where nro_afiliado = {0}";
             query = String.Format(query, nroAfiliado);
             DataTable dataTable = util.Sql.query(query);
             return dataTable.Rows.Count > 0;
@@ -170,7 +170,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         public static Afiliado GetAfiliado(string documento)
         {
-            String query = "select *, (select descripcion from Planes_Medicos where codigo = plan_medico_codigo ) as planMedico from Personas_Detalle,Afiliados where dni = {0}";
+            String query = "select *, (select descripcion from group_by.Planes_Medicos where codigo = plan_medico_codigo ) as planMedico from group_by.Personas_Detalle, group_by.Afiliados where dni = {0}";
             query = String.Format(query, documento);
             DataTable dataTable = util.Sql.query(query);
 
@@ -217,7 +217,7 @@ namespace ClinicaFrba.Abm_Afiliado
             sexoInt = int.Parse(Enum.Format(sexos, Enum.Parse(sexos, sexo), "d"));
             estadoCivilInt = int.Parse(Enum.Format(estadosCivil, Enum.Parse(estadosCivil, estadoCivil), "d"));
 
-            String update = "UPDATE Personas_Detalle SET nombre='{0}', apellido='{1}', direccion='{2}', telefono={3}, mail='{4}', nacimiento='{5}', sexo={6}, estado_civil={7} WHERE dni={8}";
+            String update = "UPDATE group_by.Personas_Detalle SET nombre='{0}', apellido='{1}', direccion='{2}', telefono={3}, mail='{4}', nacimiento='{5}', sexo={6}, estado_civil={7} WHERE dni={8}";
             update = String.Format(update, this.nombre, this.apellido, this.direccion, this.telefono, this.mail, this.fechaNacimiento, sexoInt, estadoCivilInt, this.documento);
 
             SqlConnection connection = util.Sql.connect("gd");
@@ -229,8 +229,8 @@ namespace ClinicaFrba.Abm_Afiliado
 
         internal void persitirCambioDePlan(string motivo)
         {
-            String insert = "insert into Cambios_De_Plan(plan_viejo, plan_nuevo, fecha, motivo, afiliados_dni) values({0},{1},GETDATE(),'{2}',{3})";
-            insert = String.Format(insert, "(select codigo from Planes_Medicos where descripcion = '" + this.planMedicoViejo + "')", "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')", motivo, this.documento);
+            String insert = "insert into group_by.Cambios_De_Plan(plan_viejo, plan_nuevo, fecha, motivo, afiliados_dni) values({0},{1},GETDATE(),'{2}',{3})";
+            insert = String.Format(insert, "(select codigo from group_by.Planes_Medicos where descripcion = '" + this.planMedicoViejo + "')", "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')", motivo, this.documento);
 
             SqlConnection connection = util.Sql.connect("gd");
             SqlCommand command = new SqlCommand(insert, connection);
@@ -241,7 +241,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         public static void borrar(string dni)
         {
-            String update = "update Afiliados set activo = 0 where afiliado_dni = {0}";
+            String update = "update group_by.Afiliados set activo = 0 where afiliado_dni = {0}";
             update = String.Format(update, dni);
 
             SqlConnection connection = util.Sql.connect("gd");
