@@ -47,8 +47,24 @@ namespace ClinicaFrba.Registro_Llegada
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "SELECT Bonos.nro_bono as Numero_De_Bono, Planes_Medicos.descripcion as Plan_Medico, Compras.fecha as Fecha_De_Compra, 'Seleccionar' as Seleccionar FROM group_by.Bonos, group_by.Planes_Medicos, group_by.Compras where Bonos.plan_codigo = Planes_Medicos.codigo and Compras.compra_id = Bonos.compra_id and Bonos.afiliado_dni = {0} and Bonos.nro_consulta_medica IS NULL";
+            String query = @"select distinct * from group_by.Bonos, group_by.Afiliados a where
+(bonos.afiliado_dni = a.afiliado_dni
+or
+Bonos.afiliado_dni = a.afiliado_conyugue
+or
+Bonos.afiliado_dni = a.afiliado_responsable
+or
+Bonos.afiliado_dni in (SELECT a2.afiliado_dni from group_by.Afiliados a2 where afiliado_responsable = a.afiliado_dni)
+or
+Bonos.afiliado_dni in (SELECT a3.afiliado_dni from group_by.Afiliados a3 where afiliado_conyugue = a.afiliado_dni)
+)
+and
+a.afiliado_dni = {0}
+and
+Bonos.nro_consulta_medica IS NULL";
             query = String.Format(query, dniAfiliado);
+            query = query.Replace("\r", " ");
+            query = query.Replace("\n", " ");
             adapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);

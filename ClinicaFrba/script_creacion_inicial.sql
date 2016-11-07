@@ -719,6 +719,35 @@ END
 GO
 
 use GD2C2016;
+GO
+
+CREATE FUNCTION [group_by].StringPerteneceAGrupoFamiliar(@dni NUMERIC(18))
+returns char(60)
+as
+begin
+	IF((select top 1 afiliado_dni from[group_by].Afiliados where afiliado_responsable = @dni) is not null)
+	begin
+		return 'Pertenece a grupo familiar'
+	end
+
+	IF((select top 1 afiliado_dni from [group_by].Afiliados where afiliado_conyugue = @dni) is not null)
+	begin
+		return 'Pertenece a grupo familiar'
+	end
+
+	IF((select afiliado_conyugue from [group_by].Afiliados where afiliado_dni = @dni) is not null)
+	begin
+		return 'Pertenece a grupo familiar'
+	end
+
+	IF((select afiliado_responsable from [group_by].Afiliados where afiliado_dni = @dni) is not null)
+	begin
+		return 'Pertenece a grupo familiar'
+	end
+	
+	return 'No pertenece a grupo familiar' 
+end
+go
 
 
 

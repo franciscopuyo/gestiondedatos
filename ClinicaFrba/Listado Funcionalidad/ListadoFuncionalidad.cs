@@ -61,7 +61,7 @@ namespace ClinicaFrba.Listado_Funcionalidad
 
             if (action == "Comprar bonos")
             {
-                if(Session.isAdmin()){
+                if(!Session.isAfiliado()){
                     selectedAction = new Compra_Bono.CompraAdministrativo();
                 } else{
                     selectedAction = new Compra_Bono.CompraAfiliado();

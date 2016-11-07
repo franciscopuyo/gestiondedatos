@@ -30,8 +30,8 @@ namespace ClinicaFrba.Compra_Bono
             Validations.validateIntWithMaxLength(cantidad, errorProviderCantidad, "Cantidad vacia o invalida", 10, ref valid);
             Validations.validateIntWithMaxLength(nroAfiliado, errorProviderAfiliado, "Nro de afiliado vacio o invalido", 10, ref valid);
 
-            valid = Validations.isOnlyNumeric(nroAfiliado.Text);
-            valid = Validations.isOnlyNumeric(cantidad.Text);
+            valid &= Validations.isOnlyNumeric(nroAfiliado.Text);
+            valid &= Validations.isOnlyNumeric(cantidad.Text);
             
             if (!valid)
             {
