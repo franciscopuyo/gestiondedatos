@@ -47,7 +47,7 @@ namespace ClinicaFrba.Registro_Llegada
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = @"select distinct * from group_by.Bonos, group_by.Afiliados a where
+            String query = @"select distinct  Bonos.nro_bono as Numero_De_Bono, p.descripcion as Plan_Medico, 'Seleccionar' as Seleccionar from group_by.Bonos, group_by.Afiliados a, group_by.Planes_Medicos p where
 (bonos.afiliado_dni = a.afiliado_dni
 or
 Bonos.afiliado_dni = a.afiliado_conyugue
@@ -61,7 +61,9 @@ Bonos.afiliado_dni in (SELECT a3.afiliado_dni from group_by.Afiliados a3 where a
 and
 a.afiliado_dni = {0}
 and
-Bonos.nro_consulta_medica IS NULL";
+Bonos.nro_consulta_medica IS NULL
+and
+p.codigo = Bonos.plan_codigo";
             query = String.Format(query, dniAfiliado);
             query = query.Replace("\r", " ");
             query = query.Replace("\n", " ");
