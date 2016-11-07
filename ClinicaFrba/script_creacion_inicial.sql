@@ -715,6 +715,12 @@ BEGIN
 	
 	------ FIN CREAR SINTOMAS Y DIAGNOSTICOS ----------------------
 
+
+	CREATE INDEX i1 ON group_by.Agendas (desde);
+	CREATE INDEX i2 ON group_by.Agendas (hasta);
+	CREATE INDEX i3 ON group_by.Turnos (fecha);
+
+
 END
 GO
 
