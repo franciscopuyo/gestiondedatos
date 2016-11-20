@@ -116,10 +116,12 @@ namespace ClinicaFrba.Agenda_Medico
             TimeSpan fromWeekDays = new TimeSpan(6, 59, 0);
             TimeSpan toWeekDays = new TimeSpan(21, 1, 0);
 
+            double hours = 0;
             if (mondayEnabled.Checked) { 
                 Validations.validateHourAfter(mondayFrom, fromWeekDays, errorProviderMondayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(mondayTo, toWeekDays, errorProviderMondayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(mondayTo, mondayFrom.Value.TimeOfDay, errorProviderMondayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (mondayTo.Value.TimeOfDay - mondayFrom.Value.TimeOfDay).TotalHours;
             }
 
             if (tuesdayEnabled.Checked)
@@ -127,6 +129,7 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(tuesdayFrom, fromWeekDays, errorProviderTuesdayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(tuesdayTo, toWeekDays, errorProviderTuesdayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(tuesdayTo, tuesdayFrom.Value.TimeOfDay, errorProviderTuesdayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (tuesdayTo.Value.TimeOfDay - tuesdayFrom.Value.TimeOfDay).TotalHours;
             }
 
             if (wednesdayEnabled.Checked)
@@ -134,6 +137,7 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(wednesdayFrom, fromWeekDays, errorProviderWednesdayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(wednesdayTo, toWeekDays, errorProviderWednesdayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(wednesdayTo, wednesdayFrom.Value.TimeOfDay, errorProviderWednesdayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (mondayTo.Value.TimeOfDay - wednesdayFrom.Value.TimeOfDay).TotalHours;
             }
 
             if (thursdayEnabled.Checked)
@@ -141,6 +145,7 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(thursdayFrom, fromWeekDays, errorProviderThursdayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(thursdayTo, toWeekDays, errorProviderThursdayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(thursdayTo, thursdayFrom.Value.TimeOfDay, errorProviderThursdayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (thursdayTo.Value.TimeOfDay - thursdayFrom.Value.TimeOfDay).TotalHours;
             }
 
             if (fridayEnabled.Checked)
@@ -148,6 +153,7 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(fridayFrom, fromWeekDays, errorProviderFridayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(fridayTo, toWeekDays, errorProviderFridayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(fridayTo, fridayFrom.Value.TimeOfDay, errorProviderFridayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (fridayTo.Value.TimeOfDay - fridayFrom.Value.TimeOfDay).TotalHours;
             }
 
             TimeSpan fromSaturday = new TimeSpan(9, 59, 0);
@@ -158,7 +164,15 @@ namespace ClinicaFrba.Agenda_Medico
                 Validations.validateHourAfter(saturdayFrom, fromSaturday, errorProviderSaturdayFrom, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourBefore(saturdayTo, toSaturday, errorProviderSaturdayTo, "A esa hora la clinica se encuentra cerrada", ref isValid);
                 Validations.validateHourAfter(saturdayTo, saturdayFrom.Value.TimeOfDay, errorProviderSaturdayFrom, "La hora de salida no puede ser anterior a la de entrada", ref isValid);
+                hours += (saturdayTo.Value.TimeOfDay - saturdayFrom.Value.TimeOfDay).TotalHours;
             }
+
+            if (hours > 48)
+            {
+                MessageBox.Show("Un medico no puede trabajar mas de 48 horas semanales");
+                isValid = false;
+            }
+           
 
             return isValid;
         }
@@ -212,11 +226,10 @@ namespace ClinicaFrba.Agenda_Medico
 
             if (diff.Ticks < 0  || 
                 (prevDate.Minute == 0 && dt.Minute == 59 && prevDate.Hour == dt.Hour))
-                timePicker.Value = prevDate.AddMinutes(-30);
+                timePicker.Value = prevDate.AddMinutes(-30).AddSeconds(-prevDate.Second);
             else
-                timePicker.Value = prevDate.AddMinutes(30);
+                timePicker.Value = prevDate.AddMinutes(30).AddSeconds(-prevDate.Second);
 
-           
             prevDate = timePicker.Value;
         }
 

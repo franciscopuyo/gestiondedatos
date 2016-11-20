@@ -88,7 +88,8 @@ namespace ClinicaFrba.Pedir_Turno
             if (!Session.isAfiliado() && !this.validateAfiliado())
                 return;
 
-            DateTime horarioTurno = dateTimePicker1.Value;
+            DateTime horarioTurno = dateTimePicker1.Value.AddSeconds(-dateTimePicker1.Value.Second);
+
             bool cumpleHorario = Turno.cumpleHorarioMedico(dni, codigoEspecialidad, horarioTurno);
             bool esSobreturno = Turno.esSobreturno(dni, codigoEspecialidad, horarioTurno);
             bool franjaCancelada = Turno.hayCancelacion(dni, codigoEspecialidad, horarioTurno);

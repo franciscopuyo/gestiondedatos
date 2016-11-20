@@ -296,6 +296,7 @@
     <Compile Include="Registrar Agenta Medico\Seleccion Rol\RoleSelect.Designer.cs">
       <DependentUpon>RoleSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="util\Date.cs" />
     <Compile Include="util\ComboBoxItem.cs" />
     <Compile Include="util\Session.cs" />
     <Compile Include="util\Sql.cs" />

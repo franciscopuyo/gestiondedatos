@@ -24,7 +24,7 @@ namespace ClinicaFrba.Agenda_Medico
         {
             String query = "INSERT INTO group_by.Disponibilidad (dia, desde, hasta, especialidad_codigo, profesional_dni) " +
                 "VALUES ({0},'{1}','{2}',{3},{4})";
-            query = String.Format(query, day.ToString(), from.TimeOfDay.ToString(), to.TimeOfDay.ToString(), professionId, dni);
+            query = String.Format(query, day.ToString(), from.AddSeconds(-from.Second).TimeOfDay.ToString(), to.AddSeconds(-to.Second).TimeOfDay.ToString(), professionId, dni);
             Sql.query(query);
         }
 
@@ -38,7 +38,7 @@ namespace ClinicaFrba.Agenda_Medico
                 "WHEN dia = 5 THEN 'Viernes' " +
                 "WHEN dia = 6 THEN 'Sabado' " +
                 "END as Dia, " +
-                "d.desde, d.hasta from group_by.Disponibilidad d JOIN group_by.Agendas a ON (d.profesional_dni = a.profesional_dni AND d.especialidad_codigo = a.especialidad_codigo) " +
+                " CONVERT(VARCHAR(5),d.desde,108) as desde, CONVERT(VARCHAR(5),d.hasta,108) as hasta from group_by.Disponibilidad d JOIN group_by.Agendas a ON (d.profesional_dni = a.profesional_dni AND d.especialidad_codigo = a.especialidad_codigo) " +
                 "WHERE d.especialidad_codigo = {0} AND d.profesional_dni = {1}";
 
             query = String.Format(query, professionId.ToString(), dni.ToString());
