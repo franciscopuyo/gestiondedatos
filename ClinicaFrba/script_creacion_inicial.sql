@@ -208,11 +208,12 @@ CREATE TABLE [group_by].Medico_Especialidad (
 -- Creacion tabla Agendas
 -- -----------------------------------------------------
 CREATE TABLE [group_by].Agendas (
+  agenda_id NUMERIC(18) IDENTITY (1,1),
   desde DATE NULL,
   hasta DATE NULL,
   especialidad_codigo NUMERIC(18) NOT NULL,
   profesional_dni NUMERIC(18) NOT NULL,
-  PRIMARY KEY (especialidad_codigo, profesional_dni),
+  PRIMARY KEY (agenda_id),
 
   CONSTRAINT fk_Agenda_Medicos_Especialidades
     FOREIGN KEY (profesional_dni, especialidad_codigo)
@@ -226,14 +227,13 @@ CREATE TABLE [group_by].Disponibilidad (
   dia INT NOT NULL,
   desde TIME NOT NULL,
   hasta TIME NOT NULL,
-  especialidad_codigo NUMERIC(18) NOT NULL,
-  profesional_dni NUMERIC(18) NOT NULL,
+  agenda NUMERIC(18) NOT NULL,
 
-  PRIMARY KEY (dia, especialidad_codigo, profesional_dni),
+  PRIMARY KEY (dia, agenda),
 
   CONSTRAINT fk_Dispinibilidad_Agenda
-    FOREIGN KEY (especialidad_codigo, profesional_dni)
-    REFERENCES Agendas (especialidad_codigo, profesional_dni)
+    FOREIGN KEY (agenda)
+    REFERENCES Agendas (agenda_id)
 )
 
 
@@ -360,13 +360,12 @@ CREATE TABLE [group_by].Periodos_Cancelados (
   id_cancelacion NUMERIC(18) NOT NULL IDENTITY(1,1),
   desde DATETIME NOT NULL,
   hasta DATETIME NOT NULL,
-  especialidad_codigo NUMERIC(18) NOT NULL,
-  profesional_dni NUMERIC(18) NOT NULL,
+  agenda NUMERIC(18),
   PRIMARY KEY (id_cancelacion),
 
   CONSTRAINT fk_Agendas
-	FOREIGN KEY (especialidad_codigo, profesional_dni)
-	REFERENCES Agendas (especialidad_codigo, profesional_dni)
+	FOREIGN KEY (agenda)
+	REFERENCES Agendas (agenda_id)
 )
 GO
 ------------------------------------------------------
@@ -570,7 +569,6 @@ BEGIN
 	
 	------ FIN CREAR MEDICOS ----------------------
 
-	
 	-------- INICIO CREAR MEDICO ESPECIALIDAD --------
 	
 	INSERT INTO Medico_Especialidad(profesional_dni, especialidad_codigo)
@@ -583,6 +581,31 @@ BEGIN
 				Medico_Dni IS NOT NULL 
 
 	------ FIN CREAR MEDICO ESPECIALIDAD ----------------------
+
+	------------- INICIO CREAR AGENDAS ------------
+	INSERT INTO Agendas(profesional_dni,especialidad_codigo, desde, hasta)
+		SELECT 
+			Medico_Dni, Especialidad_Codigo, CONVERT(DATE, MIN(Turno_Fecha)), CONVERT(DATE, MAX(Turno_Fecha)) 
+		FROM
+			GD2C2016.gd_esquema.Maestra
+		WHERE Medico_Dni IS NOT NULL
+		GROUP BY
+			Medico_Dni, Especialidad_Codigo
+	------------ FIN CREAR AGENDAS -------------
+
+	
+	------------- INICIO CREAR DISPONIBILIDADES ------------
+	INSERT INTO Disponibilidad(dia, desde, hasta, agenda)
+		SELECT DISTINCT
+			DATEPART(WEEKDAY, Turno_Fecha) as Dia, 
+			MIN(CONVERT(TIME, Turno_Fecha)), MAX(CONVERT(TIME, Turno_Fecha)), 
+			(SELECT top 1 agenda_id FROM Agendas WHERE profesional_dni = Medico_DNI and especialidad_codigo = Especialidad_Codigo) as agenda
+		FROM
+			GD2C2016.gd_esquema.Maestra 
+		WHERE Medico_Dni IS NOT NULL
+		GROUP BY
+			Medico_Dni, Especialidad_Codigo, DATEPART(WEEKDAY, Turno_Fecha)
+	------------- FIN CREAR DISPONIBILIDADES ------------
 
 
 	-------- INICIO CREAR COMPRAS --------

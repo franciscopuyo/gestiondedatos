@@ -43,6 +43,7 @@
             this.nombre = new System.Windows.Forms.TextBox();
             this.planMedico = new System.Windows.Forms.ComboBox();
             this.Volver = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             // cantResults
             // 
             this.cantResults.AutoSize = true;
-            this.cantResults.Location = new System.Drawing.Point(114, 322);
+            this.cantResults.Location = new System.Drawing.Point(27, 320);
             this.cantResults.Name = "cantResults";
             this.cantResults.Size = new System.Drawing.Size(121, 13);
             this.cantResults.TabIndex = 2;
@@ -163,11 +164,22 @@
             this.Volver.UseVisualStyleBackColor = true;
             this.Volver.Click += new System.EventHandler(this.Volver_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(174, 362);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(219, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "AGREGAR AFILIADO";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 397);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Volver);
             this.Controls.Add(this.planMedico);
             this.Controls.Add(this.nombre);
@@ -206,5 +218,6 @@
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.ComboBox planMedico;
         private System.Windows.Forms.Button Volver;
+        private System.Windows.Forms.Button button1;
     }
 }

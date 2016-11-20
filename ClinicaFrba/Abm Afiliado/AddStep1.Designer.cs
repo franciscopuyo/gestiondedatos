@@ -62,6 +62,7 @@
             this.errorProviderCantResponsables = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderMail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderFechaNacimiento = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDocumento)).BeginInit();
@@ -306,9 +307,9 @@
             // 
             // guardar
             // 
-            this.guardar.Location = new System.Drawing.Point(244, 550);
+            this.guardar.Location = new System.Drawing.Point(278, 564);
             this.guardar.Name = "guardar";
-            this.guardar.Size = new System.Drawing.Size(75, 23);
+            this.guardar.Size = new System.Drawing.Size(195, 23);
             this.guardar.TabIndex = 25;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
@@ -346,11 +347,22 @@
             // 
             this.errorProviderFechaNacimiento.ContainerControl = this;
             // 
+            // cancelar
+            // 
+            this.cancelar.Location = new System.Drawing.Point(40, 564);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(195, 23);
+            this.cancelar.TabIndex = 26;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
             // Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 599);
+            this.Controls.Add(this.cancelar);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.planMedico);
             this.Controls.Add(this.planMedicoLabel);
@@ -427,6 +439,7 @@
         private System.Windows.Forms.ErrorProvider errorProviderCantResponsables;
         private System.Windows.Forms.ErrorProvider errorProviderMail;
         private System.Windows.Forms.ErrorProvider errorProviderFechaNacimiento;
+        private System.Windows.Forms.Button cancelar;
 
     }
 }
