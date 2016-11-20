@@ -33,6 +33,12 @@ namespace ClinicaFrba.Compra_Bono
                 return;
             }
 
+            if (int.Parse(cantidad.Text) < 1)
+            {
+                errorProvider1.SetError(cantidad, "La cantidad debe ser mayor a 0");
+                return;
+            }
+
             this.Hide();
             ConfirmarCompra confirmar = new ConfirmarCompra(int.Parse(cantidad.Text));
             confirmar.Show();

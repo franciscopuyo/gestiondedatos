@@ -213,6 +213,11 @@ namespace ClinicaFrba.Abm_Afiliado
 
         }
 
+        private void cancelar_Click(object sender, EventArgs e)
+        {
+            Session.mainMenu(this);
+        }
+
       
     }
 }

@@ -38,6 +38,12 @@ namespace ClinicaFrba.Compra_Bono
                 return;
             }
 
+            if (int.Parse(cantidad.Text) < 1)
+            {
+                errorProviderCantidad.SetError(cantidad, "La cantidad debe ser mayor a 0");
+                return;
+            }
+
             Boolean existeAfiliado = Afiliado.nroAfiliadoExiste(nroAfiliado.Text);
             if (!existeAfiliado)
             {

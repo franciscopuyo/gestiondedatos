@@ -141,5 +141,12 @@ namespace ClinicaFrba.Abm_Afiliado
             ClinicaFrba.util.Session.mainMenu(this);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.Add add = new Add();
+            this.Hide();
+            add.Show();
+        }
+
     }
 }
