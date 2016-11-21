@@ -88,8 +88,9 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.labelProfesional = new System.Windows.Forms.Label();
-            this.labelEspecialidad = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
+            this.especialidadesCombo = new System.Windows.Forms.ComboBox();
+            this.labelEspecialidad = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMondayFrom)).BeginInit();
@@ -573,7 +574,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(14, 61);
+            this.label22.Location = new System.Drawing.Point(14, 77);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 13);
             this.label22.TabIndex = 44;
@@ -588,15 +589,6 @@
             this.labelProfesional.TabIndex = 45;
             this.labelProfesional.Text = "xxxxx";
             // 
-            // labelEspecialidad
-            // 
-            this.labelEspecialidad.AutoSize = true;
-            this.labelEspecialidad.Location = new System.Drawing.Point(125, 61);
-            this.labelEspecialidad.Name = "labelEspecialidad";
-            this.labelEspecialidad.Size = new System.Drawing.Size(37, 13);
-            this.labelEspecialidad.TabIndex = 46;
-            this.labelEspecialidad.Text = "xxxxxx";
-            // 
             // back
             // 
             this.back.Location = new System.Drawing.Point(125, 554);
@@ -607,13 +599,32 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // especialidadesCombo
+            // 
+            this.especialidadesCombo.FormattingEnabled = true;
+            this.especialidadesCombo.Location = new System.Drawing.Point(125, 69);
+            this.especialidadesCombo.Name = "especialidadesCombo";
+            this.especialidadesCombo.Size = new System.Drawing.Size(121, 21);
+            this.especialidadesCombo.TabIndex = 48;
+            // 
+            // labelEspecialidad
+            // 
+            this.labelEspecialidad.AutoSize = true;
+            this.labelEspecialidad.Location = new System.Drawing.Point(125, 76);
+            this.labelEspecialidad.Name = "labelEspecialidad";
+            this.labelEspecialidad.Size = new System.Drawing.Size(41, 13);
+            this.labelEspecialidad.TabIndex = 49;
+            this.labelEspecialidad.Text = "label23";
+            this.labelEspecialidad.Visible = false;
+            // 
             // AltaHorarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 646);
-            this.Controls.Add(this.back);
             this.Controls.Add(this.labelEspecialidad);
+            this.Controls.Add(this.especialidadesCombo);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.labelProfesional);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
@@ -739,10 +750,11 @@
         private System.Windows.Forms.ErrorProvider errorProviderFridayTo;
         private System.Windows.Forms.ErrorProvider errorProviderSaturdayFrom;
         private System.Windows.Forms.ErrorProvider errorProviderSaturdayTo;
-        private System.Windows.Forms.Label labelEspecialidad;
         private System.Windows.Forms.Label labelProfesional;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.ComboBox especialidadesCombo;
+        private System.Windows.Forms.Label labelEspecialidad;
     }
 }

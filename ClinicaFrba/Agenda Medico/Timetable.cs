@@ -24,7 +24,7 @@ namespace ClinicaFrba.Agenda_Medico
         {
             String query = "INSERT INTO group_by.Disponibilidad (dia, desde, hasta, especialidad_codigo, profesional_dni) " +
                 "VALUES ({0},'{1}','{2}',{3},{4})";
-            query = String.Format(query, day.ToString(), from.AddSeconds(-from.Second).TimeOfDay.ToString(), to.AddSeconds(-to.Second).TimeOfDay.ToString(), professionId, dni);
+            query = String.Format(query, day.ToString(), from.AddSeconds(-from.Second).TimeOfDay.ToString(), to.AddSeconds(-to.Second).TimeOfDay.ToString());
             Sql.query(query);
         }
 

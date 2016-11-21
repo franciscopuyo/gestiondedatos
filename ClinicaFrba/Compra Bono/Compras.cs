@@ -21,7 +21,7 @@ namespace ClinicaFrba.Compra_Bono
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String insertCompra = "INSERT INTO group_by.Compras(fecha, cantidad, monto, afiliado_usuario_dni) VALUES(GETDATE(), {0}, {1}, {2})";
+            String insertCompra = "INSERT INTO group_by.Compras(fecha, cantidad, monto, afiliado_usuario_dni) VALUES(group_by.GETDATECUSTOM(), {0}, {1}, {2})";
             insertCompra = String.Format(insertCompra, cantidad, monto, documento);
 
             SqlCommand command = new SqlCommand(insertCompra, connection);

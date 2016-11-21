@@ -51,7 +51,7 @@ namespace ClinicaFrba.Agenda_Medico
                     return;
                 }
                 this.Hide();
-                AltaHorarios edit = new AltaHorarios(professionCode, this.dni);
+                AltaHorarios edit = new AltaHorarios(this.dni);
                 edit.Show();
             }
             if (accion == "Ver")
@@ -61,7 +61,7 @@ namespace ClinicaFrba.Agenda_Medico
                     return;
                 }
                 this.Hide();
-                Agenda remove = new Agenda(professionCode, this.dni);
+                Agenda remove = new Agenda(int dni, int agendaId);
                 remove.Show();
             }
         }

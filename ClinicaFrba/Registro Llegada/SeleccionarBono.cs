@@ -35,7 +35,7 @@ namespace ClinicaFrba.Registro_Llegada
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             String nroBono = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            String query = "INSERT INTO group_by.Atencion_Medica(fecha_llegada, nro_bono, turno_numero) VALUES(GETDATE(), {0}, {1})";
+            String query = "INSERT INTO group_by.Atencion_Medica(fecha_llegada, nro_bono, turno_numero) VALUES(group_by.GETDATECUSTOM(), {0}, {1})";
             query = String.Format(query, nroBono, nroTurno);
             Sql.query(query);
 

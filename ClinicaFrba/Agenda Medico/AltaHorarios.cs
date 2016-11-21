@@ -32,9 +32,8 @@ namespace ClinicaFrba.Agenda_Medico
 
         private bool initialized = false;
 
-        public AltaHorarios(int professionCode, int dni)
+        public AltaHorarios(int dni, int idAgenda)
         {
-            this.professionCode = professionCode;
             this.dni = dni;
             InitializeComponent();
 
@@ -67,6 +66,8 @@ namespace ClinicaFrba.Agenda_Medico
                 MessageBox.Show("Los horarios ingresados no son validos");
                 return;
             }
+
+            int professionCode = Profession.getCodeByDescription(especialidadesCombo.Text);
 
             Timetable.create(professionCode, dni, from.Value, to.Value);
             
@@ -182,13 +183,30 @@ namespace ClinicaFrba.Agenda_Medico
 
         }
 
+        private void loadEspecialidades()
+        {
+            DataTable especialidades = util.Sql.query("select descripcion from group_by.Especialidades");
+            List<String> options = new List<string>();
+            for (int i = 0; i < especialidades.Rows.Count; i++)
+            {
+                options.Add(especialidades.Rows[i][0].ToString());
+            }
+            especialidadesCombo.DataSource = options;
+        }
+
         private void AltaHorarios_Load(object sender, EventArgs e)
         {
             DataTable professional = Professional.getProfessionalByDni(this.dni);
-            DataTable profession = Profession.getProfessionByCode(this.professionCode);
-
+               
             labelProfesional.Text = professional.Rows[0]["nombre"].ToString() + " " + professional.Rows[0]["apellido"].ToString();
-            labelEspecialidad.Text = profession.Rows[0]["descripcion"].ToString();
+            if (professionCode > 0) {
+                DataTable profession = Profession.getProfessionByCode(this.professionCode); 
+                labelEspecialidad.Text = profession.Rows[0]["descripcion"].ToString();
+                labelEspecialidad.Show();
+            } else
+            {
+                especialidadesCombo.Hide();
+            }
         }
 
         private void back_Click(object sender, EventArgs e)

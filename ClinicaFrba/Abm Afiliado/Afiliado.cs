@@ -230,7 +230,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         internal void persitirCambioDePlan(string motivo)
         {
-            String insert = "insert into group_by.Cambios_De_Plan(plan_viejo, plan_nuevo, fecha, motivo, afiliados_dni) values({0},{1},GETDATE(),'{2}',{3})";
+            String insert = "insert into group_by.Cambios_De_Plan(plan_viejo, plan_nuevo, fecha, motivo, afiliados_dni) values({0},{1},group_by.GETDATECUSTOM(),'{2}',{3})";
             insert = String.Format(insert, "(select codigo from group_by.Planes_Medicos where descripcion = '" + this.planMedicoViejo + "')", "(select codigo from Planes_Medicos where descripcion = '" + this.planMedico + "')", motivo, this.documento);
 
             SqlConnection connection = util.Sql.connect("gd");

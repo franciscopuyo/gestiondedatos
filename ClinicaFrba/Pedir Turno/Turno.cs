@@ -63,7 +63,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         public static DataTable conseguirPorAfiliado(int dni)
         {
-            String query = "SELECT numero, e.descripcion as Especialidad, CONCAT(pd.apellido, ' ', pd.nombre) as Medico, CASE WHEN fecha >= dateadd(DAY, 1,GETDATE()) THEN 'Cancelar' ELSE 'X' END as Cancelar FROM group_by.Turnos t JOIN group_by.Profesionales p ON (p.profesional_dni = t.profesional_dni) JOIN group_by.Personas_Detalle pd ON (p.profesional_dni = pd.dni) JOIN group_by.Especialidades e ON (e.codigo = t.especialidad_codigo) LEFT JOIN group_by.Cancelaciones c ON (c.turno_nro = t.numero) WHERE afiliado_dni = {0} AND FECHA >= GETDATE() AND c.turno_nro IS NULL";
+            String query = "SELECT numero, e.descripcion as Especialidad, CONCAT(pd.apellido, ' ', pd.nombre) as Medico, CASE WHEN fecha >= dateadd(DAY, 1,group_by.GETDATECUSTOM()) THEN 'Cancelar' ELSE 'X' END as Cancelar FROM group_by.Turnos t JOIN group_by.Profesionales p ON (p.profesional_dni = t.profesional_dni) JOIN group_by.Personas_Detalle pd ON (p.profesional_dni = pd.dni) JOIN group_by.Especialidades e ON (e.codigo = t.especialidad_codigo) LEFT JOIN group_by.Cancelaciones c ON (c.turno_nro = t.numero) WHERE afiliado_dni = {0} AND FECHA >= group_by.GETDATECUSTOM() AND c.turno_nro IS NULL";
             query = String.Format(query, dni);
             return Sql.query(query);
         }
