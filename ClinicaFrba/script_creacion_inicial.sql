@@ -360,12 +360,13 @@ CREATE TABLE [group_by].Periodos_Cancelados (
   id_cancelacion NUMERIC(18) NOT NULL IDENTITY(1,1),
   desde DATETIME NOT NULL,
   hasta DATETIME NOT NULL,
-  agenda NUMERIC(18),
+  especialidad_codigo NUMERIC(18) NOT NULL,
+  profesional_dni NUMERIC(18) NOT NULL,
   PRIMARY KEY (id_cancelacion),
 
-  CONSTRAINT fk_Agendas
-	FOREIGN KEY (agenda)
-	REFERENCES Agendas (agenda_id)
+  CONSTRAINT fk_Peri_Can_Medicos_Especialidades
+    FOREIGN KEY (profesional_dni, especialidad_codigo)
+    REFERENCES Medico_Especialidad (profesional_dni, especialidad_codigo)
 )
 GO
 ------------------------------------------------------
