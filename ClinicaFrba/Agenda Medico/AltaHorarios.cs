@@ -15,7 +15,6 @@ namespace ClinicaFrba.Agenda_Medico
 {
     public partial class AltaHorarios : Form
     {
-        private int professionCode;
         private int dni;
         private DateTime mondayFromPrev;
         private DateTime mondayToPrev;
@@ -32,7 +31,7 @@ namespace ClinicaFrba.Agenda_Medico
 
         private bool initialized = false;
 
-        public AltaHorarios(int dni, int idAgenda)
+        public AltaHorarios(int dni)
         {
             this.dni = dni;
             InitializeComponent();
@@ -73,32 +72,32 @@ namespace ClinicaFrba.Agenda_Medico
             
             if (mondayEnabled.Checked)
             {
-                Timetable.addWorkDay(1, professionCode, dni, mondayFrom.Value, mondayTo.Value);
+                Timetable.addWorkDay(1, mondayFrom.Value, mondayTo.Value);
             }
 
             if (tuesdayEnabled.Checked)
             {
-                Timetable.addWorkDay(2, professionCode, dni, tuesdayFrom.Value, tuesdayTo.Value);
+                Timetable.addWorkDay(2, tuesdayFrom.Value, tuesdayTo.Value);
             }
 
             if (wednesdayEnabled.Checked)
             {
-                Timetable.addWorkDay(3, professionCode, dni, wednesdayFrom.Value, wednesdayTo.Value);
+                Timetable.addWorkDay(3, wednesdayFrom.Value, wednesdayTo.Value);
             }
 
             if (thursdayEnabled.Checked)
             {
-                Timetable.addWorkDay(4, professionCode, dni, thursdayFrom.Value, thursdayTo.Value);
+                Timetable.addWorkDay(4, thursdayFrom.Value, thursdayTo.Value);
             }
 
             if (fridayEnabled.Checked)
             {
-                Timetable.addWorkDay(5, professionCode, dni, fridayFrom.Value, fridayTo.Value);
+                Timetable.addWorkDay(5, fridayFrom.Value, fridayTo.Value);
             }
 
             if (saturdayEnabled.Checked)
             {
-                Timetable.addWorkDay(6, professionCode, dni, saturdayFrom.Value, saturdayTo.Value);
+                Timetable.addWorkDay(6, saturdayFrom.Value, saturdayTo.Value);
             }
 
             MessageBox.Show("Agenda creada exitosamente");
@@ -173,7 +172,16 @@ namespace ClinicaFrba.Agenda_Medico
                 MessageBox.Show("Un medico no puede trabajar mas de 48 horas semanales");
                 isValid = false;
             }
-           
+
+
+            int professionCode = Profession.getCodeByDescription(especialidadesCombo.Text);
+            bool hayAgendaEnPeriodo = Timetable.hayAgendaEnPeriodo(to.Value, from.Value, this.dni, professionCode);
+
+            if (hayAgendaEnPeriodo)
+            {
+                MessageBox.Show("Ya hay una agenda en ese periodo");
+                isValid = false;
+            }
 
             return isValid;
         }
@@ -185,7 +193,7 @@ namespace ClinicaFrba.Agenda_Medico
 
         private void loadEspecialidades()
         {
-            DataTable especialidades = util.Sql.query("select descripcion from group_by.Especialidades");
+            DataTable especialidades = Profession.getByDni(this.dni);
             List<String> options = new List<string>();
             for (int i = 0; i < especialidades.Rows.Count; i++)
             {
@@ -197,16 +205,9 @@ namespace ClinicaFrba.Agenda_Medico
         private void AltaHorarios_Load(object sender, EventArgs e)
         {
             DataTable professional = Professional.getProfessionalByDni(this.dni);
-               
+              
             labelProfesional.Text = professional.Rows[0]["nombre"].ToString() + " " + professional.Rows[0]["apellido"].ToString();
-            if (professionCode > 0) {
-                DataTable profession = Profession.getProfessionByCode(this.professionCode); 
-                labelEspecialidad.Text = profession.Rows[0]["descripcion"].ToString();
-                labelEspecialidad.Show();
-            } else
-            {
-                especialidadesCombo.Hide();
-            }
+            loadEspecialidades();
         }
 
         private void back_Click(object sender, EventArgs e)

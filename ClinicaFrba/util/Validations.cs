@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClinicaFrba.util;
 
 namespace ClinicaFrba.util
 {
@@ -138,7 +139,7 @@ namespace ClinicaFrba.util
 
         internal static void validateDateBeforeNow(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
         {
-            if (dateTimePicker.Value.Date >= DateTime.Now.Date)
+            if (dateTimePicker.Value.Date >= Date.getDateTime())
             {
                 errorProvider.SetError(dateTimePicker, msg);
                 valid = false;
@@ -151,7 +152,8 @@ namespace ClinicaFrba.util
 
         internal static void validateDateAfterNow(System.Windows.Forms.DateTimePicker dateTimePicker, System.Windows.Forms.ErrorProvider errorProvider, string msg, ref bool valid)
         {
-            if (dateTimePicker.Value.Date < DateTime.Now.Date)
+
+            if (dateTimePicker.Value.Date.Date < Date.getDateTime().Date)
             {
                 errorProvider.SetError(dateTimePicker, msg);
                 valid = false;

@@ -39,8 +39,11 @@
             this.nroAfiliado = new System.Windows.Forms.TextBox();
             this.labelAfiliado = new System.Windows.Forms.Label();
             this.errorProviderAfiliado = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.timetablesGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.timetableGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAfiliado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timetablesGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // titulo
@@ -54,7 +57,7 @@
             // 
             // volver
             // 
-            this.volver.Location = new System.Drawing.Point(59, 342);
+            this.volver.Location = new System.Drawing.Point(73, 488);
             this.volver.Name = "volver";
             this.volver.Size = new System.Drawing.Size(75, 23);
             this.volver.TabIndex = 1;
@@ -66,7 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(227, 103);
+            this.label2.Location = new System.Drawing.Point(232, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 13);
             this.label2.TabIndex = 53;
@@ -75,22 +78,23 @@
             // timetableGrid
             // 
             this.timetableGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.timetableGrid.Location = new System.Drawing.Point(83, 132);
+            this.timetableGrid.Location = new System.Drawing.Point(73, 278);
             this.timetableGrid.Name = "timetableGrid";
             this.timetableGrid.Size = new System.Drawing.Size(403, 132);
             this.timetableGrid.TabIndex = 52;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(128, 281);
+            this.dateTimePicker1.Location = new System.Drawing.Point(161, 428);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 54;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 287);
+            this.label1.Location = new System.Drawing.Point(70, 434);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 55;
@@ -98,7 +102,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(377, 342);
+            this.save.Location = new System.Drawing.Point(395, 488);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(75, 23);
             this.save.TabIndex = 56;
@@ -126,11 +130,32 @@
             // 
             this.errorProviderAfiliado.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(236, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 13);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "Seleccionar Agenda";
+            // 
+            // timetablesGrid
+            // 
+            this.timetablesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.timetablesGrid.Location = new System.Drawing.Point(83, 145);
+            this.timetablesGrid.Name = "timetablesGrid";
+            this.timetablesGrid.Size = new System.Drawing.Size(393, 87);
+            this.timetablesGrid.TabIndex = 60;
+            this.timetablesGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.timetablesGrid_CellContentClick);
+            // 
             // SeleccionarFecha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 409);
+            this.ClientSize = new System.Drawing.Size(547, 543);
+            this.Controls.Add(this.timetablesGrid);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labelAfiliado);
             this.Controls.Add(this.nroAfiliado);
             this.Controls.Add(this.save);
@@ -145,6 +170,7 @@
             this.Load += new System.EventHandler(this.SeleccionarFecha_Load);
             ((System.ComponentModel.ISupportInitialize)(this.timetableGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAfiliado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timetablesGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +188,7 @@
         private System.Windows.Forms.TextBox nroAfiliado;
         private System.Windows.Forms.Label labelAfiliado;
         private System.Windows.Forms.ErrorProvider errorProviderAfiliado;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView timetablesGrid;
     }
 }

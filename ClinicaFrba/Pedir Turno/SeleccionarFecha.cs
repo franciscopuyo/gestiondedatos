@@ -42,9 +42,16 @@ namespace ClinicaFrba.Pedir_Turno
             }
             titulo.Text = "Asignando turno con " + nombre.ToUpper() + " " + apellido.ToUpper();
 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.loadAgendas();
+        }
+
+        private void loadHorarios(int agendaId)
+        {
+
             int dni = Int32.Parse(this.dni);
-            
-            DataTable timetable = Timetable.getTimetable(Int32.Parse(codigoEspecialidad), dni);
+            DataTable timetable = Timetable.getTimetableByAgenda(agendaId);
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = timetable;
@@ -52,9 +59,21 @@ namespace ClinicaFrba.Pedir_Turno
             timetableGrid.DataSource = bindingSource;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.Update(timetable);
+        }
 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+        private void loadAgendas()
+        {
+            int especialidadCodigo = Profession.getCodeByDescription(this.especialidadDescripcion);
+            DataTable timetables = Timetable.getTimetablesByEspecialidadAndProfesional(Int32.Parse(this.dni), especialidadCodigo);
+
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = timetables;
+
+            timetablesGrid.DataSource = bindingSource;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.Update(timetables);
+
+            timetablesGrid.Columns[0].Visible = false;
         }
 
         private void volver_Click(object sender, EventArgs e)
@@ -118,6 +137,24 @@ namespace ClinicaFrba.Pedir_Turno
             {
                 MessageBox.Show("El medico ya tiene un turno asignado a esa hora");
                 return;
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timetablesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String accion = timetablesGrid.Columns[e.ColumnIndex].HeaderText.ToString();
+            if (e.RowIndex >= timetablesGrid.Rows.Count) return;
+            int professionCode = Int32.Parse(timetablesGrid.Rows[e.RowIndex].Cells[1].Value.ToString());
+            int agendaId = Int32.Parse(timetablesGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+            if (accion == "Ver")
+            {
+                loadHorarios(agendaId);
             }
         }
     }

@@ -12,11 +12,10 @@ namespace ClinicaFrba.Pedir_Turno
         public static bool cumpleHorarioMedico(String dni, String codigoEspecialidad, DateTime horario)
         {
             int dia = (int)horario.DayOfWeek;
-            String query = "SELECT * FROM group_by.Disponibilidad, group_by.Agendas WHERE dia = {0} AND Disponibilidad.profesional_dni = {1} AND Disponibilidad.especialidad_codigo = {2} AND " +
+            String query = "SELECT * FROM group_by.Disponibilidad, group_by.Agendas a WHERE dia = {0} AND a.profesional_dni = {1} AND a.especialidad_codigo = {2} AND " +
                 " Disponibilidad.desde <= CONVERT(time,'{3}') AND Disponibilidad.hasta >= CONVERT(time,'{4}') and  " +
-                " Agendas.especialidad_codigo = Disponibilidad.especialidad_codigo " +
-                "and Disponibilidad.profesional_dni = Disponibilidad.profesional_dni " +
-                "and CONVERT(date, '{5}') between Agendas.desde and Agendas.hasta";
+                " a.agenda_id = Disponibilidad.agenda " +
+                "and CONVERT(date, '{5}') between a.desde and a.hasta";
             query = String.Format(query, dia, dni, codigoEspecialidad, horario, horario.AddMinutes(30), horario);
             DataTable results = Sql.query(query);
             return results.Rows.Count > 0;

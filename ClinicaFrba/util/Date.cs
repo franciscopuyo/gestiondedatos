@@ -13,5 +13,11 @@ namespace ClinicaFrba.util
         {
             return ConfigurationManager.AppSettings["fechaDelSistema"];
         }
+        
+        public static DateTime getDateTime()
+        {
+            return DateTime.ParseExact(getDate(), "yyyy-MM-dd HH:mm:ss.fff",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+        }
     }
 }

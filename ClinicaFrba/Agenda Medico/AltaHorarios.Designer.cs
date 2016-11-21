@@ -90,7 +90,6 @@
             this.labelProfesional = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.especialidadesCombo = new System.Windows.Forms.ComboBox();
-            this.labelEspecialidad = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMondayFrom)).BeginInit();
@@ -607,22 +606,11 @@
             this.especialidadesCombo.Size = new System.Drawing.Size(121, 21);
             this.especialidadesCombo.TabIndex = 48;
             // 
-            // labelEspecialidad
-            // 
-            this.labelEspecialidad.AutoSize = true;
-            this.labelEspecialidad.Location = new System.Drawing.Point(125, 76);
-            this.labelEspecialidad.Name = "labelEspecialidad";
-            this.labelEspecialidad.Size = new System.Drawing.Size(41, 13);
-            this.labelEspecialidad.TabIndex = 49;
-            this.labelEspecialidad.Text = "label23";
-            this.labelEspecialidad.Visible = false;
-            // 
             // AltaHorarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 646);
-            this.Controls.Add(this.labelEspecialidad);
             this.Controls.Add(this.especialidadesCombo);
             this.Controls.Add(this.back);
             this.Controls.Add(this.labelProfesional);
@@ -755,6 +743,5 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.ComboBox especialidadesCombo;
-        private System.Windows.Forms.Label labelEspecialidad;
     }
 }

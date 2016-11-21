@@ -29,8 +29,8 @@ namespace ClinicaFrba.Agenda_Medico
            Timetable.cancelPeriod(dni, professionCode, dateFrom.Value.Date, dateTo.Value.Date, reasonInput.Text);
             MessageBox.Show("Periodo cancelado con éxito");
             this.Hide();
-            Agenda agenda = new Agenda(professionCode, dni);
-            agenda.Show();
+            Agendas agendas = new Agendas(dni);
+            agendas.Show();
         }
 
         private bool validate()
@@ -47,8 +47,8 @@ namespace ClinicaFrba.Agenda_Medico
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Agenda agenda = new Agenda(professionCode, dni);
-            agenda.Show();
+            Agendas agendas = new Agendas(dni);
+            agendas.Show();
         }
 
         private void oneDayCheckbox_CheckedChanged(object sender, EventArgs e)

@@ -19,10 +19,12 @@ namespace ClinicaFrba.Agenda_Medico
     {
         private int dni;
         private int professionCode;
-        public Agenda(int professionCode, int dni)
+        private int agendaId;
+        public Agenda(int dni, int professionCode, int agendaId)
         {
             this.professionCode = professionCode;
             this.dni = dni;
+            this.agendaId = agendaId;
 
             InitializeComponent();
         }
@@ -40,7 +42,7 @@ namespace ClinicaFrba.Agenda_Medico
             labelProfesional.Text = professional.Rows[0]["nombre"].ToString() + " " + professional.Rows[0]["apellido"].ToString();
             labelEspecialidad.Text = profession.Rows[0]["descripcion"].ToString();
 
-            DataTable timetable = Timetable.getTimetable(this.professionCode, this.dni);
+            DataTable timetable = Timetable.getTimetableById(this.agendaId);
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = timetable;
@@ -48,35 +50,6 @@ namespace ClinicaFrba.Agenda_Medico
             timetableGrid.DataSource = bindingSource;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.Update(timetable);
-
-            loadTourns();
-            loadCanceledPeriods();
-        }
-
-        private void loadTourns()
-        {
-
-            DataTable tourns = Turno.conseguirPorProfesional(this.dni, this.professionCode, this.from.Value, this.to.Value);
-
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = tourns;
-
-            tournsGrid.DataSource = bindingSource;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.Update(tourns);
-        }
-
-        private void loadCanceledPeriods()
-        {
-
-            DataTable periods = Timetable.getCanceledPeriods(this.dni, this.professionCode, this.from.Value, this.to.Value);
-
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = periods;
-
-            periodGrid.DataSource = bindingSource;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.Update(periods);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -120,14 +93,10 @@ namespace ClinicaFrba.Agenda_Medico
 
         private void from_ValueChanged(object sender, EventArgs e)
         {
-            loadTourns();
-            loadCanceledPeriods();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            loadTourns();
-            loadCanceledPeriods();
         }
 
         private void timetableGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
