@@ -44,6 +44,7 @@
             this.especialidadesCombo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.timetablesGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.periodGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tournsGrid)).BeginInit();
@@ -52,9 +53,9 @@
             // timetablesGrid
             // 
             this.timetablesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.timetablesGrid.Location = new System.Drawing.Point(118, 118);
+            this.timetablesGrid.Location = new System.Drawing.Point(15, 119);
             this.timetablesGrid.Name = "timetablesGrid";
-            this.timetablesGrid.Size = new System.Drawing.Size(506, 165);
+            this.timetablesGrid.Size = new System.Drawing.Size(506, 109);
             this.timetablesGrid.TabIndex = 0;
             this.timetablesGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -88,7 +89,7 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(407, 554);
+            this.back.Location = new System.Drawing.Point(358, 573);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
             this.back.TabIndex = 53;
@@ -98,7 +99,7 @@
             // 
             // to
             // 
-            this.to.Location = new System.Drawing.Point(407, 302);
+            this.to.Location = new System.Drawing.Point(321, 416);
             this.to.Name = "to";
             this.to.Size = new System.Drawing.Size(200, 20);
             this.to.TabIndex = 77;
@@ -107,7 +108,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(358, 308);
+            this.label6.Location = new System.Drawing.Point(271, 423);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 76;
@@ -116,7 +117,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(89, 309);
+            this.label5.Location = new System.Drawing.Point(12, 423);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 75;
@@ -124,7 +125,7 @@
             // 
             // from
             // 
-            this.from.Location = new System.Drawing.Point(136, 303);
+            this.from.Location = new System.Drawing.Point(59, 417);
             this.from.Name = "from";
             this.from.Size = new System.Drawing.Size(200, 20);
             this.from.TabIndex = 74;
@@ -133,16 +134,17 @@
             // periodGrid
             // 
             this.periodGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.periodGrid.Location = new System.Drawing.Point(407, 360);
+            this.periodGrid.Location = new System.Drawing.Point(15, 281);
             this.periodGrid.Name = "periodGrid";
-            this.periodGrid.Size = new System.Drawing.Size(364, 165);
+            this.periodGrid.Size = new System.Drawing.Size(506, 88);
             this.periodGrid.TabIndex = 73;
+            this.periodGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.periodGrid_CellContentClick);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(514, 335);
+            this.label4.Location = new System.Drawing.Point(194, 250);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 13);
             this.label4.TabIndex = 72;
@@ -151,20 +153,20 @@
             // tournsGrid
             // 
             this.tournsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tournsGrid.Location = new System.Drawing.Point(1, 360);
+            this.tournsGrid.Location = new System.Drawing.Point(15, 449);
             this.tournsGrid.Name = "tournsGrid";
-            this.tournsGrid.Size = new System.Drawing.Size(319, 165);
+            this.tournsGrid.Size = new System.Drawing.Size(506, 101);
             this.tournsGrid.TabIndex = 71;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(104, 335);
+            this.label3.Location = new System.Drawing.Point(230, 387);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 70;
-            this.label3.Text = "Turnos";
+            this.label3.Text = "Filtrar Turnos";
             // 
             // especialidadesCombo
             // 
@@ -186,7 +188,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(246, 554);
+            this.button1.Location = new System.Drawing.Point(85, 573);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 23);
             this.button1.TabIndex = 80;
@@ -194,11 +196,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(310, 70);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(211, 28);
+            this.button2.TabIndex = 81;
+            this.button2.Text = "Cancelar periodo para este especialidad";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Agendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 620);
+            this.ClientSize = new System.Drawing.Size(546, 620);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.especialidadesCombo);
@@ -244,5 +257,6 @@
         private System.Windows.Forms.ComboBox especialidadesCombo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

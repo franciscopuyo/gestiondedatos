@@ -55,7 +55,7 @@ namespace ClinicaFrba.Agenda_Medico
         private void loadCanceledPeriods(int professionCode)
         {
 
-            DataTable periods = Timetable.getCanceledPeriods(this.dni, professionCode, this.from.Value, this.to.Value);
+            DataTable periods = Timetable.getCanceledPeriods(this.dni, professionCode);
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = periods;
@@ -127,10 +127,10 @@ namespace ClinicaFrba.Agenda_Medico
         {
             int professionCode = Profession.getCodeByDescription(especialidadesCombo.Text);
             loadTourns(professionCode);
-            loadCanceledPeriods(professionCode);
 
             if (refreshAgendas)
             {
+                loadCanceledPeriods(professionCode);
                 loadAgendas(professionCode);
             }
         }
@@ -145,6 +145,18 @@ namespace ClinicaFrba.Agenda_Medico
             this.Hide();
             AltaHorarios edit = new AltaHorarios(this.dni);
             edit.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CancelarPeriodo c = new CancelarPeriodo(this.dni, Profession.getCodeByDescription(especialidadesCombo.Text));
+            this.Hide();
+            c.Show();
+        }
+
+        private void periodGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
