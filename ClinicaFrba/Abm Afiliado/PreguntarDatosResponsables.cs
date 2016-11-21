@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaFrba.util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,15 +27,16 @@ namespace ClinicaFrba.Abm_Afiliado
             else
             {
                 afiliado.persist();
-                MessageBox.Show("Afiliados cargados con exito. \nUsuario principal: " + afiliado.username + "Contrasena: " + afiliado.password + ".");
+                MessageBox.Show("Afiliados cargados con exito. \n Nombre de usuario principal: " + afiliado.username + " Contrasena: " + afiliado.password + ".");
+                Session.mainMenu(this);            
             } 
         }
 
         private void NO_Click(object sender, EventArgs e)
         {
-            this.Hide();
             afiliado.persist();
-            MessageBox.Show("Afiliados cargados con exito. \nUsuario principal: " + afiliado.username + "Contrasena: " + afiliado.password + ".");
+            MessageBox.Show("Afiliados cargados con exito. \n Nombre de usuario principal: " + afiliado.username + " Contrasena: " + afiliado.password + ".");
+            Session.mainMenu(this);
         }
 
         private void SI_Click(object sender, EventArgs e)

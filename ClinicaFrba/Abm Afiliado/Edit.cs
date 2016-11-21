@@ -64,7 +64,8 @@ namespace ClinicaFrba.Abm_Afiliado
             Validations.validateString(direccion, errorProviderDireccion, "Direccion vacia o invalida", ref validInputs);
             Validations.validateEmail(mail, errorProviderMail, "Email vacio o invalido", ref validInputs);
             Validations.validateDateBeforeNow(fechaNacimiento, errorProviderFechaNacimiento, "Fecha de nacimiento invalida", ref validInputs);
-
+            Validations.validateIntWithMaxLength(telefono, errorProviderTelefono, "Telefono vacio o invalido", 14, ref validInputs);
+           
             return validInputs;
 
         }

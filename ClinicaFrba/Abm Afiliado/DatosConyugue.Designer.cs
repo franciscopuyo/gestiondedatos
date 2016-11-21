@@ -54,12 +54,14 @@
             this.errorProviderFechaNacimiento = new System.Windows.Forms.ErrorProvider(this.components);
             this.telefono = new System.Windows.Forms.TextBox();
             this.telefonoLabel = new System.Windows.Forms.Label();
+            this.errorProviderTelefono = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDocumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDireccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFechaNacimiento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).BeginInit();
             this.SuspendLayout();
             // 
             // sexo
@@ -97,7 +99,7 @@
             this.direccionLabel.Size = new System.Drawing.Size(105, 13);
             this.direccionLabel.TabIndex = 27;
             this.direccionLabel.Text = "Direccion completa *";
-             // 
+            // 
             // tipoDoc
             // 
             this.tipoDoc.FormattingEnabled = true;
@@ -149,7 +151,7 @@
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(100, 20);
             this.apellido.TabIndex = 21;
-           // 
+            // 
             // nombreLabel
             // 
             this.nombreLabel.AutoSize = true;
@@ -248,6 +250,10 @@
             this.telefonoLabel.TabIndex = 36;
             this.telefonoLabel.Text = "Telefono *";
             // 
+            // errorProviderTelefono
+            // 
+            this.errorProviderTelefono.ContainerControl = this;
+            // 
             // DatosConyugue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,6 +286,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDireccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFechaNacimiento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelefono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +319,7 @@
         private System.Windows.Forms.ErrorProvider errorProviderFechaNacimiento;
         private System.Windows.Forms.TextBox telefono;
         private System.Windows.Forms.Label telefonoLabel;
+        private System.Windows.Forms.ErrorProvider errorProviderTelefono;
 
     }
 }

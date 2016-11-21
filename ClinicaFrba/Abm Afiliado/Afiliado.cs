@@ -147,7 +147,7 @@ namespace ClinicaFrba.Abm_Afiliado
             SqlCommand command = new SqlCommand(createUser, connection);
             command.ExecuteNonQuery();
 
-            String assignRole = "INSERT INTO groupBy.Usuario_Roles(rol_codigo,usuario_dni) VALUES({0}, {1})";
+            String assignRole = "INSERT INTO group_by.Usuario_Roles(rol_codigo,usuario_dni) VALUES({0}, {1})";
             assignRole = String.Format(assignRole, 2, this.documento);
             command = new SqlCommand(assignRole, connection);
             command.ExecuteNonQuery();
@@ -155,6 +155,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         public static Boolean documentoYaExiste(String documento) 
         {
+            if (documento == null || documento.Equals("")) return true;
             String query = "select * from group_by.Afiliados where afiliado_dni = {0}";
             query = String.Format(query, documento);
             DataTable dataTable = util.Sql.query(query);
@@ -251,5 +252,22 @@ namespace ClinicaFrba.Abm_Afiliado
 
             connection.Close();
         }
+
+        public bool contiene(string p)
+        {
+            if (conyugue != null && conyugue.documento.ToString().Equals(p)) return true;
+
+            if (this.responsables != null)
+            {
+                foreach (Afiliado afiliado in this.responsables)
+                {
+                    if (afiliado.documento.ToString().Equals(p)) return true;
+                }
+            }
+
+            if (this.documento.ToString().Equals(p)) return true;
+
+            return false;
+        } 
     }
 }

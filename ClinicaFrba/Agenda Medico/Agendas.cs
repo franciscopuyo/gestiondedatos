@@ -31,6 +31,7 @@ namespace ClinicaFrba.Agenda_Medico
             labelProfesional.Text = professional.Rows[0]["nombre"].ToString() + " " + professional.Rows[0]["apellido"].ToString();
             loadEspecialidades();
             this.initialized = true;
+            loadAgendas(Profession.getCodeByDescription(especialidadesCombo.Text));
         }
 
         private void loadAgendas(int especialidad)

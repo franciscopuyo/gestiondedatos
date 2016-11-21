@@ -68,8 +68,9 @@ namespace ClinicaFrba.Abm_Afiliado
             }
             Validations.validateEmail(mail, errorProviderMail, "Email vacio o invalido", ref validInputs);
             Validations.validateDateBeforeNow(fechaNacimiento, errorProviderFechaNacimiento, "Fecha de nacimiento invalida", ref validInputs);
-
-            if (Afiliado.documentoYaExiste(documento.Text))
+            Validations.validateIntWithMaxLength(telefono, errorProviderTelefono, "Telefono vacio o invalido", 14, ref validInputs);
+        
+            if (Afiliado.documentoYaExiste(documento.Text) || afiliado.contiene(documento.Text))
             {
                 errorProviderDocumento.SetError(documento, "El documento ingresado ya existe");
                 validInputs = false;

@@ -32,7 +32,7 @@ namespace ClinicaFrba.Registro_Llegada
         {
             SqlConnection connection = util.Sql.connect("gd");
 
-            String query = "select nombre as Nombre, apellido as Apellido, Turnos.afiliado_dni as DNI_Afiliado,Turnos.numero as Numero_Turno, 'Seleccionar' as Seleccionar from group_by.Turnos, group_by.Personas_Detalle where Turnos.profesional_dni = {0} and Turnos.especialidad_codigo = {1} and CONVERT(DATE, fecha) = CONVERT(DATE, group_by.GETDATECUSTOM()) and Personas_Detalle.dni = Turnos.afiliado_dni";
+            String query = "select nombre as Nombre, apellido as Apellido, t.afiliado_dni as DNI_Afiliado,t.numero as Numero_Turno, 'Seleccionar' as Seleccionar from group_by.Turnos t JOIN group_by.Personas_Detalle pd ON (pd.dni = t.afiliado_dni) LEFT JOIN group_by.Cancelaciones c ON (c.turno_nro = t.numero) LEFT JOIN group_by.Atencion_medica am ON (am.turno_numero = t.numero) where am.turno_numero IS NULL AND c.turno_nro IS NULL AND t.profesional_dni = {0} and t.especialidad_codigo = {1} and CONVERT(DATE, fecha) = CONVERT(DATE, group_by.GETDATECUSTOM())";
             query = String.Format(query, dniProfesional, esp);
             adapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
